@@ -1,11 +1,16 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 // import { increment, incrementAsync, selectCount } from './cartSlice';
 
 const Cart = () => {
   // const count = useSelector(selectCount);
   const dispatch = useDispatch();
+
+  // const handleCheckout = () => {
+  //   Navigate("/checkout");
+  // };
+
 
   return (
       <div class="container mx-auto mt-10">
@@ -124,8 +129,11 @@ const Cart = () => {
               <span>Total cost</span>
               <span>$600</span>
             </div>
+            <Link to="/checkout">
             <button class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">Checkout</button>
-          </div>
+         
+            </Link>
+             </div>
         </div>
 
       </div>
