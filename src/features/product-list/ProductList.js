@@ -217,7 +217,7 @@ export default function ProductList() {
         </Transition.Root>
 
         <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
+          <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-8">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900">
               All Products
             </h1>
@@ -358,14 +358,14 @@ export default function ProductList() {
                 {/* This is our products list  */}
                 <div className="bg-white">
                   <div className="mx-auto max-w-2xl px-4 py-0 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8">
-                    <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+                    <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8 z-0">
                       {products.map((product) => (
-                        <div key={product.id} className="group relative">
+                        <div key={product.id} className="relative">
                           <div className="min-h-80 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
                             <img
                               src={product.imageSrc}
                               alt={product.imageAlt}
-                              className="h-full w-full object-cover object-center lg:h-full lg:w-full"
+                              className="h-full w-full object-cover object-center lg:h-full lg:w-full z-0"
                             />
                           </div>
                           <div className="mt-4 flex justify-between">
