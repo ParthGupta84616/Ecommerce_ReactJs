@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/Signup';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'; // Import Switch instead of Router
+import CartPage from './pages/CartPage';
 
 export default function App() {
   const router = createBrowserRouter([
@@ -18,10 +19,10 @@ export default function App() {
       path: "/signup",
       element: (<SignupPage />),
     },
-    // {
-    //   path: "/",
-    //   element: (<Home />),
-    // },
+    {
+      path: "/cart",
+      element: (<CartPage />),
+    },
   ]);
   return (
           <RouterProvider router={router} />
