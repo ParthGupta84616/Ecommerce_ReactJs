@@ -296,14 +296,14 @@ function Navbar({children}) {
     
                   {/* Logo */}
                   <div className="ml-4 flex lg:ml-0">
-                    <a href="#">
+                    <Link to="/">
                       <span className="sr-only">Your Company</span>
                       <img
                         className="h-8 w-auto"
                         src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                         alt=""
                       />
-                    </a>
+                    </Link>
                   </div>
                   {/* Flyout menus */}
                   <Popover.Group className="hidden lg:ml-8 lg:block lg:self-stretch z-50">

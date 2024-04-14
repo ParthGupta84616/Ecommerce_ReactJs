@@ -1,6 +1,7 @@
 import React from 'react'
-import ProductOverview from '../features/productOverview/ProductOverview'
+
 import Navbar from '../features/navbar/Navbar'
+import ProductOverview from '../features/product-list/product/ProductOverview'
 
 function ProductOverviewPage() {
   return (
