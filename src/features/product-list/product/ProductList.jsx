@@ -1,7 +1,7 @@
 import React, { useState, Fragment, useEffect } from "react";
 // import { Transition } from '@headlessui/react';
 import { useSelector, useDispatch } from "react-redux";
-import { increment, fetchAllProductsAsync, selectAllProduct } from "../productListSlice";
+import { increment, fetchAllProductsAsync, selectAllProduct, fetchProductByFilterAsync } from "../productListSlice";
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
@@ -14,7 +14,14 @@ import {
   Squares2X2Icon,
 } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
-
+const FilterData = {
+  brands: [
+    "Copenhagen Luxe", "mastar watch", "Steal Frame", "Impression of Acqua Di Gio", "Naviforce", "W1209 DC12V", "Huawei", "Bake Parlor Big", "Bracelet", "YIOSI", "Saaf & Khaas", "METRO 70cc Motorcycle - MR70", "Synthetic Leather", "Royal_Mirage", "Maasai Sandals", "Arrivals Genuine", "Ifei Home", "shock absorber", "ROREC White Rice", "Infinix", "Baking Food Items", "Xiangle", "DADAWU", "Vintage Apparel", "Ghazi Fabric", "Ratttan Outdoor", "Hemani Tea", "Strap Skeleton", "Al Munakh", "LED Lights", "Fair & Clear", "Car Aux", "Samsung", "Digital Printed", "Neon LED Light", "SKMEI 9117", "Microsoft Surface", "Rubber", "Soft Cotton", "RED MICKY MOUSE..", "Apple", "Fashion Jewellery", "Flying Wooden", "Stainless", "L'Oreal Paris", "OPPO", "Watch Pearls", "Designer Sun Glasses", "Kitchen Shelf", "Cuff Butterfly", "BRAVE BULL", "Fog Scent Xpressio", "HP Pavilion", "AmnaMart", "Dermive", "Professional Wear", "Dry Rose", "luxury palace", "Lord - Al-Rehab", "Top Sweater", "Luxury Digital", "FREE FIRE", "TC Reusable", "Sandals Flip Flops", "Sneakers", "fauji", "Darojay", "IELGY fashion", "Boho Decor", "Furniture Bed Set", "IELGY", "Eastern Watches", "Multi Purpose", "LouisWill", "lightingbrilliance", "Golden", "The Warehouse", "JIEPOLLY"
+  ],
+  categories: [
+    "skincare", "fragrances", "sunglasses", "mens-watches", "womens-dresses", "furniture", "womens-watches", "tops", "motorcycle", "automotive", "womens-shoes", "mens-shoes", "laptops", "home-decoration", "womens-bags", "groceries", "smartphones", "mens-shirts", "womens-jewellery", "lighting"
+  ]
+};
 const sortOptions = [
   { title: "Most Popular", images: "#", current: true },
   { title: "Best Rating", images: "#", current: false },
@@ -22,43 +29,26 @@ const sortOptions = [
   { title: "Price: Low to High", images: "#", current: false },
   { title: "Price: High to Low", images: "#", current: false },
 ];
-
 const filters = [
   {
     id: "brand",
-    title: "brand",
-    options: [
-      { value: "white", label: "White", checked: false },
-      { value: "beige", label: "Beige", checked: false },
-      { value: "blue", label: "Blue", checked: true },
-      { value: "brown", label: "Brown", checked: false },
-      { value: "green", label: "Green", checked: false },
-      { value: "purple", label: "Purple", checked: false },
-    ],
+    title: "Brand",
+    options: FilterData.brands.map((value) => ({
+      value: value,
+      label: value.charAt(0).toUpperCase() + value.slice(1),
+      checked: false,
+    })),
   },
   {
     id: "category",
     title: "Category",
-    options: [
-      { value: "new-arrivals", label: "New Arrivals", checked: false },
-      { value: "sale", label: "Sale", checked: false },
-      { value: "travel", label: "Travel", checked: true },
-      { value: "organization", label: "Organization", checked: false },
-      { value: "accessories", label: "Accessories", checked: false },
-    ],
+    options: FilterData.categories.map((value) => ({
+      value: value,
+      label: value.charAt(0).toUpperCase() + value.slice(1),
+      checked: false,
+    })),
   },
-  {
-    id: "size",
-    title: "Size",
-    options: [
-      { value: "2l", label: "2L", checked: false },
-      { value: "6l", label: "6L", checked: false },
-      { value: "12l", label: "12L", checked: false },
-      { value: "18l", label: "18L", checked: false },
-      { value: "20l", label: "20L", checked: false },
-      { value: "40l", label: "40L", checked: true },
-    ],
-  },
+  
 ];
 
 function classNames(...classes) {
@@ -71,10 +61,18 @@ export default function ProductList() {
   const dispatch = useDispatch();
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const products = useSelector(selectAllProduct)
+  const [filter, setFilter] = useState({})
   useEffect(()=>{
     dispatch(fetchAllProductsAsync())
   },[dispatch])
-  // console.log(products);
+  const handleFilter = (e, option ,section) =>{
+    const newFilter = {...filter, [section.id]: option.value}
+    setFilter(newFilter)
+    // console.log(option.value,section.id);
+    dispatch(fetchProductByFilterAsync(newFilter))
+    
+  }
+  
   return (
     <div className="bg-white">
       <div>
@@ -155,24 +153,26 @@ export default function ProductList() {
                               <div className="space-y-6">
                                 {section.options.map((option, optionIdx) => (
                                   <div
-                                    key={option.value}
-                                    className="flex items-center"
+                                  key={option.value}
+                                  className="flex items-center"
+                                >
+                                  <input
+                                    id={`filter-${section.id}-${optionIdx}`}
+                                    title={`${section.id}[]`}
+                                    defaultValue={option.value}
+                                    type="checkbox"
+                                    onChange={(e) => handleFilter(e, option, section)} // Fixed function call syntax
+                                    defaultChecked={option.checked}
+                                    className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                  />
+                                  <label
+                                    htmlFor={`filter-${section.id}-${optionIdx}`}
+                                    className="ml-3 text-sm text-gray-600"
                                   >
-                                    <input
-                                      id={`filter-mobile-${section.id}-${optionIdx}`}
-                                      title={`${section.id}[]`}
-                                      defaultValue={option.value}
-                                      type="checkbox"
-                                      defaultChecked={option.checked}
-                                      className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                                    />
-                                    <label
-                                      htmlFor={`filter-mobile-${section.id}-${optionIdx}`}
-                                      className="ml-3 min-w-0 flex-1 text-gray-500"
-                                    >
-                                      {option.label}
-                                    </label>
-                                  </div>
+                                    {option.label.charAt(0).toUpperCase() + option.label.slice(1)} {/* Capitalizing first letter */}
+                                  </label>
+                                </div>
+                                
                                 ))}
                               </div>
                             </Disclosure.Panel>
@@ -297,24 +297,27 @@ export default function ProductList() {
                           <div className="space-y-4">
                             {section.options.map((option, optionIdx) => (
                               <div
-                                key={option.value}
-                                className="flex items-center"
+                              key={option.value}
+                              className="flex items-center"
+                            >
+                              <input
+                                id={`filter-${section.id}-${optionIdx}`}
+                                title={`${section.id}[]`}
+                                defaultValue={option.value}
+                                type="checkbox"
+                                onChange={(e) => handleFilter(e, option, section)} // Fixed function call syntax
+                                defaultChecked={option.checked}
+                                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                              />
+                              <label
+                                htmlFor={`filter-${section.id}-${optionIdx}`}
+                                className="ml-3 text-sm text-gray-600"
                               >
-                                <input
-                                  id={`filter-${section.id}-${optionIdx}`}
-                                  title={`${section.id}[]`}
-                                  defaultValue={option.value}
-                                  type="checkbox"
-                                  defaultChecked={option.checked}
-                                  className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                                />
-                                <label
-                                  htmlFor={`filter-${section.id}-${optionIdx}`}
-                                  className="ml-3 text-sm text-gray-600"
-                                >
-                                  {option.label}
-                                </label>
-                              </div>
+                                {option.label.charAt(0).toUpperCase() + option.label.slice(1)} {/* Capitalizing first letter */}
+                              </label>
+                            </div>
+                            
+                            
                             ))}
                           </div>
                         </Disclosure.Panel>
