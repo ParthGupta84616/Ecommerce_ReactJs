@@ -1834,7 +1834,7 @@
       ]
     }
   ],
-  "category": [
+  "categories": [
     { "value": "smartphones", "label": "smartphones", "checked": false },
     { "value": "laptops", "label": "laptops", "checked": false },
     { "value": "fragrances", "label": "fragrances", "checked": false },
