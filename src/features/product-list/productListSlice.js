@@ -1,35 +1,39 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { fetchAllProducts } from './productListAPI';
-import { fetchProductByFilter } from './productListAPI';
+import { fetchAllProducts,fetchProductsByFilters } from './productListAPI';
 
 const initialState = {
   products: [],
   status: 'idle',
+  totalItems:0
 };
+
 
 export const fetchAllProductsAsync = createAsyncThunk(
   'product/fetchAllProducts',
   async () => {
     const response = await fetchAllProducts();
+    // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
 );
-export const fetchProductByFilterAsync = createAsyncThunk(
-  'product/fetchProductByFilter',
-  async (filter) => {
-    const response = await fetchProductByFilter(filter);
+export const fetchProductsByFiltersAsync = createAsyncThunk(
+  'product/fetchProductsByFilters',
+  async ({filter,sort,pagination}) => {
+    const response = await fetchProductsByFilters(filter,sort,pagination);
+    // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
 );
+
+
 
 export const productSlice = createSlice({
   name: 'product',
   initialState,
   reducers: {
-    // Remove or define increment based on your requirements
-    // increment: (state) => {
-    //   state.value += 1;
-    // },
+    increment: (state) => {
+      state.value += 1;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -40,19 +44,20 @@ export const productSlice = createSlice({
         state.status = 'idle';
         state.products = action.payload;
       })
-      .addCase(fetchProductByFilterAsync.pending, (state) => {
+      .addCase(fetchProductsByFiltersAsync.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(fetchProductByFilterAsync.fulfilled, (state, action) => {
+      .addCase(fetchProductsByFiltersAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.products = action.payload;
+        state.products = action.payload.products;
+        state.totalItems = action.payload.totalItems;
       });
   },
 });
 
-// Remove or define increment based on your requirements
-// export const { increment } = productSlice.actions;
+export const { increment } = productSlice.actions;
 
-export const selectAllProduct = (state) => state.product.products;
+export const selectAllProducts = (state) => state.product.products;
+export const selectTotalItems = (state) => state.product.totalItems;
 
 export default productSlice.reducer;
