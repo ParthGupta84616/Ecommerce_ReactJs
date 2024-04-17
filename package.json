@@ -23,7 +23,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start & json-server --watch ./src/app/data.json --port 8000",
+    "start": "react-scripts start & Set-ExecutionPolicy Bypass -Scope Process & json-server --watch ./src/app/data.json --port 8080",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
