@@ -1,30 +1,51 @@
-
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// import { increment, incrementAsync, selectCount } from './counterSlice';
+import { fetchSelectedProductAsync } from '../productListSlice'; // Import the thunk action creator
+import { useParams } from 'react-router-dom';
+import { FaStar } from "react-icons/fa";
+import { selectSelectedProduct } from '../productListSlice';
 
 const ProductOverview = () => {
-  // const count = useSelector(selectCount);
-  const dispatch = useDispatch();
-  const [counter, setCounter] = useState(1);
-
-  const plus = () => {
-    setCounter(counter + 1);
-  };
-
-  const minus = () => {
-    if (counter > 0) {
-      setCounter(counter - 1);
+    const dispatch = useDispatch();
+    const product = useSelector(selectSelectedProduct);
+    const { id } = useParams();
+  
+    useEffect(() => {
+      dispatch(fetchSelectedProductAsync(id));
+    }, [dispatch, id]);
+  
+    const [loading, setLoading] = useState(true); 
+  
+    useEffect(() => {
+      if (product) {
+        setLoading(false);
+      }
+    }, [product]);
+  
+    if (loading) {
+      return <div>Loading...</div>;
     }
-  };
-
-  const rotate = () => {
-    const rotateSVG = document.getElementById("rotateSVG");
-    if (rotateSVG) {
-      rotateSVG.classList.toggle("rotate-180");
-    }
-  };
-
+  console.log(product);
+  let img1 = product.thumbnail;
+  let img2 = product.thumbnail;
+  let img3 = product.thumbnail;
+  let img4 = product.thumbnail;
+  
+  if (product.images && product.images[0]) {
+    img1 = product.images[0];
+  }
+  
+  if (product.images && product.images[1]) {
+    img2 = product.images[1];
+  }
+  
+  if (product.images && product.images[2]) {
+    img3 = product.images[2];
+  }
+  
+  if (product.images && product.images[3]) {
+    img4 = product.images[3];
+  }
 
   return (
     
@@ -32,17 +53,22 @@ const ProductOverview = () => {
             <div class="flex justify-center items-center lg:flex-row flex-col gap-8">
        
                 <div class="w-full sm:w-96 md:w-8/12 lg:w-6/12 items-center">
-                    <p class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 font-normal text-base leading-4 text-gray-600  dark:text-gray-600">Home / Furniture / Wooden Stool</p>
-                    <h2 class="font-semibold lg:text-4xl text-3xl lg:leading-9 leading-7 text-gray-800 dark:text-gray-600 mt-4">Wooden Stool</h2>
+                    <p class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 font-normal text-base leading-4 text-gray-600  dark:text-gray-600">Home / {product.category} / {product.title} </p>
+                    <h2 class="font-semibold lg:text-4xl text-3xl lg:leading-9 leading-7 text-gray-800 dark:text-gray-600 mt-4">{product.title}</h2>
       
                     <div class="flex flex-row justify-between mt-5">
                        <img class="" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/productDetail4-svg1.svg" alt="stars"/>
                        <img class="hidden dark:block" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/productDetail4-svg1dark.svg" alt="stars"/>
-                        <p class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 font-normal text-base leading-4 text-gray-700 hover:underline hover:text-gray-800  duration-100 cursor-pointer">22 reviews</p>
+                        <div class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-base leading-4 text-gray-700 hover:underline hover:text-gray-800  duration-100 cursor-pointer font-extrabold flex gap-2">{product.rating} <FaStar /> </div>
                     </div>
       
-                    <p class="font-normal text-base leading-6 text-gray-600  mt-7">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using. Lorem Ipsum is that it has a more-or-less normal distribution of letters.</p>
-                    <p class="font-semibold lg:text-2xl text-xl lg:leading-6 leading-5 mt-6 dark:text-gray-600">$ 790.89</p>
+                    <p class="font-normal text-base leading-6 text-gray-600  mt-7"> {product.description} </p>
+                    <div className='flex justify-between'>
+                    <p class="font-semibold lg:text-2xl text-xl lg:leading-6 leading-5 mt-6 dark:text-gray-600">$ {Math.round(product.price*(1-(product.discountPercentage/100)))} </p>
+                    <p class="font-semibold lg:text-lg text-lg lg:leading-6 leading-5 mt-6 dark:text-red-900"> Off {product.discountPercentage}%</p>
+                    </div>
+                    <p class="font-semibold lg:text-2xl text-xl lg:leading-6 leading-5 mt-6 dark:text-gray-600 line-through">$ {product.price} </p>
+
       
                     <div class="lg:mt-11 mt-10">
                         <div class="flex flex-row justify-between">
@@ -55,10 +81,9 @@ const ProductOverview = () => {
                         </div>
                         <hr class="bg-gray-200 w-full my-2" />
                         <div class="flex flex-row justify-between items-center mt-4">
-                            <p class="font-medium text-base leading-4 text-gray-600 ">Dimensions</p>
-                            <img onclick="rotate()" id="rotateSVG" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 cursor-pointer transform duration-100  dark:hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/svg4.svg" alt="dropdown"/>
-                            <img onclick="rotate()" id="rotateSVG" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 cursor-pointer transform duration-100 hidden dark:block" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/svg4dark.svg" alt="dropdown"/>
-                        </div>
+                            <p class="font-medium text-base leading-4 text-gray-600 ">In Stock</p>
+                            <p> {product.stock} </p>
+                            </div>
                         <hr class="bg-gray-200 w-full mt-4" />
                     </div>
       
@@ -67,49 +92,22 @@ const ProductOverview = () => {
       
                 <div class="w-full sm:w-96 md:w-8/12 lg:w-6/12 flex lg:flex-row flex-col lg:gap-8 sm:gap-6 gap-4">
                     <div class="w-full lg:w-8/12 bg-gray-100 flex justify-center items-center">
-                        <img src="https://i.ibb.co/bRg2CJj/sam-moqadam-kvmds-Tr-GOBM-unsplash-removebg-preview-1.png" alt="Wooden Chair Previw" />
+                        <img src={img1} alt="Wooden Chair Previw" />
                     </div>
                     <div class="w-full lg:w-4/12 grid lg:grid-cols-1 sm:grid-cols-4 grid-cols-2 gap-6">
                         <div class="bg-gray-100 flex justify-center items-center py-4">
-                            <img src="https://i.ibb.co/0jX1zmR/sam-moqadam-kvmds-Tr-GOBM-unsplash-removebg-preview-1-1.png" alt="Wooden chair - preview 1" />
+                            <img src={img2} alt="Wooden chair - preview 1" />
                         </div>
                         <div class="bg-gray-100 flex justify-center items-center py-4">
-                            <img src="https://i.ibb.co/7zv1N5Q/sam-moqadam-kvmds-Tr-GOBM-unsplash-removebg-preview-2.png" alt="Wooden chair - preview 2" />
+                            <img src={img3} alt="Wooden chair - preview 2" />
                         </div>
                         <div class="bg-gray-100 flex justify-center items-center py-4">
-                            <img src="https://i.ibb.co/0jX1zmR/sam-moqadam-kvmds-Tr-GOBM-unsplash-removebg-preview-1-1.png" alt="Wooden chair- preview 3" />
+                            <img src={img4} alt="Wooden chair- preview 3" />
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="flex justify-center items-center w-full">
-                <div class="w-full sm:w-96 md:w-8/12 lg:w-full grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 lg:gap-28 sm:gap-x-6 sm:gap-y-12 gap-y-12 sm:mt-14 mt-10">
-                    <div>
-                        <img class="dark:hidden"  src="https://tuk-cdn.s3.amazonaws.com/can-uploader/productDetail4-svg2.svg" alt="drink"/>
-                        <img class="hidden dark:block"  src="https://tuk-cdn.s3.amazonaws.com/can-uploader/productDetail4-svg2dark.svg" alt="drink"/>
-                        <p class="font-semibold text-xl leading-5 text-gray-800 dark:text-gray-600 lg:mt-10 mt-9">Great for drinks</p>
-                        <p class="text-normal text-base leading-6 text-gray-600  mt-4">Here are all the great cocktail recipes you should know how to make, from the margarita to the whiskey sour. Cheers!</p>
-                    </div>
-                    <div>
-                        <img class="dark:hidden"  src="https://tuk-cdn.s3.amazonaws.com/can-uploader/productDetail4-svg3.svg" alt="hardware"/>
-                        <img class="hidden dark:block"  src="https://tuk-cdn.s3.amazonaws.com/can-uploader/productDetail4-svg3dark.svg" alt="hardware"/>
-                        <p class="font-semibold text-xl leading-5 text-gray-800 dark:text-gray-600 lg:mt-10 mt-9">Durable hardware</p>
-                        <p class="text-normal text-base leading-6 text-gray-600  mt-4">Product durability is a key aspect of achieving a circular economy. ... Moreover, enhancing the durability of individual hardware components</p>
-                    </div>
-                    <div>
-                        <img class="dark:hidden"  src="https://tuk-cdn.s3.amazonaws.com/can-uploader/productDetail4-svg5.svg" alt="Eco-friendly"/>
-                        <img class="hidden dark:block"  src="https://tuk-cdn.s3.amazonaws.com/can-uploader/productDetail4-svg5dark.svg" alt="Eco-friendly"/>
-                        <p class="font-semibold text-xl leading-5 text-gray-800 dark:text-gray-600 lg:mt-10 mt-9">Eco-friendly</p>
-                        <p class="text-normal text-base leading-6 text-gray-600  mt-4">They re-use, recycle and reduce waste disposal in their lives. They conserve energy and natural resources</p>
-                    </div>
-                    <div>
-                        <img class="dark:hidden"  src="https://tuk-cdn.s3.amazonaws.com/can-uploader/productDetail4-svg6.svg" alt="drink"/>
-                        <img class="hidden dark:block"  src="https://tuk-cdn.s3.amazonaws.com/can-uploader/productDetail4-svg6dark.svg" alt="drink"/>
-                        <p class="font-semibold text-xl leading-5 text-gray-800 dark:text-gray-600 lg:mt-10 mt-9">Minimal Design</p>
-                        <p class="text-normal text-base leading-6 text-gray-600  mt-4">Minimalist interior design is very similar to modern interior design and involves using the bare essentials</p>
-                    </div>
-                </div>
-            </div>
+            
         </div>
       
       

@@ -2,6 +2,8 @@ import React, { useState, Fragment, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   fetchAllProductsAsync,
+  fetchBrandsAsync,
+  fetchCategoriesAsync,
   fetchProductsByFiltersAsync,
   selectAllProducts,
   selectBrands,
@@ -24,6 +26,7 @@ import {
   Squares2X2Icon,
 } from '@heroicons/react/20/solid';
 import { ITEMS_PER_PAGE, TOTAL_ITEMS } from '../../../app/Constants';
+import { fetchCategories } from '../productListAPI';
 
 const sortOptions = [
   { name: 'Best Rating', sort: 'rating' },
@@ -98,10 +101,13 @@ export default function ProductList() {
     dispatch(fetchProductsByFiltersAsync({ filter, sort, pagination }));
   }, [dispatch, filter, sort, page]);
 
-  useEffect(()=>{
-    setPage(1)
-  },[totalItems,sort])
+  useEffect(() => {
+    // Dispatch actions only once when the component mounts
+    dispatch(fetchBrandsAsync());
+    dispatch(fetchCategoriesAsync());
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <div className="bg-white">
       <div>
@@ -390,18 +396,28 @@ function Pagination({ page, setPage, handlePage, totalItems ,filters}) {
   return (
     <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
       <div className="flex flex-1 justify-between sm:hidden">
-        <a
-          href="#"
+        <div
+          onClick={(e) => {
+            if (page > 1) {
+              setPage(page-1)
+            }
+          }}
           className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
         >
           Previous
-        </a>
-        <a
-          href="#"
+        </div>
+        <div
+          onClick={(e) => {
+            const maxPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+            console.log(maxPages);
+            if (page < maxPages) {
+              setPage(page+1)
+            }
+          }}
           className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
         >
           Next
-        </a>
+        </div>
       </div>
       <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
         <div>
@@ -425,13 +441,17 @@ function Pagination({ page, setPage, handlePage, totalItems ,filters}) {
             aria-label="Pagination"
             // onClick={(e) => handlePage(setPage(page-1))}
           >
-            <a
-              href="#"
+            <div
+              onClick={(e) => {
+                if (page > 1) {
+                  setPage(page-1)
+                }
+              }}
               className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
             >
               <span className="sr-only">Previous</span>
               <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
-            </a>
+            </div>
             {/* Current: "z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" */}
 
             {Array.from({ length: Math.ceil(totalItems / ITEMS_PER_PAGE) }).map(
@@ -450,13 +470,19 @@ function Pagination({ page, setPage, handlePage, totalItems ,filters}) {
               )
             )}
 
-            <a
-              href="#"
+            <div
+            onClick={(e) => {
+              const maxPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+              console.log(maxPages);
+              if (page < maxPages) {
+                setPage(page+1)
+              }
+            }}
               className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
             >
               <span className="sr-only">Next</span>
               <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
-            </a>
+            </div>
           </nav>
         </div>
       </div>
@@ -470,7 +496,7 @@ function ProductGrid({ products , filters }) {
       <div className="mx-auto max-w-2xl px-4 py-0 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8 mt-4">
         <div className="grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2 lg:grid-cols-3  ">
           {products.map((product) => (
-            <Link to="/product" key={product.id}>
+            <Link to={`/product/${product.id}`} key={product.id}>
               <div className="group relative border-solid border-2 p-2 border-gray-200 rounded-xl">
                 <div className="min-h-60 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-60 ">
                   <img

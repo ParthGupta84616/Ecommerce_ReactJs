@@ -30,7 +30,7 @@ export default function App() {
       element: (<CheckOutPage />),
     },
     {
-      path: "/product",
+      path: "/product/:id",
       element: (<ProductOverviewPage />),
     },
   ]);
