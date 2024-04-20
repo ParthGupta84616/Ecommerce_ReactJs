@@ -4,10 +4,8 @@ import ProductList from '../features/product-list/product/ProductList'
 
 function Home() {
   return (
-    <div>
-        <Navbar>
+    <div><Navbar />
             <ProductList/>
-        </Navbar>
     </div>
   )
 }

@@ -6,9 +6,8 @@ import ProductOverview from '../features/product-list/product/ProductOverview'
 function ProductOverviewPage() {
   return (
     <div>
-      <Navbar>
+      <Navbar />
       <ProductOverview  />
-      </Navbar>
     </div>
   )
 }

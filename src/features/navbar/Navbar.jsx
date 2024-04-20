@@ -249,7 +249,7 @@ function Navbar({children}) {
                     <div className="space-y-6 border-t border-gray-200 px-4 py-6">
                       <div className="flow-root">
                         <Link to="/login" className="-m-2 block p-2 font-medium text-gray-900">
-                          Sign in
+                          Log in
                         </Link>
                       </div>
                       <div className="flow-root">
@@ -408,7 +408,7 @@ function Navbar({children}) {
                         Sign in
                       </Link>
                       <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
-                      <Link to="signup" className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                      <Link to="/signup" className="text-sm font-medium text-gray-700 hover:text-gray-800">
                         Create account
                       </Link>
                     </div>

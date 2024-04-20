@@ -1,14 +1,14 @@
 import React, { useState, Fragment, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  fetchAllProductsAsync,
+  // fetchAllProductsAsync,
   fetchBrandsAsync,
   fetchCategoriesAsync,
   fetchProductsByFiltersAsync,
   selectAllProducts,
   selectBrands,
   selectCategories,
-  selectTotalItems,
+  // selectTotalItems,
 } from '../productListSlice';
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
@@ -26,7 +26,7 @@ import {
   Squares2X2Icon,
 } from '@heroicons/react/20/solid';
 import { ITEMS_PER_PAGE, TOTAL_ITEMS } from '../../../app/Constants';
-import { fetchCategories } from '../productListAPI';
+// import { fetchCategories } from '../productListAPI';
 
 const sortOptions = [
   { name: 'Best Rating', sort: 'rating' },
@@ -106,8 +106,7 @@ export default function ProductList() {
     dispatch(fetchBrandsAsync());
     dispatch(fetchCategoriesAsync());
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dispatch]);
   return (
     <div className="bg-white">
       <div>
@@ -394,7 +393,7 @@ function DesktopFilter({ handleFilter ,filters}) {
 
 function Pagination({ page, setPage, handlePage, totalItems ,filters}) {
   return (
-    <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
+    <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6 mt-10">
       <div className="flex flex-1 justify-between sm:hidden">
         <div
           onClick={(e) => {
