@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { useForm } from "react-hook-form"
 import { useDispatch, useSelector } from 'react-redux';
 import { createUserAsync, selectLoggedUser } from '../authSlice';
@@ -11,11 +11,15 @@ const Signup = () => {
 
   const onSubmit = (data) => {
     dispatch(createUserAsync({email: data.email, password: data.password}))
+   
   };
+  
   const user = useSelector(selectLoggedUser)
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-      {/* {user?.email} */}
+      {user?.email && (
+        <Navigate to="/" />
+      )}
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <Link to="/">
           <img

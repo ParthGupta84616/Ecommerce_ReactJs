@@ -7,12 +7,13 @@ import CartPage from './pages/CartPage';
 import CheckOutPage from './pages/CheckOutPage';
 import ProductOverviewPage from './pages/ProductOverviewPage';
 import Footer from './features/navbar/Footer';
+import Protected from './features/auth/Protected';
 
 export default function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: (<Home />),
+      element: <Home />,
     },
     {
       path: "/login",
@@ -23,16 +24,12 @@ export default function App() {
       element: (<SignupPage />),
     },
     {
-      path: "/login/signup",
-      element: (<SignupPage />),
-    },
-    {
       path: "/cart",
       element: (<CartPage />),
     },
     {
       path: "/checkout",
-      element: (<CheckOutPage />),
+      element: (<Protected><CheckOutPage /></Protected>),
     },
     {
       path: "/product/:id",
