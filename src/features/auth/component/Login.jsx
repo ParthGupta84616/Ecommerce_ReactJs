@@ -9,7 +9,6 @@ const Login = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm()
 
@@ -19,13 +18,15 @@ const Login = () => {
   }
   const user = useSelector(selectCheckUser)
   // console.log(user)
-  console.log(user);
-
+  // console.log(user);
+  if(user?.email){
+    return <Navigate to="/" />
+  }
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-      {user?.email && (
+      {/* {user?.email && (
         <Navigate to="/" />
-      )}
+      )} */}
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <Link to="/">
         <img

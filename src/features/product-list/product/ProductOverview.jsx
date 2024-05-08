@@ -4,10 +4,15 @@ import { fetchSelectedProductAsync } from '../productListSlice'; // Import the t
 import { useParams } from 'react-router-dom';
 import { FaStar } from "react-icons/fa";
 import { selectSelectedProduct } from '../productListSlice';
+import { selectCheckUser } from '../../auth/authSlice';
+import { addToCartAsync } from '../../cart/cartSlice';
 
 const ProductOverview = () => {
     const dispatch = useDispatch();
     const product = useSelector(selectSelectedProduct);
+    const user = useSelector(selectCheckUser) 
+    // console.log(user)
+    // console.log(product);
     const { id } = useParams();
   
     useEffect(() => {
@@ -25,7 +30,7 @@ const ProductOverview = () => {
     if (loading) {
       return <div>Loading...</div>;
     }
-  console.log(product);
+  // console.log(product);
   let img1 = product.thumbnail;
   let img2 = product.thumbnail;
   let img3 = product.thumbnail;
@@ -46,6 +51,14 @@ const ProductOverview = () => {
   if (product.images && product.images[3]) {
     img4 = product.images[3];
   }
+  const handleCart = (e) => {
+    e.preventDefault();
+    if (user && user.id) {
+      dispatch(addToCartAsync({ ...product, quantity: 1, userId: user.id }));
+    } else {
+      console.error('User or user ID is null or undefined.');
+    }
+  };
 
   return (
     
@@ -87,7 +100,9 @@ const ProductOverview = () => {
                         <hr class="bg-gray-200 w-full mt-4" />
                     </div>
       
-                    <button class="focus:outline-none focus:ring-2 hover:bg-black focus:ring-offset-2 focus:ring-gray-800 font-medium text-base leading-4 text-white bg-gray-800 w-full py-5 lg:mt-12 mt-6">Add to shopping bag</button>
+                    <button 
+                    onclick = {handleCart}
+                    class="focus:outline-none focus:ring-2 hover:bg-black focus:ring-offset-2 focus:ring-gray-800 font-medium text-base leading-4 text-white bg-gray-800 w-full py-5 lg:mt-12 mt-6">Add to shopping bag</button>
                 </div>
       
                 <div class="w-full sm:w-96 md:w-8/12 lg:w-6/12 flex lg:flex-row flex-col lg:gap-8 sm:gap-6 gap-4">

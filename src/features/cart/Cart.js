@@ -5,7 +5,8 @@ import { Link, Navigate } from 'react-router-dom';
 
 const Cart = () => {
   // const count = useSelector(selectCount);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+  // const selector = useSelector();
 
   // const handleCheckout = () => {
   //   Navigate("/checkout");

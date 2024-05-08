@@ -13,7 +13,7 @@ export default function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Home />,
+      element: (<Protected><Home /></Protected>),
     },
     {
       path: "/login",
@@ -25,7 +25,7 @@ export default function App() {
     },
     {
       path: "/cart",
-      element: (<CartPage />),
+      element: (<Protected><CartPage /></Protected>),
     },
     {
       path: "/checkout",
@@ -33,7 +33,7 @@ export default function App() {
     },
     {
       path: "/product/:id",
-      element: (<ProductOverviewPage />),
+      element: (<Protected><ProductOverviewPage /></Protected>),
     },
   ]);
   return (

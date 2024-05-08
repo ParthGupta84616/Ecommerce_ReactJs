@@ -139,7 +139,7 @@ function CheckOutPage() {
                             <div class="flex flex-col space-y-4">
                                 <div class="flex space-x-4">
                                     <div>
-                                        <img src="https://source.unsplash.com/user/erondu/1600x900" alt="image"
+                                        <img src="https://source.unsplash.com/user/erondu/1600x900" alt=""
                                             class="w-60"/>
                                     </div>
                                     <div>
@@ -157,7 +157,7 @@ function CheckOutPage() {
                                 </div>
                                 <div class="flex space-x-4">
                                     <div>
-                                        <img src="https://source.unsplash.com/collection/190727/1600x900" alt="image"
+                                        <img src="https://source.unsplash.com/collection/190727/1600x900" alt=""
                                             class="w-60"/>
                                     </div>
                                     <div>
