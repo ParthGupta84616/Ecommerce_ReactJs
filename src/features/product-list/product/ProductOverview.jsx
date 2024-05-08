@@ -52,6 +52,7 @@ const ProductOverview = () => {
     img4 = product.images[3];
   }
   const handleCart = (e) => {
+    // console.log("gyo");
     e.preventDefault();
     if (user && user.id) {
       dispatch(addToCartAsync({ ...product, quantity: 1, userId: user.id }));
@@ -101,7 +102,7 @@ const ProductOverview = () => {
                     </div>
       
                     <button 
-                    onclick = {handleCart}
+                    onClick={handleCart}
                     class="focus:outline-none focus:ring-2 hover:bg-black focus:ring-offset-2 focus:ring-gray-800 font-medium text-base leading-4 text-white bg-gray-800 w-full py-5 lg:mt-12 mt-6">Add to shopping bag</button>
                 </div>
       
