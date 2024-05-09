@@ -3,22 +3,40 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
 import { selectItems } from './cartSlice';
 const Cart = () => {
-  const cartItems = useSelector(selectItems);
+  var cartItems = useSelector(selectItems);
   const [totalCost, setTotalCost] = useState(0);
+  const [TotalQunatity, setTotalQunatity] = useState(0)
+  const consolidateCartItems = (cartItems) => {
+    const consolidatedItems = [];
+    const titleMap = {};
+  
+    cartItems.forEach((item) => {
+      if (titleMap[item.title]) {
+        // If title already exists in map, update its quantity
+        titleMap[item.title].quantity += item.quantity;
+      } else {
+        // If title doesn't exist, add it to map and push it to consolidatedItems
+        titleMap[item.title] = { ...item };
+        consolidatedItems.push(titleMap[item.title]);
+      }
+    });
+  
+    return consolidatedItems;
+  };
+  cartItems = consolidateCartItems(cartItems);
 
   useEffect(() => {
     let totalPrice = 0;
-
-    // Calculate the total cost by iterating over each item in the cart
+    let totalQuantity = 0;
     cartItems.forEach((item) => {
-      // Calculate the discounted price
       const discountedPrice = item.price * (1 - item.discountPercentage / 100);
-      // Multiply the discounted price by the quantity of the item
       totalPrice += discountedPrice * item.quantity;
+      totalQuantity += item.quantity;
     });
 
     // Set the total cost state
     setTotalCost(totalPrice);
+    setTotalQunatity(totalQuantity);
   }, [cartItems]);
   return (
       <div class="container mx-auto mt-10">
@@ -26,7 +44,7 @@ const Cart = () => {
         <div class="w-3/4 bg-white px-10 py-10">
           <div class="flex justify-between border-b pb-8">
             <h1 class="font-semibold text-2xl">Shopping Cart</h1>
-            <h2 class="font-semibold text-2xl">{cartItems.length} Items</h2>
+            <h2 class="font-semibold text-2xl">{cartItems.length} Products</h2>
           </div>
           <div class="flex mt-10 mb-5">
             <h3 class="font-semibold text-gray-600 text-xs uppercase w-2/5">Product Details</h3>
@@ -47,13 +65,13 @@ const Cart = () => {
                 </div>
               </div>
               <div class="flex justify-center w-1/5">
-                <svg class="fill-current text-gray-600 w-3" viewBox="0 0 448 512">
+                {/* <svg class="fill-current text-gray-600 w-3" viewBox="0 0 448 512">
                   <path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"/>
-                </svg>
-                <input class="mx-2 border text-center w-8" type="text" value={item.quantity}/>
-                <svg class="fill-current text-gray-600 w-3" viewBox="0 0 448 512">
+                </svg> */}
+                <input class="mx-2 border text-center w-1/3" type="text" value={item.quantity}/>
+                {/* <svg class="fill-current text-gray-600 w-3" viewBox="0 0 448 512">
                   <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"/>
-                </svg>
+                </svg> */}
               </div>
               <span class="text-center w-1/5 font-semibold text-sm">${(item.price * (1 - (item.discountPercentage / 100))).toFixed(0)}</span>
               <span class="text-center w-1/5 font-semibold text-sm">${(item.price * (1 - (item.discountPercentage / 100))).toFixed(0)*item.quantity}</span>
@@ -70,8 +88,8 @@ const Cart = () => {
         <div id="summary" class="w-1/4 px-8 py-10">
           <h1 class="font-semibold text-2xl border-b pb-8">Order Summary</h1>
           <div class="flex justify-between mt-10 mb-5">
-            <span class="font-semibold text-sm uppercase">Items {cartItems.length}</span>
-            <span class="font-semibold text-sm">590$</span>
+            <span class="font-semibold text-sm uppercase">Quantity {TotalQunatity} </span>
+            <span class="font-semibold text-sm">${totalCost.toFixed(0)}</span>
           </div>
           <div>
             <label class="font-medium inline-block mb-3 text-sm uppercase">Shipping</label>

@@ -5,16 +5,23 @@ import { useParams } from 'react-router-dom';
 import { FaStar } from "react-icons/fa";
 import { selectSelectedProduct } from '../productListSlice';
 import { selectCheckUser } from '../../auth/authSlice';
-import { addToCartAsync } from '../../cart/cartSlice';
+import { addToCartAsync, selectItems } from '../../cart/cartSlice';
 
 const ProductOverview = () => {
     const dispatch = useDispatch();
+    const cartItems = useSelector(selectItems);
     const product = useSelector(selectSelectedProduct);
     const user = useSelector(selectCheckUser) 
     // console.log(user)
     // console.log(product);
     const { id } = useParams();
+    // const [totalQuantity, settotalQuantity] = useState(0)
+
+  // useEffect(() => {
+    
+  // }, [cartItems])
   
+ 
     useEffect(() => {
       dispatch(fetchSelectedProductAsync(id));
     }, [dispatch, id]);
@@ -60,6 +67,20 @@ const ProductOverview = () => {
       console.error('User or user ID is null or undefined.');
     }
   };
+  if(cartItems){
+    // console.log(cartItems.filter(item => item.title === product.title));
+    const item = cartItems.filter(item => item.title === product.title);
+    // console.log()
+    if(item.length){
+      // console.log("here again")
+      var cartIt = item[0].quantity+item.length-1;
+      
+    }
+    else{
+      // console.log("here again1")
+      var cartIt = 0;
+    }
+  }
 
   return (
     
@@ -86,11 +107,11 @@ const ProductOverview = () => {
       
                     <div class="lg:mt-11 mt-10">
                         <div class="flex flex-row justify-between">
-                            <p class="font-medium text-base leading-4 text-gray-600 ">Select quantity</p>
+                            <p class="font-medium text-base leading-4 text-gray-600 ">Cart quantity</p>
                             <div class="flex">
-                                <div onclick="minus()" class="focus:outline-none dark:text-gray-600 focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 cursor-pointer border border-gray-300 border-r-0 w-7 h-7 flex items-center justify-center m-auto ">-</div>
-                                <input id="counter" aria-label="input" class="border dark:text-gray-600 border-gray-300 dark:bg-transparent h-full text-center w-14 pb-1" type="text" value="1" />
-                                <div onclick="plus()" class="focus:outline-none dark:text-gray-600 focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 cursor-pointer border border-gray-300 border-l-0 w-7 h-7 flex items-center justify-center m-auto ">+</div>
+                                {/* <div onclick="minus()" class="focus:outline-none dark:text-gray-600 focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 cursor-pointer border border-gray-300 border-r-0 w-7 h-7 flex items-center justify-center m-auto ">-</div> */}
+                                <input id="counter" aria-label="input" class="border dark:text-gray-600 border-gray-300 dark:bg-transparent h-full text-center w-14 pb-1" type="text" value={cartIt} />
+                                {/* <div onclick="plus()" class="focus:outline-none dark:text-gray-600 focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 cursor-pointer border border-gray-300 border-l-0 w-7 h-7 flex items-center justify-center m-auto ">+</div> */}
                             </div>
                         </div>
                         <hr class="bg-gray-200 w-full my-2" />

@@ -39,7 +39,14 @@ export const cartSlice = createSlice({
       })
       .addCase(addToCartAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.items.push(action.payload); // Push the payload (added item) to the items array
+        const existingItemIndex = state.items.findIndex(
+          (item) => item.id === action.payload.id
+        );
+        if (existingItemIndex !== -1) {
+          state.items[existingItemIndex].quantity += 1;
+        } else {
+          state.items.push(action.payload);
+        }
       })
       .addCase(fetchItemByUserIdAsync.pending, (state) => {
         state.status = 'loading';
