@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
@@ -8,6 +8,9 @@ import CheckOutPage from './pages/CheckOutPage';
 import ProductOverviewPage from './pages/ProductOverviewPage';
 import Footer from './features/navbar/Footer';
 import Protected from './features/auth/Protected';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectCheckUser } from './features/auth/authSlice';
+import { fetchItemByUserIdAsync, selectItems } from './features/cart/cartSlice';
 
 export default function App() {
   const router = createBrowserRouter([
@@ -36,6 +39,14 @@ export default function App() {
       element: (<Protected><ProductOverviewPage /></Protected>),
     },
   ]);
+  const user = useSelector(selectCheckUser)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    if(user){
+      dispatch(fetchItemByUserIdAsync(user.id))
+    }
+  }, [user , dispatch]);
+  // console.log(useSelector(selectItems));
   return (
           <>
           
