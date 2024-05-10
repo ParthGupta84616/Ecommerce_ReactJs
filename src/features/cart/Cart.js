@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
-import { selectItems } from './cartSlice';
+import { deleteItemFromCartAsync, selectItems } from './cartSlice';
 const Cart = () => {
+  const dispatch = useDispatch()
   var cartItems = useSelector(selectItems);
   const [totalCost, setTotalCost] = useState(0);
   const [TotalQunatity, setTotalQunatity] = useState(0)
@@ -25,6 +26,7 @@ const Cart = () => {
   };
   cartItems = consolidateCartItems(cartItems);
 
+
   useEffect(() => {
     let totalPrice = 0;
     let totalQuantity = 0;
@@ -38,6 +40,9 @@ const Cart = () => {
     setTotalCost(totalPrice);
     setTotalQunatity(totalQuantity);
   }, [cartItems]);
+  const handleRemove = (e , id)=>{
+    dispatch(deleteItemFromCartAsync(id));
+  }
   return (
       <div class="container mx-auto mt-10">
       <div class="flex shadow-md my-10">
@@ -61,7 +66,9 @@ const Cart = () => {
                 <div class="flex flex-col justify-between ml-4 flex-grow">
                   <span class="font-bold text-sm">{item.title}</span>
                   <span class="text-red-500 text-xs">{item.brand}</span>
-                  <a href="#" class="font-semibold hover:text-red-500 text-gray-500 text-xs">Remove</a>
+                  <a 
+                  onClick={e=>{handleRemove(e, item.id)}}
+                  class="font-semibold hover:text-red-500 text-gray-500 text-xs">Remove</a>
                 </div>
               </div>
               <div class="flex justify-center w-1/5">

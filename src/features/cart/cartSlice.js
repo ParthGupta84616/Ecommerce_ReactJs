@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { addToCart, fetchItemByUserId } from './cartAPI'; // Import the addToCart function from cartAPI
+import { addToCart, deleteItemFromCart, fetchItemByUserId } from './cartAPI'; // Import the addToCart function from cartAPI
 
 const initialState = {
   value: 0,
@@ -19,6 +19,13 @@ export const fetchItemByUserIdAsync = createAsyncThunk(
   "cart/fetchItemByUserId",
   async (userId) => {
     const response = await fetchItemByUserId(userId); // Call addToCart function with the item
+    return response.data;
+  }
+);
+export const deleteItemFromCartAsync = createAsyncThunk(
+  "cart/deleteItemFromCart",
+  async (itemId) => {
+    const response = await deleteItemFromCart(itemId); // Call addToCart function with the item
     return response.data;
   }
 );
@@ -54,6 +61,16 @@ export const cartSlice = createSlice({
       .addCase(fetchItemByUserIdAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         state.items=action.payload; // Push the payload (added item) to the items array
+      })
+      .addCase(deleteItemFromCartAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(deleteItemFromCartAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        const index = state.items.findIndex(
+          (item) => item.id === action.payload.id
+        );
+        state.items.splice(index ,1); // Push the payload (added item) to the items array
       });
   },
 });
