@@ -134,8 +134,27 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 function Navbar({children}) {
-  const cartItems = useSelector(selectItems)
+  var cartItems = useSelector(selectItems)
     const [open, setOpen] = useState(false)
+    const consolidateCartItems = (cartItems) => {
+      const consolidatedItems = [];
+      const titleMap = {};
+    
+      cartItems.forEach((item) => {
+        if (titleMap[item.title]) {
+          // If title already exists in map, update its quantity
+          titleMap[item.title].quantity += item.quantity;
+        } else {
+          // If title doesn't exist, add it to map and push it to consolidatedItems
+          titleMap[item.title] = { ...item };
+          consolidatedItems.push(titleMap[item.title]);
+        }
+      });
+    
+      return consolidatedItems;
+    };
+    cartItems = consolidateCartItems(cartItems);
+  
     return (
         <div className="bg-white">
           {/* Mobile menu */}
