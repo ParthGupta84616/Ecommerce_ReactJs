@@ -12,6 +12,7 @@ function CheckOutPage() {
     const user = useSelector(selectCheckUser)
     const dispatch = useDispatch()
     const [TotalQuantity, setTotalQuantity] = useState(0);
+    const [orderDetails, setOrderDetails] = useState(null)
 
     useEffect(() => {
         let totalPrice = 0;
@@ -33,7 +34,10 @@ function CheckOutPage() {
         } else {
             setCheckedPerson(person);
         }
+        // console.log(checkedPerson)
+        setOrderDetails({"user":user, "addresses":checkedPerson, "items":cartItems})
     };
+    // console.log(orderDetails);
 
     const consolidateCartItems = (cartItems) => {
         const consolidatedItems = [];
@@ -59,14 +63,24 @@ function CheckOutPage() {
 
     const onSubmit = (data) => {
         dispatch(updateUserAsync({...user,addresses:[...user.addresses,data],}));
+        console.log("here")
+        setOrderDetails({"user":user, "addresses":data, "items":cartItems})
+        //send data to Order DB
+        console.log(orderDetails);
         reset(); 
 
     };
 
     const handleOutsideSubmit = () => {
-        handleSubmit(onSubmit)();
-    };
-    console.log(user)
+        console.log(orderDetails.addresses)
+        if (orderDetails.addresses===null){
+            handleSubmit(onSubmit)();
+        }
+        else{
+            //send to order DB
+            console.log(orderDetails);
+        }
+    };  
   return (
 
     <div class="container p-12 mx-auto">
