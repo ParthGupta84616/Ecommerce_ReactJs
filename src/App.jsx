@@ -11,6 +11,9 @@ import Protected from './features/auth/Protected';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectCheckUser } from './features/auth/authSlice';
 import { fetchItemByUserIdAsync, selectItems } from './features/cart/cartSlice';
+import ErrorPage from './pages/ErrorPage';
+import ConfirmedPage from './pages/ConfirmedPage';
+import Navbar from './features/navbar/Navbar';
 
 export default function App() {
   const router = createBrowserRouter([
@@ -37,6 +40,14 @@ export default function App() {
     {
       path: "/product/:id",
       element: (<Protected><ProductOverviewPage /></Protected>),
+    },
+    {
+      path: "*",
+      element: (<Navbar><ErrorPage /></Navbar>),
+    },
+    {
+      path: "/orderSuccessfull",
+      element: (<Navbar><ConfirmedPage /></Navbar>),
     },
   ]);
   const user = useSelector(selectCheckUser)

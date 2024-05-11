@@ -4,6 +4,7 @@ import { selectItems, updateUserAsync } from '../features/cart/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { selectCheckUser } from '../features/auth/authSlice';
+import { createOrderAsync } from '../features/order/orderSlice';
 
 function CheckOutPage() {
     const [checkedPerson, setCheckedPerson] = useState(null);
@@ -12,7 +13,7 @@ function CheckOutPage() {
     const user = useSelector(selectCheckUser)
     const dispatch = useDispatch()
     const [TotalQuantity, setTotalQuantity] = useState(0);
-    const [orderDetails, setOrderDetails] = useState(null)
+    const [orderDetails, setOrderDetails] = useState({"addresses":null})
 
     useEffect(() => {
         let totalPrice = 0;
@@ -34,10 +35,8 @@ function CheckOutPage() {
         } else {
             setCheckedPerson(person);
         }
-        // console.log(checkedPerson)
         setOrderDetails({"user":user, "addresses":checkedPerson, "items":cartItems})
     };
-    // console.log(orderDetails);
 
     const consolidateCartItems = (cartItems) => {
         const consolidatedItems = [];
@@ -66,19 +65,19 @@ function CheckOutPage() {
         console.log("here")
         setOrderDetails({"user":user, "addresses":data, "items":cartItems})
         //send data to Order DB
-        console.log(orderDetails);
+        dispatch(createOrderAsync(orderDetails))
+        // console.log(orderDetails);
         reset(); 
 
     };
 
     const handleOutsideSubmit = () => {
-        console.log(orderDetails.addresses)
-        if (orderDetails.addresses===null){
+        if (orderDetails.addresses==null){
+            console.log(orderDetails.addresses)
             handleSubmit(onSubmit)();
         }
         else{
-            //send to order DB
-            console.log(orderDetails);
+            dispatch(createOrderAsync(orderDetails))
         }
     };  
   return (
