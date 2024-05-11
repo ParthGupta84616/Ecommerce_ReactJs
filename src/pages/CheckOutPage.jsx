@@ -1,37 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { selectItems } from '../features/cart/cartSlice';
-import { useSelector } from 'react-redux';
+import { selectItems, updateUserAsync } from '../features/cart/cartSlice';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-
-const people = [
-    {
-        email: "parthguptaji20@gmail.com",
-        name: "Parth Gupta",
-        role: 10101010,
-        city: "London",
-        address: "123 Main St",
-    },
-    {
-        email: "parthguptaji20@gmail.com",
-        name: "Parth Gupta",
-        role: 10101010,
-        city: "London",
-        address: "123 Main St",
-    },
-    {
-        email: "parthguptaji20@gmail.com",
-        name: "Parth Gupta",
-        role: 10101010,
-        city: "London",
-        address: "123 Main St",
-    }
-];
+import { selectCheckUser } from '../features/auth/authSlice';
 
 function CheckOutPage() {
     const [checkedPerson, setCheckedPerson] = useState(null);
     const cartItems = useSelector(selectItems);
     const [totalCost, setTotalCost] = useState(0);
+    const user = useSelector(selectCheckUser)
+    const dispatch = useDispatch()
     const [TotalQuantity, setTotalQuantity] = useState(0);
 
     useEffect(() => {
@@ -79,15 +58,15 @@ function CheckOutPage() {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
     const onSubmit = (data) => {
-        // Handle form submission, for example, sending data to a server
-        console.log(data);
-        reset(); // Reset form fields after submission
+        dispatch(updateUserAsync({...user,addresses:[...user.addresses,data],}));
+        reset(); 
+
     };
 
     const handleOutsideSubmit = () => {
         handleSubmit(onSubmit)();
     };
-
+    console.log(user)
   return (
 
     <div class="container p-12 mx-auto">
@@ -171,8 +150,8 @@ function CheckOutPage() {
                                         Postcode</label>
                                     <input 
                                         type="text" 
-                                        {...register("Post-Code", { 
-                                            required: "Post-Code Name Is Required", 
+                                        {...register("PostCode", { 
+                                            required: "PostCode Name Is Required", 
                                         })}
                                         placeholder="Post Code"
                                         class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
@@ -198,7 +177,7 @@ function CheckOutPage() {
                                 ></textarea>
                             </div>
                             <ul role="list" className="divide-y divide-gray-100">
-                                {people.map((person) => (
+                                {user.addresses.map((person) => (
                                     <label key={person.email} className="flex items-center justify-between gap-x-6 py-5">
                                         <input
                                             type="radio"
@@ -209,16 +188,16 @@ function CheckOutPage() {
                                         />
                                         <div className="flex min-w-0 gap-x-4">
                                             <div className="min-w-0 flex-auto">
-                                                <p className="text-sm font-semibold leading-6 text-gray-900">{person.name}</p>
+                                                <p className="text-sm font-semibold leading-6 text-gray-900">{person.firstName +" "+ person.secondtName}</p>
                                                 <p className="mt-1 truncate text-xs leading-5 text-gray-500">{person.email}</p>
                                             </div>
                                         </div>
                                         <div className="hidden sm:flex sm:flex-col sm:items-center w-1/2">
-                                            <p className="text-sm leading-6 text-gray-900">{person.address}</p>
+                                            <p className="text-sm leading-6 text-gray-900">{person.Address}</p>
                                         </div>
                                         <div className="hidden sm:flex sm:flex-col sm:items-end">
-                                            <p className="text-sm leading-6 text-gray-900">{person.city}</p>
-                                            <p className="text-sm leading-6 text-gray-900">{person.role}</p>
+                                            <p className="text-sm leading-6 text-gray-900">{person.City}</p>
+                                            <p className="text-sm leading-6 text-gray-900">{person.PostCode}</p>
                                         </div>
                                     </label>
                                 ))}

@@ -1,23 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { useForm } from "react-hook-form"
 import { useDispatch, useSelector } from 'react-redux';
-import { createUserAsync, selectLoggedUser } from '../authSlice';
+import { createUserAsync, selectCheckUser, selectLoggedUser } from '../authSlice';
 
 const Signup = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const dispatch = useDispatch()
+  const [Navigate1, setNavigate1] = useState(false)
 
 
   const onSubmit = (data) => {
-    dispatch(createUserAsync({email: data.email, password: data.password}))
+    dispatch(createUserAsync({email: data.email, password: data.password , addresses:[]}))
+    setNavigate1(true)
    
   };
   
   const user = useSelector(selectLoggedUser)
+  console.log()
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-      {user?.email && (
+      {Navigate1 && (
         <Navigate to="/" />
       )}
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
