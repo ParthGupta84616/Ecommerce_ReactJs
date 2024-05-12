@@ -59,10 +59,11 @@ export const cartSlice = createSlice({
       })
       .addCase(addToCartAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        console.log(state.items)
-        const existingItemIndex = state.items.findIndex(
-          (item) => item.id === action.payload.id
-        );
+        state.items = state.items || [];
+        // console.log(first)
+        const existingItem = state.items.find(item => item.id === action.payload.id);
+        const existingItemIndex = state.items.indexOf(existingItem);
+
         if (existingItemIndex !== -1) {
           state.items[existingItemIndex].quantity += 1;
         } else {
@@ -74,11 +75,18 @@ export const cartSlice = createSlice({
       })
       .addCase(fetchItemByUserIdAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.items=action.payload; 
+        state.items=action.payload; // Push the payload (added item) to the items array
       })
       .addCase(deleteItemFromCartAsync.pending, (state) => {
         state.status = 'loading';
       })
+      // .addCase(deleteItemFromCartAsync.fulfilled, (state, action) => {
+      //   state.status = 'idle';
+      //   const index = state.items.findIndex(
+      //     (item) => item.id === action.payload.id
+      //   );
+      //   state.items.splice(index ,1); // Push the payload (added item) to the items array
+      // })
       .addCase(deleteItemFromCartAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         const index = state.items.findIndex(
@@ -91,13 +99,22 @@ export const cartSlice = createSlice({
       })
       .addCase(deleteUserCartAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.items=action.payload; 
+        state.items=action.payload; // Push the payload (added item) to the items array
       })
+      // .addCase(updateUserAsync.pending, (state) => {
+      //   state.status = 'loading';
+      // })
+      // .addCase(updateUserAsync.fulfilled, (state, action) => {
+      //   state.status = 'idle';
+      //   state.items=action.payload; // Push the payload (added item) to the items array
+      // })
   },
 });
 
+// Export actions and selectors
+// console.log(items)
 export const { increment } = cartSlice.actions;
-export const selectCount = (state) => state.cart.value; 
-export const selectItems = (state) => state.cart.items; 
+export const selectCount = (state) => state.cart.value; // Update to cart.value
+export const selectItems = (state) => state.cart.items; // New selector to get items
 
 export default cartSlice.reducer;

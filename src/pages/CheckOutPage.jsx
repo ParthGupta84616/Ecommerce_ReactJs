@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { selectItems, updateUserAsync } from '../features/cart/cartSlice';
+import { deleteUserCartAsync, fetchItemByUserIdAsync, selectItems, updateUserAsync } from '../features/cart/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { selectCheckUser } from '../features/auth/authSlice';
@@ -69,6 +69,8 @@ function CheckOutPage() {
         //send data to Order DB
         dispatch(createOrderAsync(orderDetails))
         navigate(`/orderSuccessfull/${orderId}`)
+        dispatch(deleteUserCartAsync(user.id));
+        dispatch(fetchItemByUserIdAsync(user.id));
         // console.log(orderDetails);
         reset(); 
 
@@ -81,6 +83,8 @@ function CheckOutPage() {
         }
         else{
             dispatch(createOrderAsync(orderDetails))
+            dispatch(deleteUserCartAsync(user.id));
+            dispatch(fetchItemByUserIdAsync(user.id));
             
             navigate(`/orderSuccessfull/${orderId}`)
            

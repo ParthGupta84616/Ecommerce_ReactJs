@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCheckUser } from '../features/auth/authSlice';
-import { addToCartAsync, deleteUserCartAsync, fetchItemByUserIdAsync } from '../features/cart/cartSlice';
+import { fetchItemByUserIdAsync } from '../features/cart/cartSlice';
 
 function ConfirmedPage() {
     const dispatch = useDispatch()
     const user = useSelector(selectCheckUser)
-    useEffect(() => {
-        dispatch(deleteUserCartAsync(user.id));
-        dispatch(fetchItemByUserIdAsync(user.id));
-    }, [ ])
+    // useEffect(() => {
+    //     console.log("called");
+        
+        
+    // }, []);
     
   return (
     <div className="py-14 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">

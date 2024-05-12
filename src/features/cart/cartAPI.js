@@ -50,14 +50,14 @@ export function deleteUserCart(userId) {
     return new Promise(async (resolve) => {
         const response = await fetchItemByUserId(userId);
         const items = response.data;
-        console.log(items);
+        
         var bag=0
         for (var item of items) {
-            bag+=1
+            
             console.log(item.id);
             await deleteItemFromCart(item.id)
         }
-        console.log(bag)
+        // console.log("kam25")
         resolve({ status : "Success" });
         
     });

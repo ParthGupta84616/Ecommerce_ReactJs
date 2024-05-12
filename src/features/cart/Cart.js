@@ -5,6 +5,9 @@ import { deleteItemFromCartAsync, selectItems } from './cartSlice';
 const Cart = () => {
   const dispatch = useDispatch()
   var cartItems = useSelector(selectItems);
+  if(cartItems===undefined){
+    cartItems = [];
+  }
   
 
   const [totalCost, setTotalCost] = useState(0);
@@ -43,7 +46,7 @@ const Cart = () => {
     setTotalCost(totalPrice);
     setTotalQunatity(totalQuantity);
   }, [cartItems]);
-  if (cartItems.length<1){
+  if (cartItems.length<1 || cartItems === undefined){
     return(
       <Navigate to={"/"}/>
     )

@@ -12,7 +12,15 @@ const ProductOverview = () => {
     const cartItems = useSelector(selectItems);
     const product = useSelector(selectSelectedProduct);
     const user = useSelector(selectCheckUser) 
+    // console.log(user)
+    // console.log(product);
     const { id } = useParams();
+    // const [totalQuantity, settotalQuantity] = useState(0)
+
+  // useEffect(() => {
+    
+  // }, [cartItems])
+  
  
     useEffect(() => {
       dispatch(fetchSelectedProductAsync(id));
@@ -29,6 +37,7 @@ const ProductOverview = () => {
     if (loading) {
       return <div>Loading...</div>;
     }
+  // console.log(product);
   let img1 = product.thumbnail;
   let img2 = product.thumbnail;
   let img3 = product.thumbnail;
