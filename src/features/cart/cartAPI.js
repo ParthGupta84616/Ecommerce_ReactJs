@@ -21,6 +21,7 @@ export function fetchItemByUserId(userId) {
   }
 export function deleteItemFromCart(itemId) {
 return new Promise(async (resolve) => {
+    console.log("http://localhost:8080/cart/"+itemId)
     const response = await fetch("http://localhost:8080/cart/"+itemId,{
         method: 'DELETE',
         headers: {
@@ -44,4 +45,19 @@ export function updateUser(update) {
         const data = await response.json();
         resolve({ data });
     });
-    }
+}
+export function deleteUserCart(userId) {
+    return new Promise(async (resolve) => {
+        const response = await fetchItemByUserId(userId);
+        const items = response.data;
+        console.log(items);
+        for (const item in items) {
+
+            // console.log(item)
+            await deleteItemFromCart(items[item].id)
+        }
+        console.log("kam25")
+        resolve({ status : "Success" });
+        
+    });
+}

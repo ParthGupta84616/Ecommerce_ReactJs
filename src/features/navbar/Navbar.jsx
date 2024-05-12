@@ -140,7 +140,7 @@ function Navbar({children}) {
       const consolidatedItems = [];
       const titleMap = {};
     
-      cartItems.forEach((item) => {
+      cartItems?.forEach((item) => {
         if (titleMap[item.title]) {
           // If title already exists in map, update its quantity
           titleMap[item.title].quantity += item.quantity;

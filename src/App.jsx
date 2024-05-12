@@ -47,7 +47,7 @@ export default function App() {
     },
     {
       path: "/orderSuccessfull",
-      element: (<Navbar><ConfirmedPage /></Navbar>),
+      element: (<Protected><Navbar><ConfirmedPage /></Navbar></Protected>),
     },
   ]);
   const user = useSelector(selectCheckUser)

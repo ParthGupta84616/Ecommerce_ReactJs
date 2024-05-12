@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { selectItems, updateUserAsync } from '../features/cart/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { selectCheckUser } from '../features/auth/authSlice';
 import { createOrderAsync } from '../features/order/orderSlice';
+import { deleteUserCart } from '../features/cart/cartAPI';
 
 function CheckOutPage() {
     const [checkedPerson, setCheckedPerson] = useState(null);
@@ -14,6 +15,7 @@ function CheckOutPage() {
     const dispatch = useDispatch()
     const [TotalQuantity, setTotalQuantity] = useState(0);
     const [orderDetails, setOrderDetails] = useState({"addresses":null})
+    const navigate = useNavigate();
 
     useEffect(() => {
         let totalPrice = 0;
@@ -66,6 +68,7 @@ function CheckOutPage() {
         setOrderDetails({"user":user, "addresses":data, "items":cartItems})
         //send data to Order DB
         dispatch(createOrderAsync(orderDetails))
+        navigate('/orderSuccessfull')
         // console.log(orderDetails);
         reset(); 
 
@@ -78,6 +81,9 @@ function CheckOutPage() {
         }
         else{
             dispatch(createOrderAsync(orderDetails))
+            
+            navigate('/orderSuccessfull')
+           
         }
     };  
   return (

@@ -49,6 +49,7 @@ const Cart = () => {
     )
   }
   const handleRemove = (e , id)=>{
+    console.log(id)
     dispatch(deleteItemFromCartAsync(id));
   }
   return (
