@@ -59,6 +59,7 @@ export const cartSlice = createSlice({
       })
       .addCase(addToCartAsync.fulfilled, (state, action) => {
         state.status = 'idle';
+        console.log(state.items)
         const existingItemIndex = state.items.findIndex(
           (item) => item.id === action.payload.id
         );
@@ -73,7 +74,7 @@ export const cartSlice = createSlice({
       })
       .addCase(fetchItemByUserIdAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.items=action.payload; // Push the payload (added item) to the items array
+        state.items=action.payload; 
       })
       .addCase(deleteItemFromCartAsync.pending, (state) => {
         state.status = 'loading';
@@ -83,28 +84,20 @@ export const cartSlice = createSlice({
         const index = state.items.findIndex(
           (item) => item.id === action.payload.id
         );
-        state.items.splice(index ,1); // Push the payload (added item) to the items array
+        state.items.splice(index, 1); 
       })
       .addCase(deleteUserCartAsync.pending, (state) => {
         state.status = 'loading';
       })
       .addCase(deleteUserCartAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.items=action.payload; // Push the payload (added item) to the items array
+        state.items=action.payload; 
       })
-      // .addCase(updateUserAsync.pending, (state) => {
-      //   state.status = 'loading';
-      // })
-      // .addCase(updateUserAsync.fulfilled, (state, action) => {
-      //   state.status = 'idle';
-      //   state.items=action.payload; // Push the payload (added item) to the items array
-      // })
   },
 });
 
-// Export actions and selectors
 export const { increment } = cartSlice.actions;
-export const selectCount = (state) => state.cart.value; // Update to cart.value
-export const selectItems = (state) => state.cart.items; // New selector to get items
+export const selectCount = (state) => state.cart.value; 
+export const selectItems = (state) => state.cart.items; 
 
 export default cartSlice.reducer;

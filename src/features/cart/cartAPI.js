@@ -51,12 +51,13 @@ export function deleteUserCart(userId) {
         const response = await fetchItemByUserId(userId);
         const items = response.data;
         console.log(items);
-        for (const item in items) {
-
-            // console.log(item)
-            await deleteItemFromCart(items[item].id)
+        var bag=0
+        for (var item of items) {
+            bag+=1
+            console.log(item.id);
+            await deleteItemFromCart(item.id)
         }
-        console.log("kam25")
+        console.log(bag)
         resolve({ status : "Success" });
         
     });

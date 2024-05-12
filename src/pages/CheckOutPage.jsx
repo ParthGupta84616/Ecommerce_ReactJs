@@ -4,8 +4,8 @@ import { selectItems, updateUserAsync } from '../features/cart/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { selectCheckUser } from '../features/auth/authSlice';
-import { createOrderAsync } from '../features/order/orderSlice';
-import { deleteUserCart } from '../features/cart/cartAPI';
+import { createOrderAsync, selectCurrentOrder, selectOrders} from '../features/order/orderSlice';
+import { v4 as uuidv4 } from 'uuid';
 
 function CheckOutPage() {
     const [checkedPerson, setCheckedPerson] = useState(null);
@@ -16,7 +16,7 @@ function CheckOutPage() {
     const [TotalQuantity, setTotalQuantity] = useState(0);
     const [orderDetails, setOrderDetails] = useState({"addresses":null})
     const navigate = useNavigate();
-
+    const orderId = uuidv4()
     useEffect(() => {
         let totalPrice = 0;
         let totalQuantity = 0;
@@ -37,7 +37,7 @@ function CheckOutPage() {
         } else {
             setCheckedPerson(person);
         }
-        setOrderDetails({"user":user, "addresses":checkedPerson, "items":cartItems})
+        setOrderDetails({"id":orderId,"user":user, "addresses":checkedPerson, "items":cartItems})
     };
 
     const consolidateCartItems = (cartItems) => {
@@ -68,7 +68,7 @@ function CheckOutPage() {
         setOrderDetails({"user":user, "addresses":data, "items":cartItems})
         //send data to Order DB
         dispatch(createOrderAsync(orderDetails))
-        navigate('/orderSuccessfull')
+        navigate(`/orderSuccessfull/${orderId}`)
         // console.log(orderDetails);
         reset(); 
 
@@ -82,7 +82,7 @@ function CheckOutPage() {
         else{
             dispatch(createOrderAsync(orderDetails))
             
-            navigate('/orderSuccessfull')
+            navigate(`/orderSuccessfull/${orderId}`)
            
         }
     };  

@@ -46,7 +46,7 @@ export default function App() {
       element: (<Navbar><ErrorPage /></Navbar>),
     },
     {
-      path: "/orderSuccessfull",
+      path: "/orderSuccessfull/:id",
       element: (<Protected><Navbar><ConfirmedPage /></Navbar></Protected>),
     },
   ]);
@@ -56,8 +56,7 @@ export default function App() {
     if(user){
       dispatch(fetchItemByUserIdAsync(user.id))
     }
-  }, [user , dispatch]);
-  // console.log(useSelector(selectItems));
+  }, [user , dispatch , fetchItemByUserIdAsync]);
   return (
           <>
           
