@@ -16,19 +16,29 @@ function CheckOutPage() {
     const [TotalQuantity, setTotalQuantity] = useState(0);
     const [orderDetails, setOrderDetails] = useState({"addresses":null})
     const navigate = useNavigate();
-    const orderId = uuidv4()
+    const [orderId, setorderId] = useState(1)
+    const currentDate = new Date();
+    const formattedDate = formatDate(currentDate);
+    const [MRP, setMRP] = useState(0)
+
+    // const orderId = uuidv4()
+    
     useEffect(() => {
         let totalPrice = 0;
         let totalQuantity = 0;
-
+        let mrp = 0;
         cartItems.forEach((item) => {
             const discountedPrice = item.price * (1 - item.discountPercentage / 100);
+            mrp += item.price
             totalPrice += discountedPrice * item.quantity;
             totalQuantity += item.quantity;
         });
 
         setTotalCost(totalPrice);
         setTotalQuantity(TotalQuantity);
+        setorderId(uuidv4())
+        setMRP(mrp);
+        console.log(orderId);
     }, [cartItems]);
 
     const handleRadioClick = (person) => {
@@ -37,7 +47,8 @@ function CheckOutPage() {
         } else {
             setCheckedPerson(person);
         }
-        setOrderDetails({"id":orderId,"user":user, "addresses":checkedPerson, "items":cartItems})
+        console.log(cartItems);
+        setOrderDetails({"id":orderId,"user":user, "addresses":checkedPerson, "items":cartItems , "timestamp" : formattedDate , "cost": {"mrp":MRP , "totalprice": totalCost}})
     };
 
     const consolidateCartItems = (cartItems) => {
@@ -85,11 +96,22 @@ function CheckOutPage() {
             dispatch(createOrderAsync(orderDetails))
             dispatch(deleteUserCartAsync(user.id));
             dispatch(fetchItemByUserIdAsync(user.id));
-            
+            console.log("wapis")
             navigate(`/orderSuccessfull/${orderId}`)
            
         }
     };  
+    function formatDate(date) {
+        const options = { 
+            year: 'numeric', 
+            month: 'short', 
+            day: '2-digit', 
+            hour: 'numeric', 
+            minute: 'numeric', 
+            hour12: true 
+        };
+        return new Intl.DateTimeFormat('en-US', options).format(date);
+    }
   return (
 
     <div class="container p-12 mx-auto">
