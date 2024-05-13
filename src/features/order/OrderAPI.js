@@ -20,3 +20,13 @@ export function fetchOrderById(orderId) {
     }
     );
   }
+export function fetchAllOrderById(userId) {
+return new Promise(async (resolve) =>{
+    console.log('http://localhost:8080/orders/?user.id=' + userId)
+    const response = await fetch('http://localhost:8080/orders/?user.id=' + userId) 
+    const data = await response.json()
+    console.log(data)
+    resolve({data})
+}
+);
+}

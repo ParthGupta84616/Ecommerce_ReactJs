@@ -1,10 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { createOrder, fetchOrderById } from './OrderAPI';
+import { createOrder, fetchAllOrderById, fetchOrderById } from './OrderAPI';
 
 const initialState = {
   status: 'idle',
   orders: [],
   currentOrder : [],
+  allOrders: [],
 };
 
 export const createOrderAsync = createAsyncThunk(
@@ -18,6 +19,13 @@ export const fetchOrderByIdAsync = createAsyncThunk(
   "order/fetchedOrderById",
   async (orderId) => {
     const response = await fetchOrderById(orderId);
+    return response.data;
+  }
+);
+export const fetchAllOrderByIdAsync = createAsyncThunk(
+  "order/fetchAllOrderById",
+  async (userId) => {
+    const response = await fetchAllOrderById(userId);
     return response.data;
   }
 );
@@ -45,6 +53,13 @@ export const orderSlice = createSlice({
       .addCase(fetchOrderByIdAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         state.currentOrder = action.payload;
+      })
+      .addCase(fetchAllOrderByIdAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchAllOrderByIdAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.allOrders = action.payload;
       });
   },
   
@@ -53,7 +68,9 @@ export const orderSlice = createSlice({
 
 export const { increment } = orderSlice.actions;
 export const selectOrders = (state) => state.order.orders;
-export const selectCurrentOrder = (state) => state.order.currentOrder; 
+export const selectCurrentOrder = (state) => state.order.currentOrder;
+export const selectallOrders = (state) => state.order.allOrders;
+
 
 
 export default orderSlice.reducer;

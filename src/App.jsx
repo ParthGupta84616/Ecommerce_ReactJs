@@ -14,6 +14,7 @@ import { fetchItemByUserIdAsync, selectItems } from './features/cart/cartSlice';
 import ErrorPage from './pages/ErrorPage';
 import ConfirmedPage from './pages/ConfirmedPage';
 import Navbar from './features/navbar/Navbar';
+import Order from './features/order/Order';
 
 export default function App() {
   const router = createBrowserRouter([
@@ -49,12 +50,16 @@ export default function App() {
       path: "/orderSuccessfull/:id",
       element: (<Protected><Navbar><ConfirmedPage /></Navbar></Protected>),
     },
+    {
+      path: "/orders",
+      element: (<Protected><Navbar><Order></Order></Navbar></Protected>),
+    },
   ]);
   const user = useSelector(selectCheckUser)
   const dispatch = useDispatch()
   useEffect(() => {
     if(user){
-      dispatch(fetchItemByUserIdAsync(user.id))
+      dispatch(fetchItemByUserIdAsync(user.id));
     }
   }, [user , dispatch , fetchItemByUserIdAsync]);
   return (
