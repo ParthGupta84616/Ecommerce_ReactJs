@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'; // Import Switch instead of Router
+import { RouterProvider, createBrowserRouter } from 'react-router-dom'; 
 import CartPage from './pages/CartPage';
 import CheckOutPage from './pages/CheckOutPage';
 import ProductOverviewPage from './pages/ProductOverviewPage';
@@ -14,7 +14,7 @@ import { fetchItemByUserIdAsync, selectItems } from './features/cart/cartSlice';
 import ErrorPage from './pages/ErrorPage';
 import ConfirmedPage from './pages/ConfirmedPage';
 import Navbar from './features/navbar/Navbar';
-import Order from './features/order/Order';
+import OrderPage from './pages/OrderPage';
 
 export default function App() {
   const router = createBrowserRouter([
@@ -52,7 +52,7 @@ export default function App() {
     },
     {
       path: "/orders",
-      element: (<Protected><Navbar><Order></Order></Navbar></Protected>),
+      element: (<Protected><OrderPage/></Protected>),
     },
   ]);
   const user = useSelector(selectCheckUser)
