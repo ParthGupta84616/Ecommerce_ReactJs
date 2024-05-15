@@ -11,7 +11,7 @@ const Signup = () => {
 
 
   const onSubmit = (data) => {
-    dispatch(createUserAsync({email: data.email, password: data.password , addresses:[]}))
+    dispatch(createUserAsync({email: data.email, password: data.password , addresses:[], role : "user"}))
     setNavigate1(true)
    
   };

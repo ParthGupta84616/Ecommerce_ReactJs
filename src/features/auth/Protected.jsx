@@ -5,7 +5,6 @@ import { Navigate } from "react-router-dom"
 
 function Protected({children}) {
   const user = useSelector(selectCheckUser) 
-  // console.log(user);
   if(user){
     return children
   }

@@ -17,6 +17,9 @@ import Navbar from './features/navbar/Navbar';
 import OrderPage from './pages/OrderPage';
 import Logout from './features/auth/component/Logout';
 import ForgetPasswordPage from './pages/ForgetPasswordPage';
+import AdminHome from './pages/AdminHome';
+import AdminProductOverviewPage from './pages/AdminProductOverviewPage';
+import ProtectedAdmin from './features/auth/ProtectedAdmin';
 
 export default function App() { 
   const router = createBrowserRouter([
@@ -24,6 +27,8 @@ export default function App() {
       path: "/",
       element: (<Protected><Home /></Protected>),
     },
+    
+    
     {
       path: "/login",
       element: (<LoginPage />),
@@ -63,6 +68,14 @@ export default function App() {
     {
       path: "/logout",
       element: (<Protected><Logout /></Protected>),
+    },
+    {
+      path: "/admin",
+      element: (<ProtectedAdmin><AdminHome /></ProtectedAdmin>),
+    },
+    {
+      path: "/admin/product/:id",
+      element: (<ProtectedAdmin><AdminProductOverviewPage /></ProtectedAdmin>),
     },
   ]);
   const user = useSelector(selectCheckUser)
