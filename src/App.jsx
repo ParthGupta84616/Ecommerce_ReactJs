@@ -16,6 +16,7 @@ import ConfirmedPage from './pages/ConfirmedPage';
 import Navbar from './features/navbar/Navbar';
 import OrderPage from './pages/OrderPage';
 import Logout from './features/auth/component/Logout';
+import ForgetPasswordPage from './pages/ForgetPasswordPage';
 
 export default function App() { 
   const router = createBrowserRouter([
@@ -54,6 +55,10 @@ export default function App() {
     {
       path: "/orders",
       element: (<Protected><OrderPage/></Protected>),
+    },
+    {
+      path: "/forgetpassword",
+      element: (<ForgetPasswordPage/>),
     },
     {
       path: "/logout",
