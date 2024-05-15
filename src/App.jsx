@@ -15,8 +15,9 @@ import ErrorPage from './pages/ErrorPage';
 import ConfirmedPage from './pages/ConfirmedPage';
 import Navbar from './features/navbar/Navbar';
 import OrderPage from './pages/OrderPage';
+import Logout from './features/auth/component/Logout';
 
-export default function App() {
+export default function App() { 
   const router = createBrowserRouter([
     {
       path: "/",
@@ -53,6 +54,10 @@ export default function App() {
     {
       path: "/orders",
       element: (<Protected><OrderPage/></Protected>),
+    },
+    {
+      path: "/logout",
+      element: (<Protected><Logout /></Protected>),
     },
   ]);
   const user = useSelector(selectCheckUser)

@@ -5,6 +5,7 @@ import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@her
 import { Link } from 'react-router-dom'
 import { selectItems } from '../cart/cartSlice'
 import { useSelector } from 'react-redux'
+import { selectCheckUser } from '../auth/authSlice'
 
 const navigation = {
   categories: [
@@ -135,24 +136,25 @@ function classNames(...classes) {
 }
 function Navbar({children}) {
   var cartItems = useSelector(selectItems)
-    const [open, setOpen] = useState(false)
-    const consolidateCartItems = (cartItems) => {
-      const consolidatedItems = [];
-      const titleMap = {};
+  const [open, setOpen] = useState(false)
+  const user = useSelector(selectCheckUser)
+  const consolidateCartItems = (cartItems) => {
+    const consolidatedItems = [];
+    const titleMap = {};
+  
+    cartItems?.forEach((item) => {
+      if (titleMap[item.title]) {
+        // If title already exists in map, update its quantity
+        titleMap[item.title].quantity += item.quantity;
+      } else {
+        // If title doesn't exist, add it to map and push it to consolidatedItems
+        titleMap[item.title] = { ...item };
+        consolidatedItems.push(titleMap[item.title]);
+      }
+    });
     
-      cartItems?.forEach((item) => {
-        if (titleMap[item.title]) {
-          // If title already exists in map, update its quantity
-          titleMap[item.title].quantity += item.quantity;
-        } else {
-          // If title doesn't exist, add it to map and push it to consolidatedItems
-          titleMap[item.title] = { ...item };
-          consolidatedItems.push(titleMap[item.title]);
-        }
-      });
-    
-      return consolidatedItems;
-    };
+    return consolidatedItems;
+  };
     cartItems = consolidateCartItems(cartItems);
   
     return (
@@ -425,6 +427,17 @@ function Navbar({children}) {
                   </Popover.Group>
     
                   <div className="ml-auto flex items-center">
+                  {user ? (
+                    <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
+                      <Link to="/profile" className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                        {user.email}
+                      </Link>
+                      <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
+                      <Link to="/Logout" className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                        Logout
+                      </Link>
+                    </div>
+                  ) : (
                     <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
                       <Link to="/login" className="text-sm font-medium text-gray-700 hover:text-gray-800">
                         Sign in
@@ -434,6 +447,8 @@ function Navbar({children}) {
                         Create account
                       </Link>
                     </div>
+                  )}
+
     
                     <div className="hidden lg:ml-8 lg:flex">
                       <Link to={"/orders"} className="flex items-center text-gray-700 hover:text-gray-800">
