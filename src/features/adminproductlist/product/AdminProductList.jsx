@@ -86,7 +86,6 @@ export default function AdminProductList() {
   };
 
   const handlePage = (page) => {
-    // console.log({ page });
     setPage(page);
   };
 
@@ -96,7 +95,6 @@ export default function AdminProductList() {
   }, [dispatch, filter, sort, page]);
 
   useEffect(() => {
-    // Dispatch actions only once when the component mounts
     dispatch(fetchBrandsAsync());
     dispatch(fetchCategoriesAsync());
 
@@ -116,6 +114,13 @@ export default function AdminProductList() {
             <h1 className="text-4xl font-bold tracking-tight text-gray-900">
               All Products
             </h1>
+            <div className="bg-white  flex ">
+                <Link to={"/admin/productform"}>
+                  <button className="px-6 py-2 font-mono bg-gray-600 text-white w-fit transition-all shadow-[3px_3px_0px_black] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px]">
+                    Add More Items
+                  </button>
+                </Link>
+              </div>
 
             <div className="flex items-center">
               <Menu as="div" className="relative inline-block text-left">
@@ -128,6 +133,8 @@ export default function AdminProductList() {
                     />
                   </Menu.Button>
                 </div>
+
+                
 
                 <Transition
                   as={Fragment}
@@ -162,6 +169,7 @@ export default function AdminProductList() {
                   </Menu.Items>
                 </Transition>
               </Menu>
+              
 
               <button
                 type="button"
@@ -487,9 +495,11 @@ function ProductGrid({ products , filters }) {
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl px-4 py-0 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8 mt-4">
+        
         <div className="grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2 lg:grid-cols-3  ">
           {products.map((product) => (
-            <Link to={`/product/${product.id}`} key={product.id}>
+            <div className="">
+              <Link to={`/admin/product/${product.id}`} key={product.id}>
               <div className="group relative border-solid border-2 p-2 border-gray-200 rounded-xl">
                 <div className="min-h-60 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-60 ">
                   <img
@@ -523,8 +533,13 @@ function ProductGrid({ products , filters }) {
                     </p>
                   </div>
                 </div>
+                
               </div>
             </Link>
+            <div className="edit flex  text-base text-gray-700 font-semibold m-2 mx-4 ">
+            Edit
+          </div>
+            </div>
           ))}
         </div>
       </div>

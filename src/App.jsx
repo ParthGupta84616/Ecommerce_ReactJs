@@ -20,6 +20,8 @@ import ForgetPasswordPage from './pages/ForgetPasswordPage';
 import AdminHome from './pages/AdminHome';
 import AdminProductOverviewPage from './pages/AdminProductOverviewPage';
 import ProtectedAdmin from './features/auth/ProtectedAdmin';
+import ProductForm from './features/adminproductlist/ProductForm';
+import AdminProductFormPage from './pages/AdminProductFormPage';
 
 export default function App() { 
   const router = createBrowserRouter([
@@ -76,6 +78,10 @@ export default function App() {
     {
       path: "/admin/product/:id",
       element: (<ProtectedAdmin><AdminProductOverviewPage /></ProtectedAdmin>),
+    },
+    {
+      path: "/admin/productform",
+      element: (<ProtectedAdmin><AdminProductFormPage /></ProtectedAdmin>),
     },
   ]);
   const user = useSelector(selectCheckUser)
