@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { selectBrands, selectCategories } from '../product-list/productListSlice';
+import { useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
 
 
 function ProductForm() {
   const [actualCost, setActualCost] = useState('');
   const [discount, setDiscount] = useState('');
   const [finalPrice, setFinalPrice] = useState('');
+  
+  const brands = useSelector(selectBrands);
+  const categories = useSelector(selectCategories);
 
   const handleActualCostChange = (e) => {
     setActualCost(e.target.value);
@@ -26,11 +32,18 @@ function ProductForm() {
       setFinalPrice('');
     }
   };
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm()
+
+  const onSubmit = (data) => console.log(data)
 
   useEffect(() => {
     calculateFinalPrice()
   }, [actualCost , discount])
-  
 
   return (
     <div className="">
@@ -48,7 +61,7 @@ function ProductForm() {
               </div>
             </div>
             <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-              <form>
+              <form noValidate onSubmit={handleSubmit(onSubmit)}>
                 <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
                   Product Info
                 </h6>
@@ -58,7 +71,8 @@ function ProductForm() {
                       <label htmlFor="title" className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                         Title
                       </label>
-                      <input id="title" type="text" className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  />
+                      <input id="title" type="text" {...register("title", { required: "Title Is Required" })} className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  />
+                      {errors.title && <p className="text-red-500">{errors.title.message}</p>}                    
                     </div>
                   </div>
                   <div className="w-full lg:w-6/12 px-4">
@@ -66,32 +80,50 @@ function ProductForm() {
                       <label htmlFor="category" className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                         Category
                       </label>
-                      <input id="category" type="text" className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" />
-                    </div>
+                      <select {...register("category", { required: "Category Is Required" })} id="category" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                        <option value="">Select a category</option>
+                        {categories.map((category) => (
+                          <option key={category.id} value={category.lable}>
+                            {category.value}
+                          </option>
+                        ))}
+                      </select>
+                        {errors.category && <p className="text-red-500">{errors.category.message}</p>}
+                      </div>
                   </div>
                   <div className="w-full lg:w-6/12 px-4">
                     <div className="relative w-full mb-3">
                       <label htmlFor="brand" className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                         Brand
                       </label>
-                      <input id="brand" type="text" className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  />
-                    </div>
+                      <select {...register("brand", { required: "Brand Is Required" })} id="category" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                        <option value="">Select a Brand</option>
+                        {brands.map((category) => (
+                          <option key={category.id} value={category.lable}>
+                            {category.value}
+                          </option>
+                        ))}
+                      </select>
+                        {errors.brand && <p className="text-red-500">{errors.brand.message}</p>}
+                       </div>
                   </div>
                   <div className="w-full lg:w-6/12 px-4">
                     <div className="relative w-full mb-3">
                       <label htmlFor="stock" className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                         Total Stock
                       </label>
-                      <input id="stock" type="text" className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  />
+                      <input id="stock" {...register("stock", { required: "Total Stock Is Required" , min : 1  })} type="number" className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  />
                     </div>
+                    {errors.stock && <p className="text-red-500">{errors.stock.message}</p>}
                   </div>
                   <div className="w-full lg:w-6/12 px-4">
                     <div className="relative w-full mb-3">
-                      <label htmlFor="rating" className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                      <label  htmlFor="rating" className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                         Product Rating (out of 5)
                       </label>
-                      <input id="rating" type="number" className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  />
+                      <input {...register("rating", { required: "Rating Is Required", min: 0, max: 5  })} id="rating" type="number" className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  />
                     </div>
+                    {errors.rating && <p className="text-red-500">{errors.rating.message}</p>}
                   </div>
                 </div>
 
@@ -107,16 +139,18 @@ function ProductForm() {
                       <label htmlFor="price" className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                         Actual Cost ($)
                       </label>
-                      <input id="price" type="text" className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" onChange={handleActualCostChange} />
+                      <input id="price"  {...register("price", { required: "Price Is Required"  })} type="text" className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" onChange={handleActualCostChange} />
                     </div>
+                    {errors.price && <p className="text-red-500">{errors.price.message}</p>}
                   </div>
                   <div className="w-full lg:w-4/12 px-4">
                     <div className="relative w-full mb-3">
                       <label htmlFor="discountPercentage" className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                         Discount (%)
                       </label>
-                      <input id="discountPercentage" type="text" className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" onChange={handleDiscountChange} />
+                      <input {...register("discountPercentage", { required: "discount Is Required", min: 0 , max: 99  })} id="discountPercentage" type="number" className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" onChange={handleDiscountChange} />
                     </div>
+                    {errors.discountPercentage && <p className="text-red-500">{errors.discountPercentage.message}</p>}
                   </div>
                   <div className="w-full lg:w-4/12 px-4">
                     <div className="relative w-full mb-3">
@@ -139,9 +173,10 @@ function ProductForm() {
                       <label htmlFor="description" className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                         Description
                       </label>
-                      <textarea id="description" className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" rows="4"></textarea>
+                      <textarea {...register("description", { required: "Description Is Required" })} id="description" className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" rows="4"></textarea>
                     </div>
                   </div>
+                  {errors.description && <p className="text-red-500">{errors.description.message}</p>}
                 </div>
                 
                 <div className="">
@@ -215,6 +250,9 @@ function ProductForm() {
                     </label>
                 </div> 
                  </div>
+                 <div className="grid h-40 place-content-center  " type="submit" >
+                    <DrawOutlineButton>Submit</DrawOutlineButton>
+                  </div>
                 </div>
 
               </form>
@@ -225,5 +263,29 @@ function ProductForm() {
     </div>
   );
 }
+
+
+const DrawOutlineButton = ({ children, ...rest }) => {
+  return (
+    <button
+      {...rest}
+      className="group relative px-10 py-3  text-xl text-gray-900 font-extrabold rounded-lg  bg-slate-400 blur-1 transition-colors duration-[400ms] hover:text-indigo-300"
+    >
+      <span>{children}</span>
+
+      {/* TOP */}
+      <span className="absolute left-0 top-0 h-[2px] w-0 bg-indigo-300 transition-all duration-100 group-hover:w-full" />
+
+      {/* RIGHT */}
+      <span className="absolute right-0 top-0 h-0 w-[2px] bg-indigo-300 transition-all delay-100 duration-100 group-hover:h-full" />
+
+      {/* BOTTOM */}
+      <span className="absolute bottom-0 right-0 h-[2px] w-0 bg-indigo-300 transition-all delay-200 duration-100 group-hover:w-full" />
+
+      {/* LEFT */}
+      <span className="absolute bottom-0 left-0 h-0 w-[2px] bg-indigo-300 transition-all delay-300 duration-100 group-hover:h-full" />
+    </button>
+  );
+};
 
 export default ProductForm;
