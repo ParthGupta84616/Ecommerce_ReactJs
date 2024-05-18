@@ -1,6 +1,7 @@
 import React, { useState, Fragment, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
+  deleteProductByIdAsync,
   fetchBrandsAsync,
   fetchCategoriesAsync,
   fetchProductsByFiltersAsync,
@@ -88,17 +89,21 @@ export default function AdminProductList() {
   const handlePage = (page) => {
     setPage(page);
   };
+  const handledelete = (id) => {
+    dispatch(deleteProductByIdAsync(id))
+  }
 
   useEffect(() => {
     const pagination = { _page: page, _per_page: ITEMS_PER_PAGE };
     dispatch(fetchProductsByFiltersAsync({ filter, sort, pagination }));
-  }, [dispatch, filter, sort, page]);
+  }, [dispatch, filter, sort, page ,  handledelete]);
 
   useEffect(() => {
     dispatch(fetchBrandsAsync());
     dispatch(fetchCategoriesAsync());
 
   }, [dispatch]);
+  
   return (
     <div className="bg-white">
       <div>
@@ -198,7 +203,7 @@ export default function AdminProductList() {
               <DesktopFilter handleFilter={handleFilter} filters={filters}></DesktopFilter>
               {/* Product grid */}
               <div className="lg:col-span-3">
-                <ProductGrid products={products} filters={filters}></ProductGrid>
+                <ProductGrid products={products} filters={filters} handledelete={handledelete}></ProductGrid>
               </div>
               {/* Product grid end */}
             </div>
@@ -491,7 +496,12 @@ function Pagination({ page, setPage, handlePage, totalItems ,filters}) {
   );
 }
 
-function ProductGrid({ products , filters }) {
+function ProductGrid({ products , filters , handledelete }) {
+  const dispatch = useDispatch()
+  // {dispatch(deleteProductByIdAsync(product.id))}
+  // const handledelete = (product) =>{
+  //   console.log(product)
+  // }
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl px-4 py-0 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8 mt-4">
@@ -536,9 +546,12 @@ function ProductGrid({ products , filters }) {
                 
               </div>
             </Link>
-            <div className="edit flex  text-base text-gray-700 font-semibold m-2 mx-4 ">
-            <Link to={`/admin/productedit/${product.id}`}>Edit</Link>
-          </div>
+            <div className="edit flex justify-between text-base text-gray-700 font-semibold m-2 mx-4">
+                <Link to={`/admin/productedit/${product.id}`}>Edit</Link>
+                <button onClick={e=>{handledelete(product.id)}} >Delete</button>
+            </div>
+
+
             </div>
           ))}
         </div>

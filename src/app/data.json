@@ -1801,8 +1801,7 @@
         "https://cdn.dummyjson.com/product-images/100/3.jpg",
         "https://cdn.dummyjson.com/product-images/100/thumbnail.jpg"
       ]
-    },
-    
+    }
   ],
   "categories": [
     {
@@ -2610,6 +2609,73 @@
     {
       "id": "ec7d",
       "addresses": null
+    },
+    {
+      "id": "e7780589-a7d1-422a-8994-dfd463b12873",
+      "user": {
+        "id": "9ffe",
+        "email": "parthgupta221092@acropolis.in",
+        "password": "qwerty",
+        "addresses": [
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": true,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          }
+        ],
+        "role": "admin"
+      },
+      "addresses": {
+        "firstName": "Parth",
+        "secondtName": "Gupta",
+        "email": "parthguptaji20@gmail.com",
+        "Address": "114",
+        "City": "Indore",
+        "PostCode": "452010",
+        "remember": true,
+        "Message": ""
+      },
+      "items": [
+        {
+          "id": "85",
+          "title": "LouisWill Men Sunglasses",
+          "description": "LouisWill Men Sunglasses Polarized Sunglasses UV400 Sunglasses Day Night Dual Use Safety Driving Night Vision Eyewear AL-MG Frame Sun Glasses with Free Box for Drivers",
+          "price": 50,
+          "discountPercentage": 11.27,
+          "rating": 4.98,
+          "stock": 92,
+          "brand": "LouisWill",
+          "category": "sunglasses",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/85/thumbnail.jpg",
+          "images": [
+            "https://cdn.dummyjson.com/product-images/85/1.jpg",
+            "https://cdn.dummyjson.com/product-images/85/2.jpg",
+            "https://cdn.dummyjson.com/product-images/85/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "userId": "9ffe"
+        }
+      ],
+      "timestamp": "May 18, 2024, 8:24 PM",
+      "cost": {
+        "mrp": 50,
+        "totalprice": 44.365
+      }
     }
   ]
 }
