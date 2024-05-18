@@ -47,7 +47,6 @@ export default function ProductList() {
   const brands = useSelector(selectBrands);
   const categories = useSelector(selectCategories);
   const totalItems = TOTAL_ITEMS
-  // console.log(products.length);
   const filters = [
     {
       id: 'category',
@@ -408,7 +407,6 @@ function Pagination({ page, setPage, handlePage, totalItems ,filters}) {
         <div
           onClick={(e) => {
             const maxPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
-            console.log(maxPages);
             if (page < maxPages) {
               setPage(page+1)
             }

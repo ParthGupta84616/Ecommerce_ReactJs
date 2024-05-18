@@ -537,7 +537,7 @@ function ProductGrid({ products , filters }) {
               </div>
             </Link>
             <div className="edit flex  text-base text-gray-700 font-semibold m-2 mx-4 ">
-            Edit
+            <Link to={`/admin/productedit/${product.id}`}>Edit</Link>
           </div>
             </div>
           ))}

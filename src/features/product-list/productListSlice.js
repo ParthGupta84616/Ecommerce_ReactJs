@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { fetchAllProducts,fetchBrands,fetchCategories,fetchProductsByFilters, fetchSelectedProduct } from './productListAPI';
+import { creatProduct, deleteProductById, fetchAllProducts,fetchBrands,fetchCategories,fetchProductsByFilters, fetchSelectedProduct } from './productListAPI';
 
 const initialState = {
   products: [],
@@ -49,7 +49,22 @@ export const fetchSelectedProductAsync = createAsyncThunk(
     return response.data;
   }
 );
+export const createProductAsync = createAsyncThunk(
+  'product/creatProduct',
+  async (productInfo) => {
+    const response = await creatProduct(productInfo);
+    return response.data;
+  }
+);
 
+export const deleteProductByIdAsync = createAsyncThunk(
+  'product/deleteProductById',
+  async (productId) => {
+    const response = await deleteProductById(productId);
+    console.log(response.data);
+    return response.data;
+  }
+);
 
 export const productSlice = createSlice({
   name: 'product',
@@ -96,6 +111,20 @@ export const productSlice = createSlice({
       .addCase(fetchSelectedProductAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         state.selectedproduct = action.payload;
+      })
+      .addCase(createProductAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(createProductAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.products.push(action.payload) ;
+      })
+      .addCase(deleteProductByIdAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(deleteProductByIdAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.products.push(action.payload) ;
       })
   },
 });

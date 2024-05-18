@@ -71,3 +71,30 @@ export function fetchCategories() {
   }
   );
 }
+export function creatProduct(productInfo) {
+  return new Promise(async (resolve) =>{
+    //TODO: we will not hard-code server URL here
+    const response = await fetch('http://localhost:8080/products/' ,{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(productInfo)
+    }) 
+    const data = await response.json()
+    resolve({data})
+  }
+  );
+}
+export function deleteProductById(productId) {
+  return new Promise(async (resolve) => {
+    const response = await fetch("http://localhost:8080/products/"+productId,{
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    });
+    // const data = await response.json();
+    resolve({ data:{id:productId} });
+});
+}

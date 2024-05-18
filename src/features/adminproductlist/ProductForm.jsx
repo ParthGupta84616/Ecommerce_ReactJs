@@ -1,17 +1,58 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { selectBrands, selectCategories } from '../product-list/productListSlice';
-import { useSelector } from 'react-redux';
+import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
+import { createProductAsync, deleteProductByIdAsync, fetchSelectedProductAsync, selectBrands, selectCategories, selectSelectedProduct } from '../product-list/productListSlice';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
+import { v4 as uuidv4 } from 'uuid';
+import { deleteProductById } from '../product-list/productListAPI';
 
 
 function ProductForm() {
   const [actualCost, setActualCost] = useState('');
   const [discount, setDiscount] = useState('');
   const [finalPrice, setFinalPrice] = useState('');
-  
+  const dispatach = useDispatch()
   const brands = useSelector(selectBrands);
   const categories = useSelector(selectCategories);
+  const navigate = useNavigate(); 
+  const param = useParams();
+  const SelectedProduct = useSelector(selectSelectedProduct)
+  // console.log(SelectedProduct);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    reset,
+    setValue,
+    formState: { errors },
+  } = useForm()
+  // console.log(product);
+  useEffect(() => {
+    if(param.id){
+      dispatach(fetchSelectedProductAsync(param.id))
+    }
+  }, [param.id , dispatach])
+
+  useEffect(() => {
+    if(param.id && SelectedProduct){
+      setValue('title', SelectedProduct.title)
+      setValue('description', SelectedProduct.description)
+      setValue('price', SelectedProduct.price)
+      setValue('discountPercentage', SelectedProduct.discountPercentage)
+      setValue('stock', SelectedProduct.stock)
+      setValue('category', SelectedProduct.category)
+      setValue('brand', SelectedProduct.brand)
+      setValue('thumbnail', SelectedProduct.thumbnail)
+      setValue('img1', SelectedProduct.images[0])
+      setValue('img2', SelectedProduct.images[1])
+      setValue('img3', SelectedProduct.images[2])
+      setValue('rating', SelectedProduct.rating)
+    }
+  }, [SelectedProduct])
+  
+
+
+  
 
   const handleActualCostChange = (e) => {
     setActualCost(e.target.value);
@@ -32,25 +73,31 @@ function ProductForm() {
       setFinalPrice('');
     }
   };
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm()
+  
 
   const onSubmit = (data) => {
-    const product = {...data}
-    product.images = [ product.img1, product.img2, product.img3]
+    const product = { ...data };
+    product.images = [product.img1, product.img2, product.img3];
     delete product.img1;
     delete product.img2;
     delete product.img3;
-    product.price=parseInt(product.price)
-    product.rating=parseInt(product.rating)
-    product.stock=parseInt(product.stock)
-    product.discountPercentage=parseInt(product.discountPercentage)
+    product.price = parseInt(product.price);
+    product.rating = parseInt(product.rating);
+    product.stock = parseInt(product.stock);
+    product.discountPercentage = parseInt(product.discountPercentage);
+    product.id = uuidv4() ;
+    
+    // console.log(product);
+    if(param.id) {
+      
+      dispatach(deleteProductByIdAsync(param.id))
+    }
     console.log(product)
-  }
+
+    dispatach(createProductAsync(product));
+    reset();
+    navigate("/admin"); 
+}
 
   useEffect(() => {
     calculateFinalPrice()

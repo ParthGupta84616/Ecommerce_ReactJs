@@ -83,6 +83,11 @@ export default function App() {
       path: "/admin/productform",
       element: (<ProtectedAdmin><AdminProductFormPage /></ProtectedAdmin>),
     },
+    {
+      path: "/admin/productedit/:id",
+      element: (<ProtectedAdmin><AdminProductFormPage /></ProtectedAdmin>),
+    },
+    
   ]);
   const user = useSelector(selectCheckUser)
   const dispatch = useDispatch()

@@ -20,24 +20,6 @@
       ]
     },
     {
-      "id": "2",
-      "title": "iPhone X",
-      "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
-      "price": 899,
-      "discountPercentage": 17.94,
-      "rating": 4.44,
-      "stock": 34,
-      "brand": "Apple",
-      "category": "smartphones",
-      "thumbnail": "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
-      "images": [
-        "https://cdn.dummyjson.com/product-images/2/1.jpg",
-        "https://cdn.dummyjson.com/product-images/2/2.jpg",
-        "https://cdn.dummyjson.com/product-images/2/3.jpg",
-        "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg"
-      ]
-    },
-    {
       "id": "3",
       "title": "Samsung Universe 9",
       "description": "Samsung's new variant which goes beyond Galaxy to the Universe",
@@ -122,25 +104,6 @@
         "https://cdn.dummyjson.com/product-images/7/2.jpg",
         "https://cdn.dummyjson.com/product-images/7/3.jpg",
         "https://cdn.dummyjson.com/product-images/7/thumbnail.jpg"
-      ]
-    },
-    {
-      "id": "8",
-      "title": "Microsoft Surface Laptop 4",
-      "description": "Style and speed. Stand out on HD video calls backed by Studio Mics. Capture ideas on the vibrant touchscreen.",
-      "price": 1499,
-      "discountPercentage": 10.23,
-      "rating": 4.43,
-      "stock": 68,
-      "brand": "Microsoft Surface",
-      "category": "laptops",
-      "thumbnail": "https://cdn.dummyjson.com/product-images/8/thumbnail.jpg",
-      "images": [
-        "https://cdn.dummyjson.com/product-images/8/1.jpg",
-        "https://cdn.dummyjson.com/product-images/8/2.jpg",
-        "https://cdn.dummyjson.com/product-images/8/3.jpg",
-        "https://cdn.dummyjson.com/product-images/8/4.jpg",
-        "https://cdn.dummyjson.com/product-images/8/thumbnail.jpg"
       ]
     },
     {
@@ -1838,7 +1801,8 @@
         "https://cdn.dummyjson.com/product-images/100/3.jpg",
         "https://cdn.dummyjson.com/product-images/100/thumbnail.jpg"
       ]
-    }
+    },
+    
   ],
   "categories": [
     {
@@ -2486,7 +2450,6 @@
           "PostCode": "452010",
           "remember": false,
           "Message": ""
-          
         }
       ]
     },
@@ -2494,32 +2457,159 @@
       "id": "9ffe",
       "email": "parthgupta221092@acropolis.in",
       "password": "qwerty",
-      "addresses": [],
+      "addresses": [
+        {
+          "firstName": "Parth",
+          "secondtName": "Gupta",
+          "email": "parthguptaji20@gmail.com",
+          "Address": "114",
+          "City": "Indore",
+          "PostCode": "452010",
+          "remember": true,
+          "Message": ""
+        },
+        {
+          "firstName": "Parth",
+          "secondtName": "Gupta",
+          "email": "parthguptaji20@gmail.com",
+          "Address": "114",
+          "City": "Indore",
+          "PostCode": "452010",
+          "remember": false,
+          "Message": ""
+        }
+      ],
       "role": "admin"
     }
   ],
-  "cart": [
-    {
-      "id": "5",
-      "title": "Huawei P30",
-      "description": "Huawei’s re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK.",
-      "price": 499,
-      "discountPercentage": 10.58,
-      "rating": 4.09,
-      "stock": 32,
-      "brand": "Huawei",
-      "category": "smartphones",
-      "thumbnail": "https://cdn.dummyjson.com/product-images/5/thumbnail.jpg",
-      "images": [
-        "https://cdn.dummyjson.com/product-images/5/1.jpg",
-        "https://cdn.dummyjson.com/product-images/5/2.jpg",
-        "https://cdn.dummyjson.com/product-images/5/3.jpg"
-      ],
-      "quantity": 1,
-      "userId": "42b3"
-    }
-  ],
+  "cart": [],
   "orders": [
-
+    {
+      "id": "72ff",
+      "addresses": null
+    },
+    {
+      "id": "0b28",
+      "addresses": null
+    },
+    {
+      "id": "806878f3-e971-4ed2-b1b2-5c37e3f1611f",
+      "user": {
+        "id": "42b3",
+        "email": "parthguptaji20@gmail.com",
+        "password": "qwerty",
+        "role": "user",
+        "addresses": [
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          }
+        ]
+      },
+      "addresses": {
+        "firstName": "Parth",
+        "secondtName": "Gupta",
+        "email": "parthguptaji20@gmail.com",
+        "Address": "114",
+        "City": "Indore",
+        "PostCode": "452010",
+        "remember": false,
+        "Message": ""
+      },
+      "items": [
+        {
+          "id": "5",
+          "title": "Huawei P30",
+          "description": "Huawei’s re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK.",
+          "price": 499,
+          "discountPercentage": 10.58,
+          "rating": 4.09,
+          "stock": 32,
+          "brand": "Huawei",
+          "category": "smartphones",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/5/thumbnail.jpg",
+          "images": [
+            "https://cdn.dummyjson.com/product-images/5/1.jpg",
+            "https://cdn.dummyjson.com/product-images/5/2.jpg",
+            "https://cdn.dummyjson.com/product-images/5/3.jpg"
+          ],
+          "quantity": 1,
+          "userId": "42b3"
+        }
+      ],
+      "timestamp": "May 18, 2024, 6:55 PM",
+      "cost": {
+        "mrp": 499,
+        "totalprice": 446.2058
+      }
+    },
+    {
+      "id": "095dd864-4704-42fc-b634-02fd96bbda1c",
+      "user": {
+        "id": "42b3",
+        "email": "parthguptaji20@gmail.com",
+        "password": "qwerty",
+        "role": "user",
+        "addresses": [
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          }
+        ]
+      },
+      "addresses": {
+        "firstName": "Parth",
+        "secondtName": "Gupta",
+        "email": "parthguptaji20@gmail.com",
+        "Address": "114",
+        "City": "Indore",
+        "PostCode": "452010",
+        "remember": false,
+        "Message": ""
+      },
+      "items": [
+        {
+          "id": "7",
+          "title": "Samsung Galaxy Book",
+          "description": "Samsung Galaxy Book S (2020) Laptop With Intel Lakefield Chip, 8GB of RAM Launched",
+          "price": 1499,
+          "discountPercentage": 4.15,
+          "rating": 4.25,
+          "stock": 50,
+          "brand": "Samsung",
+          "category": "laptops",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/7/thumbnail.jpg",
+          "images": [
+            "https://cdn.dummyjson.com/product-images/7/1.jpg",
+            "https://cdn.dummyjson.com/product-images/7/2.jpg",
+            "https://cdn.dummyjson.com/product-images/7/3.jpg",
+            "https://cdn.dummyjson.com/product-images/7/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "userId": "42b3"
+        }
+      ],
+      "timestamp": "May 18, 2024, 6:55 PM",
+      "cost": {
+        "mrp": 1499,
+        "totalprice": 1436.7915
+      }
+    },
+    {
+      "id": "ec7d",
+      "addresses": null
+    }
   ]
 }
