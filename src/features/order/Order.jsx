@@ -54,7 +54,7 @@ const Order = () => {
               Order # {digitSum(order.id)}
             </h1>
              <h3 className="text-xl my-5 font-bold tracking-tight text-red-900">
-              Order Status : Pending
+              Order Status : {order.status}
             </h3>
             <div className="flow-root">
               <ul role="list" className="-my-6 divide-y divide-gray-200">

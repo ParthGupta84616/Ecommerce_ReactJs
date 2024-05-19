@@ -1,15 +1,43 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchAllOrderAsync, selectTotalOrders } from '../order/orderSlice'
+import { Navigate, useNavigate } from 'react-router-dom'
+import { MdEdit } from "react-icons/md";
 
 function Orders() {
+  const [editView, setEditView] = useState(false)
   const dispatch = useDispatch()
+  const Navigate = useNavigate()
   const orders = useSelector(selectTotalOrders)
+
+  
+  const handleEdit = () => {
+  setEditView(!editView); 
+  };
+  console.log(editView);
+
+
   useEffect(() => {
     dispatch(fetchAllOrderAsync())
   }, [dispatch])
-  
-  console.log(orders);
+  const handleID = (id)=>{
+    Navigate(`/orderSuccessfull/${id}`)
+  }
+  console.log(orders)
+  const digitSum = (numberString) =>{ 
+    if (typeof numberString !== 'string' || numberString.length === 0) {
+        return 0; 
+    }
+    let sum = 0;
+    for (let i = 0; i < numberString.length; i++) {
+        const digit = parseInt(numberString[i]);
+        if (!isNaN(digit)) {
+            sum += digit;
+        }
+    }
+    return sum;
+}
+
   return (
       <div className="bg-white p-8 rounded-md w-full">
         <div className=" flex items-center justify-between pb-6">
@@ -48,61 +76,76 @@ function Orders() {
                 <thead>
                   <tr>
                     <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                      Name
+                      Order ID
                     </th>
                     <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                      products
+                      Products
                     </th>
                     <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                      Created at
+                      Total Amount
                     </th>
                     <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                      QRT
+                      Shiping Address
                     </th>
                     <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Status
                     </th>
+                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                      Action
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <div className="flex items-center">
-                        <div className="flex-shrink-0 w-10 h-10">
-                          <img
-                            className="w-full h-full rounded-full"
-                            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-                            alt=""
-                          />
-                        </div>
-                        <div className="ml-3">
-                          <p className="text-gray-900 whitespace-no-wrap">
-                            Vera Carpenter
-                          </p>
-                        </div>
+                {orders?.map((order) => (
+                  <tr key={order.id} >
+                  <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    <div className="flex items-center" onClick={()=>handleID(order.id)}>
+                      <div className="ml-3">
+                        <p className="text-gray-900 whitespace-no-wrap">
+                          {digitSum(order.id)}
+                        </p>
                       </div>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <p className="text-gray-900 whitespace-no-wrap">Admin</p>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <p className="text-gray-900 whitespace-no-wrap">
-                        Jan 21, 2020
-                      </p>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <p className="text-gray-900 whitespace-no-wrap">43</p>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                        <span
-                          aria-hidden=""
-                          className="absolute inset-0 bg-green-200 opacity-50 rounded-full"
-                        />
-                        <span className="relative">Activo</span>
+                    </div>
+                  </td>
+                  <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    
+                      {order.items.map(item =>(
+                        <p className="text-gray-900 whitespace-no-wrap m-1">
+                        {item.title}
+                        </p>
+                      ))}
+                    
+                  </td>
+                  <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    <p className="text-gray-900 whitespace-no-wrap">{order.timestamp} </p>
+                  </td>
+                  <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                  <p className="text-gray-900 whitespace-no-wrap">{order.addresses.firstName+" "+order.addresses.secondtName+", "+order.addresses.email} </p>
+                    <p className="text-gray-900 whitespace-no-wrap">{order.addresses.Address+", "+order.addresses.City+", "+order.addresses.PostCode} </p>
+                  </td>
+                  <td className="px-2 py-5 border-b border-gray-200 bg-white text-sm">
+                    <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                      <span
+                        aria-hidden=""
+                        className="absolute inset-0 bg-green-200 opacity-50 rounded-full"
+                      />
+                      <span className="relative">{order.status}</span>
+                    </span>
+                  </td>
+                  <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight" onClick={()=>handleEdit(order)}>
+                      <span
+                        aria-hidden=""
+                        className="absolute inset-0 bg-green-200 opacity-50 rounded-full"
+                      />
+                      <span className="relative">
+                      <MdEdit size={22} />
                       </span>
-                    </td>
-                  </tr>
+                    </span>
+                  </td>
+                </tr>
+                ))}
+
                 </tbody>
               </table>
               

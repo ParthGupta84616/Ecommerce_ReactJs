@@ -46,7 +46,7 @@ function CheckOutPage() {
         } else {
             setCheckedPerson(person);
         }
-        setOrderDetails({"id":orderId,"user":user, "addresses":checkedPerson, "items":cartItems , "timestamp" : formattedDate , "cost": {"mrp":MRP , "totalprice": totalCost}})
+        setOrderDetails({"id":orderId,"user":user, "addresses":checkedPerson, "items":cartItems , "timestamp" : formattedDate , "cost": {"mrp":MRP , "totalprice": totalCost}, "status": "pending"})
     };
 
     const consolidateCartItems = (cartItems) => {
@@ -74,7 +74,7 @@ function CheckOutPage() {
     const onSubmit = (data) => {
         dispatch(updateUserAsync({...user,addresses:[...user.addresses,data],}));
         // setOrderDetails({"user":user, "addresses":data, "items":cartItems})
-        dispatch(createOrderAsync({"id":orderId,"user":user, "addresses":data, "items":cartItems, "timestamp" : formattedDate, "cost": {"mrp":MRP , "totalprice": totalCost}}))
+        dispatch(createOrderAsync({"id":orderId,"user":user, "addresses":data, "items":cartItems, "timestamp" : formattedDate, "cost": {"mrp":MRP , "totalprice": totalCost},"status": "pending"}))
         dispatch(deleteUserCartAsync(user.id));
         dispatch(fetchItemByUserIdAsync(user.id));
         navigate(`/orderSuccessfull/${orderId}`)

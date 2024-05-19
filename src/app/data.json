@@ -2564,7 +2564,7 @@
   "cart": [],
   "orders": [
     {
-      "id": "806878f3-e971-4ed2-b1b2-5c37e3f1611f",
+      "id": "a96145be-f77c-4fd4-abdb-de0db293b6a2",
       "user": {
         "id": "42b3",
         "email": "parthguptaji20@gmail.com",
@@ -2580,54 +2580,27 @@
             "PostCode": "452010",
             "remember": false,
             "Message": ""
-          }
-        ]
-      },
-      "addresses": {
-        "firstName": "Parth",
-        "secondtName": "Gupta",
-        "email": "parthguptaji20@gmail.com",
-        "Address": "114",
-        "City": "Indore",
-        "PostCode": "452010",
-        "remember": false,
-        "Message": ""
-      },
-      "items": [
-        {
-          "id": "5",
-          "title": "Huawei P30",
-          "description": "Huawei’s re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK.",
-          "price": 499,
-          "discountPercentage": 10.58,
-          "rating": 4.09,
-          "stock": 32,
-          "brand": "Huawei",
-          "category": "smartphones",
-          "thumbnail": "https://cdn.dummyjson.com/product-images/5/thumbnail.jpg",
-          "images": [
-            "https://cdn.dummyjson.com/product-images/5/1.jpg",
-            "https://cdn.dummyjson.com/product-images/5/2.jpg",
-            "https://cdn.dummyjson.com/product-images/5/3.jpg"
-          ],
-          "quantity": 1,
-          "userId": "42b3"
-        }
-      ],
-      "timestamp": "May 18, 2024, 6:55 PM",
-      "cost": {
-        "mrp": 499,
-        "totalprice": 446.2058
-      }
-    },
-    {
-      "id": "095dd864-4704-42fc-b634-02fd96bbda1c",
-      "user": {
-        "id": "42b3",
-        "email": "parthguptaji20@gmail.com",
-        "password": "qwerty",
-        "role": "user",
-        "addresses": [
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "pokemonfan20082003@gmail.com",
+            "Address": "1055\nHola",
+            "City": "Indore",
+            "PostCode": "452020",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "pokemonfan20082003@gmail.com",
+            "Address": "1055\nHola",
+            "City": "Indore",
+            "PostCode": "452020",
+            "remember": false,
+            "Message": "er"
+          },
           {
             "firstName": "Parth",
             "secondtName": "Gupta",
@@ -2636,63 +2609,6 @@
             "City": "Indore",
             "PostCode": "452010",
             "remember": false,
-            "Message": ""
-          }
-        ]
-      },
-      "addresses": {
-        "firstName": "Parth",
-        "secondtName": "Gupta",
-        "email": "parthguptaji20@gmail.com",
-        "Address": "114",
-        "City": "Indore",
-        "PostCode": "452010",
-        "remember": false,
-        "Message": ""
-      },
-      "items": [
-        {
-          "id": "7",
-          "title": "Samsung Galaxy Book",
-          "description": "Samsung Galaxy Book S (2020) Laptop With Intel Lakefield Chip, 8GB of RAM Launched",
-          "price": 1499,
-          "discountPercentage": 4.15,
-          "rating": 4.25,
-          "stock": 50,
-          "brand": "Samsung",
-          "category": "laptops",
-          "thumbnail": "https://cdn.dummyjson.com/product-images/7/thumbnail.jpg",
-          "images": [
-            "https://cdn.dummyjson.com/product-images/7/1.jpg",
-            "https://cdn.dummyjson.com/product-images/7/2.jpg",
-            "https://cdn.dummyjson.com/product-images/7/3.jpg",
-            "https://cdn.dummyjson.com/product-images/7/thumbnail.jpg"
-          ],
-          "quantity": 1,
-          "userId": "42b3"
-        }
-      ],
-      "timestamp": "May 18, 2024, 6:55 PM",
-      "cost": {
-        "mrp": 1499,
-        "totalprice": 1436.7915
-      }
-    },
-    {
-      "id": "e7780589-a7d1-422a-8994-dfd463b12873",
-      "user": {
-        "id": "9ffe",
-        "email": "parthgupta221092@acropolis.in",
-        "password": "qwerty",
-        "addresses": [
-          {
-            "firstName": "Parth",
-            "secondtName": "Gupta",
-            "email": "parthguptaji20@gmail.com",
-            "Address": "114",
-            "City": "Indore",
-            "PostCode": "452010",
-            "remember": true,
             "Message": ""
           },
           {
@@ -2704,55 +2620,37 @@
             "PostCode": "452010",
             "remember": false,
             "Message": ""
-          }
-        ],
-        "role": "admin"
-      },
-      "addresses": {
-        "firstName": "Parth",
-        "secondtName": "Gupta",
-        "email": "parthguptaji20@gmail.com",
-        "Address": "114",
-        "City": "Indore",
-        "PostCode": "452010",
-        "remember": true,
-        "Message": ""
-      },
-      "items": [
-        {
-          "id": "85",
-          "title": "LouisWill Men Sunglasses",
-          "description": "LouisWill Men Sunglasses Polarized Sunglasses UV400 Sunglasses Day Night Dual Use Safety Driving Night Vision Eyewear AL-MG Frame Sun Glasses with Free Box for Drivers",
-          "price": 50,
-          "discountPercentage": 11.27,
-          "rating": 4.98,
-          "stock": 92,
-          "brand": "LouisWill",
-          "category": "sunglasses",
-          "thumbnail": "https://cdn.dummyjson.com/product-images/85/thumbnail.jpg",
-          "images": [
-            "https://cdn.dummyjson.com/product-images/85/1.jpg",
-            "https://cdn.dummyjson.com/product-images/85/2.jpg",
-            "https://cdn.dummyjson.com/product-images/85/thumbnail.jpg"
-          ],
-          "quantity": 1,
-          "userId": "9ffe"
-        }
-      ],
-      "timestamp": "May 18, 2024, 8:24 PM",
-      "cost": {
-        "mrp": 50,
-        "totalprice": 44.365
-      }
-    },
-    {
-      "id": "fb6de8c8-a625-4d78-b4eb-b617074e892d",
-      "user": {
-        "id": "42b3",
-        "email": "parthguptaji20@gmail.com",
-        "password": "qwerty",
-        "role": "user",
-        "addresses": [
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthgupta221092@acropolis.in",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
           {
             "firstName": "Parth",
             "secondtName": "Gupta",
@@ -2790,18 +2688,38 @@
           "images": [
             "https://cdn.dummyjson.com/product-images/3/1.jpg"
           ],
-          "quantity": 1,
+          "quantity": 2,
+          "userId": "42b3"
+        },
+        {
+          "id": "5",
+          "title": "Huawei P30",
+          "description": "Huawei’s re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK.",
+          "price": 499,
+          "discountPercentage": 10.58,
+          "rating": 4.09,
+          "stock": 32,
+          "brand": "Huawei",
+          "category": "smartphones",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/5/thumbnail.jpg",
+          "images": [
+            "https://cdn.dummyjson.com/product-images/5/1.jpg",
+            "https://cdn.dummyjson.com/product-images/5/2.jpg",
+            "https://cdn.dummyjson.com/product-images/5/3.jpg"
+          ],
+          "quantity": 2,
           "userId": "42b3"
         }
       ],
-      "timestamp": "May 19, 2024, 9:01 PM",
+      "timestamp": "May 19, 2024, 11:39 PM",
       "cost": {
-        "mrp": 1249,
-        "totalprice": 1055.9045999999998
-      }
+        "mrp": 1748,
+        "totalprice": 3004.2207999999996
+      },
+      "status": "pending"
     },
     {
-      "id": "4151",
+      "id": "d52deafb-296d-4b25-b78a-a5d9b597fc6a",
       "user": {
         "id": "42b3",
         "email": "parthguptaji20@gmail.com",
@@ -2867,284 +2785,77 @@
             "PostCode": "452010",
             "remember": false,
             "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthgupta221092@acropolis.in",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
           }
         ]
       },
       "addresses": {
         "firstName": "Parth",
         "secondtName": "Gupta",
-        "email": "parthgupta221092@acropolis.in",
-        "Address": "114",
+        "email": "pokemonfan20082003@gmail.com",
+        "Address": "1055\nHola",
         "City": "Indore",
-        "PostCode": "452010",
+        "PostCode": "452020",
         "remember": false,
         "Message": ""
       },
       "items": [
         {
-          "id": "7",
-          "title": "Samsung Galaxy Book",
-          "description": "Samsung Galaxy Book S (2020) Laptop With Intel Lakefield Chip, 8GB of RAM Launched",
-          "price": 1499,
-          "discountPercentage": 4.15,
-          "rating": 4.25,
-          "stock": 50,
-          "brand": "Samsung",
+          "id": "10",
+          "title": "HP Pavilion 15-DK1056WM",
+          "description": "HP Pavilion 15-DK1056WM Gaming Laptop 10th Gen Core i5, 8GB, 256GB SSD, GTX 1650 4GB, Windows 10",
+          "price": 1099,
+          "discountPercentage": 6.18,
+          "rating": 4.43,
+          "stock": 89,
+          "brand": "HP Pavilion",
           "category": "laptops",
-          "thumbnail": "https://cdn.dummyjson.com/product-images/7/thumbnail.jpg",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/10/thumbnail.jpeg",
           "images": [
-            "https://cdn.dummyjson.com/product-images/7/1.jpg",
-            "https://cdn.dummyjson.com/product-images/7/2.jpg",
-            "https://cdn.dummyjson.com/product-images/7/3.jpg",
-            "https://cdn.dummyjson.com/product-images/7/thumbnail.jpg"
+            "https://cdn.dummyjson.com/product-images/10/1.jpg",
+            "https://cdn.dummyjson.com/product-images/10/2.jpg",
+            "https://cdn.dummyjson.com/product-images/10/3.jpg",
+            "https://cdn.dummyjson.com/product-images/10/thumbnail.jpeg"
           ],
-          "quantity": 1,
-          "userId": "42b3"
-        }
-      ]
-    },
-    {
-      "id": "f71a",
-      "user": {
-        "id": "42b3",
-        "email": "parthguptaji20@gmail.com",
-        "password": "qwerty",
-        "role": "user",
-        "addresses": [
-          {
-            "firstName": "Parth",
-            "secondtName": "Gupta",
-            "email": "parthguptaji20@gmail.com",
-            "Address": "114",
-            "City": "Indore",
-            "PostCode": "452010",
-            "remember": false,
-            "Message": ""
-          },
-          {
-            "firstName": "Parth",
-            "secondtName": "Gupta",
-            "email": "pokemonfan20082003@gmail.com",
-            "Address": "1055\nHola",
-            "City": "Indore",
-            "PostCode": "452020",
-            "remember": false,
-            "Message": ""
-          },
-          {
-            "firstName": "Parth",
-            "secondtName": "Gupta",
-            "email": "pokemonfan20082003@gmail.com",
-            "Address": "1055\nHola",
-            "City": "Indore",
-            "PostCode": "452020",
-            "remember": false,
-            "Message": "er"
-          },
-          {
-            "firstName": "Parth",
-            "secondtName": "Gupta",
-            "email": "parthguptaji20@gmail.com",
-            "Address": "114",
-            "City": "Indore",
-            "PostCode": "452010",
-            "remember": false,
-            "Message": ""
-          },
-          {
-            "firstName": "Parth",
-            "secondtName": "Gupta",
-            "email": "parthguptaji20@gmail.com",
-            "Address": "114",
-            "City": "Indore",
-            "PostCode": "452010",
-            "remember": false,
-            "Message": ""
-          },
-          {
-            "firstName": "Parth",
-            "secondtName": "Gupta",
-            "email": "parthguptaji20@gmail.com",
-            "Address": "114",
-            "City": "Indore",
-            "PostCode": "452010",
-            "remember": false,
-            "Message": ""
-          },
-          {
-            "firstName": "Parth",
-            "secondtName": "Gupta",
-            "email": "parthgupta221092@acropolis.in",
-            "Address": "114",
-            "City": "Indore",
-            "PostCode": "452010",
-            "remember": false,
-            "Message": ""
-          }
-        ]
-      },
-      "addresses": {
-        "firstName": "Parth",
-        "secondtName": "Gupta",
-        "email": "parthguptaji20@gmail.com",
-        "Address": "114",
-        "City": "Indore",
-        "PostCode": "452010",
-        "remember": false,
-        "Message": ""
-      },
-      "items": [
-        {
-          "id": "4",
-          "title": "OPPOF19",
-          "description": "OPPO F19 is officially announced on April 2021.",
-          "price": 280,
-          "discountPercentage": 17.91,
-          "rating": 4.3,
-          "stock": 123,
-          "brand": "OPPO",
-          "category": "smartphones",
-          "thumbnail": "https://cdn.dummyjson.com/product-images/4/thumbnail.jpg",
-          "images": [
-            "https://cdn.dummyjson.com/product-images/4/1.jpg",
-            "https://cdn.dummyjson.com/product-images/4/2.jpg",
-            "https://cdn.dummyjson.com/product-images/4/3.jpg",
-            "https://cdn.dummyjson.com/product-images/4/4.jpg",
-            "https://cdn.dummyjson.com/product-images/4/thumbnail.jpg"
-          ],
-          "quantity": 1,
-          "userId": "42b3"
-        }
-      ]
-    },
-    {
-      "id": "11d4e2af-5ef1-4765-99d1-961d4c317193",
-      "user": {
-        "id": "42b3",
-        "email": "parthguptaji20@gmail.com",
-        "password": "qwerty",
-        "role": "user",
-        "addresses": [
-          {
-            "firstName": "Parth",
-            "secondtName": "Gupta",
-            "email": "parthguptaji20@gmail.com",
-            "Address": "114",
-            "City": "Indore",
-            "PostCode": "452010",
-            "remember": false,
-            "Message": ""
-          },
-          {
-            "firstName": "Parth",
-            "secondtName": "Gupta",
-            "email": "pokemonfan20082003@gmail.com",
-            "Address": "1055\nHola",
-            "City": "Indore",
-            "PostCode": "452020",
-            "remember": false,
-            "Message": ""
-          },
-          {
-            "firstName": "Parth",
-            "secondtName": "Gupta",
-            "email": "pokemonfan20082003@gmail.com",
-            "Address": "1055\nHola",
-            "City": "Indore",
-            "PostCode": "452020",
-            "remember": false,
-            "Message": "er"
-          },
-          {
-            "firstName": "Parth",
-            "secondtName": "Gupta",
-            "email": "parthguptaji20@gmail.com",
-            "Address": "114",
-            "City": "Indore",
-            "PostCode": "452010",
-            "remember": false,
-            "Message": ""
-          },
-          {
-            "firstName": "Parth",
-            "secondtName": "Gupta",
-            "email": "parthguptaji20@gmail.com",
-            "Address": "114",
-            "City": "Indore",
-            "PostCode": "452010",
-            "remember": false,
-            "Message": ""
-          },
-          {
-            "firstName": "Parth",
-            "secondtName": "Gupta",
-            "email": "parthguptaji20@gmail.com",
-            "Address": "114",
-            "City": "Indore",
-            "PostCode": "452010",
-            "remember": false,
-            "Message": ""
-          },
-          {
-            "firstName": "Parth",
-            "secondtName": "Gupta",
-            "email": "parthgupta221092@acropolis.in",
-            "Address": "114",
-            "City": "Indore",
-            "PostCode": "452010",
-            "remember": false,
-            "Message": ""
-          },
-          {
-            "firstName": "Parth",
-            "secondtName": "Gupta",
-            "email": "parthguptaji20@gmail.com",
-            "Address": "114",
-            "City": "Indore",
-            "PostCode": "452010",
-            "remember": false,
-            "Message": ""
-          }
-        ]
-      },
-      "addresses": {
-        "firstName": "Parth",
-        "secondtName": "Gupta",
-        "email": "parthguptaji20@gmail.com",
-        "Address": "114",
-        "City": "Indore",
-        "PostCode": "452010",
-        "remember": false,
-        "Message": ""
-      },
-      "items": [
-        {
-          "id": "4",
-          "title": "OPPOF19",
-          "description": "OPPO F19 is officially announced on April 2021.",
-          "price": 280,
-          "discountPercentage": 17.91,
-          "rating": 4.3,
-          "stock": 123,
-          "brand": "OPPO",
-          "category": "smartphones",
-          "thumbnail": "https://cdn.dummyjson.com/product-images/4/thumbnail.jpg",
-          "images": [
-            "https://cdn.dummyjson.com/product-images/4/1.jpg",
-            "https://cdn.dummyjson.com/product-images/4/2.jpg",
-            "https://cdn.dummyjson.com/product-images/4/3.jpg",
-            "https://cdn.dummyjson.com/product-images/4/4.jpg",
-            "https://cdn.dummyjson.com/product-images/4/thumbnail.jpg"
-          ],
-          "quantity": 1,
+          "quantity": 2,
           "userId": "42b3"
         }
       ],
-      "timestamp": "May 19, 2024, 9:28 PM",
+      "timestamp": "May 19, 2024, 11:40 PM",
       "cost": {
-        "mrp": 280,
-        "totalprice": 229.85199999999998
-      }
+        "mrp": 1099,
+        "totalprice": 2062.1636
+      },
+      "status": "pending"
     }
   ]
 }
