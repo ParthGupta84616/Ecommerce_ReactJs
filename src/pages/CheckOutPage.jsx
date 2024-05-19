@@ -38,7 +38,6 @@ function CheckOutPage() {
         setTotalQuantity(TotalQuantity);
         setorderId(uuidv4())
         setMRP(mrp);
-        console.log(orderId);
     }, [cartItems]);
 
     const handleRadioClick = (person) => {
@@ -47,7 +46,6 @@ function CheckOutPage() {
         } else {
             setCheckedPerson(person);
         }
-        console.log(cartItems);
         setOrderDetails({"id":orderId,"user":user, "addresses":checkedPerson, "items":cartItems , "timestamp" : formattedDate , "cost": {"mrp":MRP , "totalprice": totalCost}})
     };
 
@@ -75,28 +73,23 @@ function CheckOutPage() {
 
     const onSubmit = (data) => {
         dispatch(updateUserAsync({...user,addresses:[...user.addresses,data],}));
-        console.log("here")
-        setOrderDetails({"user":user, "addresses":data, "items":cartItems})
-        //send data to Order DB
-        dispatch(createOrderAsync(orderDetails))
-        navigate(`/orderSuccessfull/${orderId}`)
+        // setOrderDetails({"user":user, "addresses":data, "items":cartItems})
+        dispatch(createOrderAsync({"id":orderId,"user":user, "addresses":data, "items":cartItems, "timestamp" : formattedDate, "cost": {"mrp":MRP , "totalprice": totalCost}}))
         dispatch(deleteUserCartAsync(user.id));
         dispatch(fetchItemByUserIdAsync(user.id));
-        // console.log(orderDetails);
+        navigate(`/orderSuccessfull/${orderId}`)
         reset(); 
 
     };
 
     const handleOutsideSubmit = () => {
         if (orderDetails.addresses==null){
-            console.log(orderDetails.addresses)
             handleSubmit(onSubmit)();
         }
         else{
             dispatch(createOrderAsync(orderDetails))
             dispatch(deleteUserCartAsync(user.id));
             dispatch(fetchItemByUserIdAsync(user.id));
-            console.log("wapis")
             navigate(`/orderSuccessfull/${orderId}`)
            
         }

@@ -1,6 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchAllOrderAsync, selectTotalOrders } from '../order/orderSlice'
 
 function Orders() {
+  const dispatch = useDispatch()
+  const orders = useSelector(selectTotalOrders)
+  useEffect(() => {
+    dispatch(fetchAllOrderAsync())
+  }, [dispatch])
+  
+  console.log(orders);
   return (
       <div className="bg-white p-8 rounded-md w-full">
         <div className=" flex items-center justify-between pb-6">
