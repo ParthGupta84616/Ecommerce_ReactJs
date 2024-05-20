@@ -2716,7 +2716,7 @@
         "mrp": 1748,
         "totalprice": 3004.2207999999996
       },
-      "status": "pending"
+      "status": "Dispatch"
     },
     {
       "id": "d52deafb-296d-4b25-b78a-a5d9b597fc6a",
@@ -2854,6 +2854,716 @@
       "cost": {
         "mrp": 1099,
         "totalprice": 2062.1636
+      },
+      "status": "Arrived"
+    },
+    {
+      "id": "796f4690-99ae-436a-8423-a7571c7001c1",
+      "user": {
+        "id": "42b3",
+        "email": "parthguptaji20@gmail.com",
+        "password": "qwerty",
+        "role": "user",
+        "addresses": [
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "pokemonfan20082003@gmail.com",
+            "Address": "1055\nHola",
+            "City": "Indore",
+            "PostCode": "452020",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "pokemonfan20082003@gmail.com",
+            "Address": "1055\nHola",
+            "City": "Indore",
+            "PostCode": "452020",
+            "remember": false,
+            "Message": "er"
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthgupta221092@acropolis.in",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          }
+        ]
+      },
+      "addresses": {
+        "firstName": "Parth",
+        "secondtName": "Gupta",
+        "email": "parthguptaji20@gmail.com",
+        "Address": "114",
+        "City": "Indore",
+        "PostCode": "452010",
+        "remember": false,
+        "Message": ""
+      },
+      "items": [
+        {
+          "id": "4",
+          "title": "OPPOF19",
+          "description": "OPPO F19 is officially announced on April 2021.",
+          "price": 280,
+          "discountPercentage": 17.91,
+          "rating": 4.3,
+          "stock": 123,
+          "brand": "OPPO",
+          "category": "smartphones",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/4/thumbnail.jpg",
+          "images": [
+            "https://cdn.dummyjson.com/product-images/4/1.jpg",
+            "https://cdn.dummyjson.com/product-images/4/2.jpg",
+            "https://cdn.dummyjson.com/product-images/4/3.jpg",
+            "https://cdn.dummyjson.com/product-images/4/4.jpg",
+            "https://cdn.dummyjson.com/product-images/4/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "userId": "42b3"
+        }
+      ],
+      "timestamp": "May 20, 2024, 11:43 AM",
+      "cost": {
+        "mrp": 280,
+        "totalprice": 229.85199999999998
+      },
+      "status": "Arrived"
+    },
+    {
+      "id": "33d29191-f255-4e86-9a71-b3cac3939445",
+      "user": {
+        "id": "42b3",
+        "email": "parthguptaji20@gmail.com",
+        "password": "qwerty",
+        "role": "user",
+        "addresses": [
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "pokemonfan20082003@gmail.com",
+            "Address": "1055\nHola",
+            "City": "Indore",
+            "PostCode": "452020",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "pokemonfan20082003@gmail.com",
+            "Address": "1055\nHola",
+            "City": "Indore",
+            "PostCode": "452020",
+            "remember": false,
+            "Message": "er"
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthgupta221092@acropolis.in",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          }
+        ]
+      },
+      "addresses": {
+        "firstName": "Parth",
+        "secondtName": "Gupta",
+        "email": "parthguptaji20@gmail.com",
+        "Address": "114",
+        "City": "Indore",
+        "PostCode": "452010",
+        "remember": false,
+        "Message": ""
+      },
+      "items": [
+        {
+          "id": "3",
+          "title": "Samsung Universe 9",
+          "description": "Samsung's new variant which goes beyond Galaxy to the Universe",
+          "price": 1249,
+          "discountPercentage": 15.46,
+          "rating": 4.09,
+          "stock": 36,
+          "brand": "Samsung",
+          "category": "smartphones",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/3/thumbnail.jpg",
+          "images": [
+            "https://cdn.dummyjson.com/product-images/3/1.jpg"
+          ],
+          "quantity": 1,
+          "userId": "42b3"
+        }
+      ],
+      "timestamp": "May 20, 2024, 3:08 PM",
+      "cost": {
+        "mrp": 1249,
+        "totalprice": 1055.9045999999998
+      },
+      "status": "pending"
+    },
+    {
+      "id": "fe1ef612-3781-43d3-a307-ec428a9b683d",
+      "user": {
+        "id": "42b3",
+        "email": "parthguptaji20@gmail.com",
+        "password": "qwerty",
+        "role": "user",
+        "addresses": [
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "pokemonfan20082003@gmail.com",
+            "Address": "1055\nHola",
+            "City": "Indore",
+            "PostCode": "452020",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "pokemonfan20082003@gmail.com",
+            "Address": "1055\nHola",
+            "City": "Indore",
+            "PostCode": "452020",
+            "remember": false,
+            "Message": "er"
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthgupta221092@acropolis.in",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          }
+        ]
+      },
+      "addresses": {
+        "firstName": "Parth",
+        "secondtName": "Gupta",
+        "email": "parthguptaji20@gmail.com",
+        "Address": "114",
+        "City": "Indore",
+        "PostCode": "452010",
+        "remember": false,
+        "Message": ""
+      },
+      "items": [
+        {
+          "id": "84",
+          "title": "Square Sunglasses",
+          "description": "Fashion Oversized Square Sunglasses Retro Gradient Big Frame Sunglasses For Women One Piece Gafas Shade Mirror Clear Lens 17059",
+          "price": 28,
+          "discountPercentage": 13.89,
+          "rating": 4.64,
+          "stock": 64,
+          "brand": "mastar watch",
+          "category": "sunglasses",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/84/thumbnail.jpg",
+          "images": [
+            "https://cdn.dummyjson.com/product-images/84/1.jpg",
+            "https://cdn.dummyjson.com/product-images/84/2.jpg",
+            "https://cdn.dummyjson.com/product-images/84/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "userId": "42b3"
+        },
+        {
+          "id": "10",
+          "title": "HP Pavilion 15-DK1056WM",
+          "description": "HP Pavilion 15-DK1056WM Gaming Laptop 10th Gen Core i5, 8GB, 256GB SSD, GTX 1650 4GB, Windows 10",
+          "price": 1099,
+          "discountPercentage": 6.18,
+          "rating": 4.43,
+          "stock": 89,
+          "brand": "HP Pavilion",
+          "category": "laptops",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/10/thumbnail.jpeg",
+          "images": [
+            "https://cdn.dummyjson.com/product-images/10/1.jpg",
+            "https://cdn.dummyjson.com/product-images/10/2.jpg",
+            "https://cdn.dummyjson.com/product-images/10/3.jpg",
+            "https://cdn.dummyjson.com/product-images/10/thumbnail.jpeg"
+          ],
+          "quantity": 1,
+          "userId": "42b3"
+        }
+      ],
+      "timestamp": "May 20, 2024, 3:19 PM",
+      "cost": {
+        "mrp": 1127,
+        "totalprice": 1055.1925999999999
+      },
+      "status": "pending"
+    },
+    {
+      "id": "8bcf211e-01f8-4198-9d8e-c803e3201d02",
+      "user": {
+        "id": "42b3",
+        "email": "parthguptaji20@gmail.com",
+        "password": "qwerty",
+        "role": "user",
+        "addresses": [
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "pokemonfan20082003@gmail.com",
+            "Address": "1055\nHola",
+            "City": "Indore",
+            "PostCode": "452020",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "pokemonfan20082003@gmail.com",
+            "Address": "1055\nHola",
+            "City": "Indore",
+            "PostCode": "452020",
+            "remember": false,
+            "Message": "er"
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthgupta221092@acropolis.in",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          }
+        ]
+      },
+      "addresses": {
+        "firstName": "Parth",
+        "secondtName": "Gupta",
+        "email": "parthguptaji20@gmail.com",
+        "Address": "114",
+        "City": "Indore",
+        "PostCode": "452010",
+        "remember": false,
+        "Message": ""
+      },
+      "items": [
+        {
+          "id": "3",
+          "title": "Samsung Universe 9",
+          "description": "Samsung's new variant which goes beyond Galaxy to the Universe",
+          "price": 1249,
+          "discountPercentage": 15.46,
+          "rating": 4.09,
+          "stock": 36,
+          "brand": "Samsung",
+          "category": "smartphones",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/3/thumbnail.jpg",
+          "images": [
+            "https://cdn.dummyjson.com/product-images/3/1.jpg"
+          ],
+          "quantity": 1,
+          "userId": "42b3"
+        }
+      ],
+      "timestamp": "May 20, 2024, 3:20 PM",
+      "cost": {
+        "mrp": 1249,
+        "totalprice": 1055.9045999999998
+      },
+      "status": "Dispatch"
+    },
+    {
+      "id": "7ec4ac06-7c09-4a2a-be98-feec58168e68",
+      "user": {
+        "id": "42b3",
+        "email": "parthguptaji20@gmail.com",
+        "password": "qwerty",
+        "role": "user",
+        "addresses": [
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "pokemonfan20082003@gmail.com",
+            "Address": "1055\nHola",
+            "City": "Indore",
+            "PostCode": "452020",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "pokemonfan20082003@gmail.com",
+            "Address": "1055\nHola",
+            "City": "Indore",
+            "PostCode": "452020",
+            "remember": false,
+            "Message": "er"
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthgupta221092@acropolis.in",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          }
+        ]
+      },
+      "addresses": {
+        "firstName": "Parth",
+        "secondtName": "Gupta",
+        "email": "parthguptaji20@gmail.com",
+        "Address": "114",
+        "City": "Indore",
+        "PostCode": "452010",
+        "remember": false,
+        "Message": ""
+      },
+      "items": [
+        {
+          "id": "4",
+          "title": "OPPOF19",
+          "description": "OPPO F19 is officially announced on April 2021.",
+          "price": 280,
+          "discountPercentage": 17.91,
+          "rating": 4.3,
+          "stock": 123,
+          "brand": "OPPO",
+          "category": "smartphones",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/4/thumbnail.jpg",
+          "images": [
+            "https://cdn.dummyjson.com/product-images/4/1.jpg",
+            "https://cdn.dummyjson.com/product-images/4/2.jpg",
+            "https://cdn.dummyjson.com/product-images/4/3.jpg",
+            "https://cdn.dummyjson.com/product-images/4/4.jpg",
+            "https://cdn.dummyjson.com/product-images/4/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "userId": "42b3"
+        }
+      ],
+      "timestamp": "May 20, 2024, 11:20 PM",
+      "cost": {
+        "mrp": 280,
+        "totalprice": 229.85199999999998
       },
       "status": "pending"
     }

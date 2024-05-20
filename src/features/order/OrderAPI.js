@@ -38,3 +38,19 @@ export function fetchAllOrders() {
     }
     );
   }
+export function updateOrder(update) {
+  return new Promise(async (resolve) => {
+    
+      const response = await fetch("http://localhost:8080/orders/"+update.id,{
+          method: 'PATCH',
+          body: JSON.stringify(update),
+          
+          headers: {
+              'Content-Type': 'application/json'
+          },
+      });
+      const data = await response.json();
+      console.log({data})
+      resolve({ data });
+  });
+}

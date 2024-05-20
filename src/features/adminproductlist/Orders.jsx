@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchAllOrderAsync, selectTotalOrders } from '../order/orderSlice'
+import { fetchAllOrderAsync, fetchUpdatedOrderAsync, selectTotalOrders, selectupdateOrder } from '../order/orderSlice'
 import { Navigate, useNavigate } from 'react-router-dom'
 import { MdEdit } from "react-icons/md";
 
@@ -9,21 +9,27 @@ function Orders() {
   const dispatch = useDispatch()
   const Navigate = useNavigate()
   const orders = useSelector(selectTotalOrders)
+  const [workingOrder, setWorkingOrder] = useState(null)
+  const update = useSelector(selectupdateOrder)
 
   
-  const handleEdit = () => {
+  const handleEdit = (order) => {
   setEditView(!editView); 
+
+  setWorkingOrder(order)
+  if(editView==true){
+    setWorkingOrder(null);
+  }
   };
-  console.log(editView);
+  
 
 
   useEffect(() => {
     dispatch(fetchAllOrderAsync())
-  }, [dispatch])
+  }, [dispatch,update])
   const handleID = (id)=>{
     Navigate(`/orderSuccessfull/${id}`)
   }
-  console.log(orders)
   const digitSum = (numberString) =>{ 
     if (typeof numberString !== 'string' || numberString.length === 0) {
         return 0; 
@@ -36,6 +42,15 @@ function Orders() {
         }
     }
     return sum;
+}
+const handleChange = (change) => {
+  if (workingOrder) {
+    console.log({"id": workingOrder.id});
+    dispatch(fetchUpdatedOrderAsync({"id": workingOrder.id, "status": change}));
+    setWorkingOrder(null);
+  } else {
+    console.error("workingOrder is null or undefined");
+  }
 }
 
   return (
@@ -123,7 +138,30 @@ function Orders() {
                   <p className="text-gray-900 whitespace-no-wrap">{order.addresses.firstName+" "+order.addresses.secondtName+", "+order.addresses.email} </p>
                     <p className="text-gray-900 whitespace-no-wrap">{order.addresses.Address+", "+order.addresses.City+", "+order.addresses.PostCode} </p>
                   </td>
-                  <td className="px-2 py-5 border-b border-gray-200 bg-white text-sm">
+
+                  {workingOrder==order ? (
+                    <td className="px-2 py-5 border-b border-gray-200 bg-white text-sm">
+                    <div class="relative inline-block text-left">
+                    <div>
+                      <button type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" id="options-menu" aria-expanded="true" aria-haspopup="true">
+                        
+                        <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 0 1 1.414 0L10 10.586l3.293-3.293a1 1 0 1 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 0-1.414z" clip-rule="evenodd" />
+                        </svg>
+                      </button>
+                    </div>
+                    <div class="origin-top-right z-20 absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu" tabindex="-1">
+                      <div class="py-1 z-50" role="none">
+                        <div onClick={()=>handleChange("Pending")} class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Pending </div>
+                        <div onClick={()=>handleChange("Arrived")} class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Arrived</div>
+                        <div  onClick={()=>handleChange("Dispatch")} class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Dispatch</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  </td>
+                  ):(
+                    <td className="px-2 py-5 border-b border-gray-200 bg-white text-sm">
                     <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
                       <span
                         aria-hidden=""
@@ -132,6 +170,7 @@ function Orders() {
                       <span className="relative">{order.status}</span>
                     </span>
                   </td>
+                  )}
                   <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                     <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight" onClick={()=>handleEdit(order)}>
                       <span
