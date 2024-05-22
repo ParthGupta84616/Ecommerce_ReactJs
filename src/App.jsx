@@ -38,8 +38,9 @@ export default function App() {
     },
     {
       path: "/signup",
-      element: (<SignupPage />),
+      element: <SignupPage />,
     },
+
     {
       path: "/cart",
       element: (<Protected><CartPage /></Protected>),
@@ -104,8 +105,10 @@ export default function App() {
   return (
           <>
           
+          <div>
           <RouterProvider router={router} />
           <Footer />
+          </div>
           </>
   );
 }

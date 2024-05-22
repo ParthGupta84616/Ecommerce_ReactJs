@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useEffect } from 'react';
+import React, { StyleSheet, useState, Fragment, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   // fetchAllProductsAsync,
@@ -8,6 +8,7 @@ import {
   selectAllProducts,
   selectBrands,
   selectCategories,
+  selectTotalItems,
   // selectTotalItems,
 } from '../productListSlice';
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react';
@@ -46,7 +47,8 @@ export default function ProductList() {
   const products = useSelector(selectAllProducts);
   const brands = useSelector(selectBrands);
   const categories = useSelector(selectCategories);
-  const totalItems = TOTAL_ITEMS
+  const totalItems = useSelector(selectTotalItems)
+  console.log(totalItems)
   const filters = [
     {
       id: 'category',
@@ -192,7 +194,7 @@ export default function ProductList() {
             </h2>
 
             <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
-              <DesktopFilter handleFilter={handleFilter} filters={filters}></DesktopFilter>
+              <DesktopFilter handleFilter={handleFilter} filters={filters} page={page} setPage={setPage}></DesktopFilter>
               {/* Product grid */}
               <div className="lg:col-span-3">
                 <ProductGrid products={products} filters={filters}></ProductGrid>
@@ -334,7 +336,7 @@ function MobileFilter({
   );
 }
 
-function DesktopFilter({ handleFilter ,filters}) {
+function DesktopFilter({ handleFilter ,filters, page , setPage}) {
   return (
     <form className="hidden lg:block">
       {filters.map((section) => (
@@ -369,14 +371,15 @@ function DesktopFilter({ handleFilter ,filters}) {
                         defaultValue={option.value}
                         type="checkbox"
                         defaultChecked={option.checked}
-                        onChange={(e) => handleFilter(e, section, option)}
+                        onChange={(e) =>handleFilter(e, section, option)}
+                        onClick={()=>setPage(1)}
                         className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                       />
                       <label
                         htmlFor={`filter-${section.id}-${optionIdx}`}
                         className="ml-3 text-sm text-gray-600"
                       >
-                        {option.label}
+                        {option.label} 
                       </label>
                     </div>
                   ))}
@@ -488,13 +491,15 @@ function Pagination({ page, setPage, handlePage, totalItems ,filters}) {
 }
 
 function ProductGrid({ products , filters }) {
+  
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl px-4 py-0 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8 mt-4">
         <div className="grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2 lg:grid-cols-3  ">
           {products.map((product) => (
             <Link to={`/product/${product.id}`} key={product.id}>
-              <div className="group relative border-solid border-2 p-2 border-gray-200 rounded-xl">
+              <div className="group relative border-solid border-2 p-2 border-grey-400 rounded-xl" 
+              >
                 <div className="min-h-60 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-60 ">
                   <img
                     src={product.thumbnail}
@@ -535,3 +540,4 @@ function ProductGrid({ products , filters }) {
     </div>
   );
 }
+

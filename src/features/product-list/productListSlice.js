@@ -8,6 +8,7 @@ const initialState = {
   selectAllProducts: {},
   status: 'idle',
   totalItems:0
+  
 };
 
 

@@ -1801,6 +1801,23 @@
         "https://cdn.dummyjson.com/product-images/100/3.jpg",
         "https://cdn.dummyjson.com/product-images/100/thumbnail.jpg"
       ]
+    },
+    {
+      "id": "988af2ea-d32e-4de5-9b73-b757c4456bec",
+      "title": "Samsung S20 Fe",
+      "category": "smartphones",
+      "brand": "Samsung",
+      "stock": 50,
+      "rating": 5,
+      "price": 1000,
+      "discountPercentage": 75,
+      "description": "A Fe Device",
+      "thumbnail": "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
+      "images": [
+        "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
+        "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
+        "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg"
+      ]
     }
   ],
   "categories": [
@@ -2561,7 +2578,27 @@
       "role": "admin"
     }
   ],
-  "cart": [],
+  "cart": [
+    {
+      "id": "988af2ea-d32e-4de5-9b73-b757c4456bec",
+      "title": "Samsung S20 Fe",
+      "category": "smartphones",
+      "brand": "Samsung",
+      "stock": 50,
+      "rating": 5,
+      "price": 1000,
+      "discountPercentage": 75,
+      "description": "A Fe Device",
+      "thumbnail": "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
+      "images": [
+        "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
+        "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
+        "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg"
+      ],
+      "quantity": 1,
+      "userId": "9ffe"
+    }
+  ],
   "orders": [
     {
       "id": "a96145be-f77c-4fd4-abdb-de0db293b6a2",
@@ -3131,7 +3168,7 @@
         "mrp": 1249,
         "totalprice": 1055.9045999999998
       },
-      "status": "pending"
+      "status": "Arrived"
     },
     {
       "id": "fe1ef612-3781-43d3-a307-ec428a9b683d",
@@ -3561,6 +3598,287 @@
         }
       ],
       "timestamp": "May 20, 2024, 11:20 PM",
+      "cost": {
+        "mrp": 280,
+        "totalprice": 229.85199999999998
+      },
+      "status": "pending"
+    },
+    {
+      "id": "bbfb2ee3-4587-4f45-9c70-7c665223ebdb",
+      "user": {
+        "id": "42b3",
+        "email": "parthguptaji20@gmail.com",
+        "password": "qwerty",
+        "role": "user",
+        "addresses": [
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "pokemonfan20082003@gmail.com",
+            "Address": "1055\nHola",
+            "City": "Indore",
+            "PostCode": "452020",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "pokemonfan20082003@gmail.com",
+            "Address": "1055\nHola",
+            "City": "Indore",
+            "PostCode": "452020",
+            "remember": false,
+            "Message": "er"
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthgupta221092@acropolis.in",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          }
+        ]
+      },
+      "addresses": {
+        "firstName": "Parth",
+        "secondtName": "Gupta",
+        "email": "parthguptaji20@gmail.com",
+        "Address": "114",
+        "City": "Indore",
+        "PostCode": "452010",
+        "remember": false,
+        "Message": ""
+      },
+      "items": [
+        {
+          "id": "74",
+          "title": "Leather Hand Bag",
+          "description": "It features an attractive design that makes it a must have accessory in your collection. We sell different kind of bags for boys, kids, women, girls and also for unisex.",
+          "price": 57,
+          "discountPercentage": 11.19,
+          "rating": 4.01,
+          "stock": 43,
+          "brand": "Copenhagen Luxe",
+          "category": "womens-bags",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/74/thumbnail.jpg",
+          "images": [
+            "https://cdn.dummyjson.com/product-images/74/1.jpg",
+            "https://cdn.dummyjson.com/product-images/74/2.jpg",
+            "https://cdn.dummyjson.com/product-images/74/3.jpg",
+            "https://cdn.dummyjson.com/product-images/74/4.jpg",
+            "https://cdn.dummyjson.com/product-images/74/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "userId": "42b3"
+        }
+      ],
+      "timestamp": "May 21, 2024, 1:42 PM",
+      "cost": {
+        "mrp": 57,
+        "totalprice": 50.6217
+      },
+      "status": "pending"
+    },
+    {
+      "id": "f2256d41-5c74-4916-bfe5-19a1e4f6f351",
+      "user": {
+        "id": "42b3",
+        "email": "parthguptaji20@gmail.com",
+        "password": "qwerty",
+        "role": "user",
+        "addresses": [
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "pokemonfan20082003@gmail.com",
+            "Address": "1055\nHola",
+            "City": "Indore",
+            "PostCode": "452020",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "pokemonfan20082003@gmail.com",
+            "Address": "1055\nHola",
+            "City": "Indore",
+            "PostCode": "452020",
+            "remember": false,
+            "Message": "er"
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthgupta221092@acropolis.in",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          },
+          {
+            "firstName": "Parth",
+            "secondtName": "Gupta",
+            "email": "parthguptaji20@gmail.com",
+            "Address": "114",
+            "City": "Indore",
+            "PostCode": "452010",
+            "remember": false,
+            "Message": ""
+          }
+        ]
+      },
+      "addresses": {
+        "firstName": "Parth",
+        "secondtName": "Gupta",
+        "email": "pokemonfan20082003@gmail.com",
+        "Address": "1055\nHola",
+        "City": "Indore",
+        "PostCode": "452020",
+        "remember": false,
+        "Message": ""
+      },
+      "items": [
+        {
+          "id": "4",
+          "_id": "664ce058f017084b62eb9291",
+          "brand": "OPPO",
+          "category": "smartphones",
+          "description": "OPPO F19 is officially announced on April 2021.",
+          "discountPercentage": 17.91,
+          "images": [
+            "https://cdn.dummyjson.com/product-images/4/1.jpg",
+            "https://cdn.dummyjson.com/product-images/4/2.jpg",
+            "https://cdn.dummyjson.com/product-images/4/3.jpg",
+            "https://cdn.dummyjson.com/product-images/4/4.jpg",
+            "https://cdn.dummyjson.com/product-images/4/thumbnail.jpg"
+          ],
+          "price": 280,
+          "rating": 4.3,
+          "stock": 123,
+          "thumbnail": "https://cdn.dummyjson.com/product-images/4/thumbnail.jpg",
+          "title": "OPPOF19",
+          "quantity": 1,
+          "userId": "42b3"
+        }
+      ],
+      "timestamp": "May 22, 2024, 10:27 PM",
       "cost": {
         "mrp": 280,
         "totalprice": 229.85199999999998

@@ -10,9 +10,8 @@ export function fetchAllProducts() {
 export function fetchSelectedProduct(id) {
   return new Promise(async (resolve) =>{
     //TODO: we will not hard-code server URL here
-    const response = await fetch('http://localhost:8080/products/' + id) 
+    const response = await fetch('http://127.0.0.1:8080/products/' + id) 
     const data = await response.json()
-    // console.log(data);
     resolve({data})
   }
   );
@@ -23,33 +22,31 @@ export function fetchProductsByFilters(filter,sort,pagination) {
   // pagination = {_page:1,_limit=10} 
   // TODO : on server we will support multi values in filter
   let queryString = '';
-  for(let key in filter){
+  for (let key in filter) {
     const categoryValues = filter[key];
-    if(categoryValues.length){
-      const lastCategoryValue = categoryValues[categoryValues.length-1]
-      queryString += `${key}=${lastCategoryValue}&`
+    if (categoryValues.length) {
+      queryString += `${key}=${categoryValues.join(',')}&`; // Join the array values with commas
     }
   }
   for(let key in sort){
     queryString += `${key}=${sort[key]}&`
-    console.log(queryString);
+    // console.log(queryString);
   }
   // console.log(pagination)
   for(let key in pagination){
     queryString += `${key}=${pagination[key]}&`
     // console.log(queryString);
   }
+  let data1
 
 
   return new Promise(async (resolve) =>{
     //TODO: we will not hard-code server URL here
-    const response = await fetch('http://localhost:8080/products?'+queryString) 
+    const response = await fetch('http://127.0.0.1:8080/productfilter?'+queryString) 
     let data = await response.json()
-    data = data.data
-    const totalItems = response.headers.get('X-Total-Count');
-    // console.log(totalItems);
-    // console.log({data:{products:data,totalItems:+totalItems}})
-    resolve({data:{products:data,totalItems:+totalItems}})
+
+    data1 = data.data
+    resolve({data:{products:data1,totalItems:data.total_items}})
   }
   );
 }
