@@ -1,23 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { useForm } from "react-hook-form"
 import { useDispatch, useSelector } from 'react-redux';
-import { createUserAsync, selectCheckUser, selectLoggedUser } from '../authSlice';
+import { createUserAsync, selectLoggedUser } from '../authSlice';
+import CryptoJS from 'crypto-js';
 
 const Signup = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const dispatch = useDispatch()
+  const user = useSelector(selectLoggedUser)
   const [Navigate1, setNavigate1] = useState(false)
-
-
+  const [error, setError] = useState("")
+  
+  
   const onSubmit = (data) => {
-    dispatch(createUserAsync({email: data.email, password: data.password , addresses:[], role : "user"}))
-    setNavigate1(true)
-   
+    dispatch(createUserAsync({email: data.email, password : CryptoJS.SHA256(data.password).toString(CryptoJS.enc.Hex)  , addresses:[], role : "user"}))
   };
   
-  const user = useSelector(selectLoggedUser)
-  console.log()
+  useEffect(() => {
+    if(user?.email){
+      setNavigate1(true)
+    }
+    else if(user?.message){
+      setError("User Already Exists")
+    }
+  }, [user])
+  
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       {Navigate1 && (
@@ -105,6 +113,9 @@ const Signup = () => {
         </form>
 
         <p className="mt-10 text-center text-sm text-gray-500">
+          {error}
+          <br />
+
           Already a member?{' '}
           <Link to="/login" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
             Login to your account

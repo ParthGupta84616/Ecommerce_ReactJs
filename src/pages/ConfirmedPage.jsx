@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectCheckUser } from '../features/auth/authSlice';
+// import { selectCheckUser } from '../features/auth/authSlice';
 import { fetchOrderByIdAsync, selectCurrentOrder } from '../features/order/orderSlice';
 import { useParams } from 'react-router-dom';
 
 function ConfirmedPage() {
     const dispatch = useDispatch();
-    const user = useSelector(selectCheckUser);
     const params = useParams();
     const [itemArray, setItemArray] = useState([]);
     const orderInfo = useSelector(selectCurrentOrder);

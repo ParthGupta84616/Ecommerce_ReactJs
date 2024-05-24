@@ -1,8 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { LogOutUser, checkUser, createUser } from './AuthAPI';
+import { LogOutUser, checkUser, createUser, forgetPassword } from './AuthAPI';
 
 const initialState = {
   loggedInUser: null,
+  mail : null,
   
   status: 'idle',
 };
@@ -28,6 +29,13 @@ export const LogOutUserAsync = createAsyncThunk(
     return response.data;
   }
 );
+export const forgetPasswordAsync = createAsyncThunk(
+  "user/forgetPassword",
+  async (email) => {
+    const response = await forgetPassword(email);
+    return response.data;
+  }
+);
 
 
 export const userSlice = createSlice({
@@ -35,8 +43,7 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     increment: (state) => {
-      // Assuming loggedInUser is a count or something that can be incremented
-      state.loggedInUser += 1;
+      state.value += 1;
     },
   },
   extraReducers: (builder) => {
@@ -47,10 +54,7 @@ export const userSlice = createSlice({
       .addCase(createUserAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         state.loggedInUser = action.payload;
-      });
-  },
-  extraReducers: (builder) => {
-    builder
+      })
       .addCase(checkUserAsync.pending, (state) => {
         state.status = 'loading';
       })
@@ -65,6 +69,13 @@ export const userSlice = createSlice({
         state.status = 'idle';
         state.userInfo = null;
       })
+      .addCase(forgetPasswordAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(forgetPasswordAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.mail = action.payload;
+      })
   }
 });
 
@@ -72,4 +83,5 @@ export const { increment } = userSlice.actions;
 
 export const selectLoggedUser = (state) => state.user.loggedInUser;
 export const selectCheckUser = (state) => state.user.userInfo;
+export const selectmail = (state) => state.user.mail;
 export default userSlice.reducer;

@@ -2,10 +2,13 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
 import { useForm } from "react-hook-form"
-import { selectCheckUser } from '../authSlice';
+import { forgetPasswordAsync, selectCheckUser, selectmail } from '../authSlice';
 
 const ForgetPassword = () => {
     const dispatch = useDispatch();
+    const user = useSelector(selectCheckUser)
+    const status = useSelector(selectmail)
+  // console.log(status);
     const {
       register,
       handleSubmit,
@@ -14,10 +17,9 @@ const ForgetPassword = () => {
     } = useForm()
   
     const onSubmit = (data) => {
-      console.log(data)
+      dispatch(forgetPasswordAsync({"email":data.email}))
       reset()
     }
-    const user = useSelector(selectCheckUser)
     if(user?.email){
       return <Navigate to="/" />
     }
@@ -60,12 +62,15 @@ const ForgetPassword = () => {
               </div>
             </div>
             <div>
-              <button
-                type="submit"
-                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                Reset Password
-              </button>
+            <button 
+            type='submit'
+            class="w-full py-3 font-medium text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z" />
+                      </svg>
+                      
+                      <span>Reset password</span>
+                </button>
             </div>
           </form>
   

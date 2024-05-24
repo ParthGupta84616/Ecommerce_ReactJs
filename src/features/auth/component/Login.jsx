@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
 import { useForm } from "react-hook-form"
 import { checkUserAsync, selectCheckUser } from '../authSlice';
+import CryptoJS from 'crypto-js';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -13,12 +14,11 @@ const Login = () => {
   } = useForm()
 
   const onSubmit = (data) => {
-    // console.log(data)
-    dispatch(checkUserAsync({email: data.email, password: data.password}))
+    dispatch(checkUserAsync({email: data.email, password: CryptoJS.SHA256(data.password).toString(CryptoJS.enc.Hex)}))
   }
   const user = useSelector(selectCheckUser)
   // console.log(user)
-  // console.log(user);
+
   if(user?.email){
     return <Navigate to="/" />
   }
