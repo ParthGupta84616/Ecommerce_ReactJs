@@ -11,6 +11,17 @@ const initialState = {
   
 };
 
+function debounce(func, delay) {
+  let timerId;
+  
+  return function(...args) {
+    clearTimeout(timerId);
+    timerId = setTimeout(() => {
+      func.apply(this, args);
+    }, delay);
+  };
+}
+
 
 export const fetchAllProductsAsync = createAsyncThunk(
   'product/fetchAllProducts',
@@ -21,13 +32,17 @@ export const fetchAllProductsAsync = createAsyncThunk(
   }
 );
 export const fetchProductsByFiltersAsync = createAsyncThunk(
+  // console.log("error"),
   'product/fetchProductsByFilters',
   async ({filter,sort,pagination}) => {
+    // console.log("error")
     const response = await fetchProductsByFilters(filter,sort,pagination);
     // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
 );
+export const debouncedFetchProductsByFiltersAsync = debounce(fetchProductsByFiltersAsync, 500);
+
 export const fetchBrandsAsync = createAsyncThunk(
   'product/fetchBrands',
   async () => {

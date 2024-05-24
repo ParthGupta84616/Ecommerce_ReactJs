@@ -59,7 +59,9 @@ export default function AdminProductList() {
 
   const [sort, setSort] = useState({});
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const [idDelete, setIdDelete] = useState(null)
   const [page, setPage] = useState(1);
+  const [reloading, setreloading] = useState(true)
   const handleFilter = (e, section, option) => {
     const newFilter = { ...filter };
     // TODO : on server it will support multiple categories
@@ -90,13 +92,24 @@ export default function AdminProductList() {
     setPage(page);
   };
   const handledelete = (id) => {
-    dispatch(deleteProductByIdAsync(id))
+    setIdDelete(id)
+    
   }
+  console.log(idDelete)
+  useEffect(() => {
+    dispatch(deleteProductByIdAsync(idDelete))
+    setreloading(false)
+  }, [idDelete])
+
+  
 
   useEffect(() => {
     const pagination = { _page: page, _per_page: ITEMS_PER_PAGE };
+    console.log(handledelete)
     dispatch(fetchProductsByFiltersAsync({ filter, sort, pagination }));
-  }, [dispatch, filter, sort, page ,  handledelete]);
+    setreloading(true)
+}, [dispatch, filter, sort, page , reloading]);
+// }, [dispatch, filter, sort, page ,  handledelete]);
 
   useEffect(() => {
     dispatch(fetchBrandsAsync());
