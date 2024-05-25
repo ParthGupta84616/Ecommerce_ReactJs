@@ -1,40 +1,45 @@
 export function addToCart(item) {
     return new Promise(async (resolve) => {
-        const response = await fetch("http://localhost:8080/cart",{
+        const response = await fetch("http://127.0.0.1:8080/cart",{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(item)
         });
-        const data = await response.json();
+        var data = await response.json();
+        data = data.data
         resolve({ data });
     });
 }
 export function fetchItemByUserId(userId) {
     return new Promise(async (resolve) =>{
-      const response = await fetch('http://localhost:8080/cart?userId='+userId) 
+      const response = await fetch('http://127.0.0.1:8080/cart?userId='+userId) 
       const data = await response.json()
+    //   console.log(data);
       resolve({data})
     }
     );
   }
 export function deleteItemFromCart(itemId) {
-return new Promise(async (resolve) => {
-    console.log("http://localhost:8080/cart/"+itemId)
-    const response = await fetch("http://localhost:8080/cart/"+itemId,{
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+    return new Promise(async (resolve) => {
+        const response = await fetch("http://127.0.0.1:8080/cart",{
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(itemId)
+        });
+        resolve({ data:{id:itemId.itemId} });
     });
-    // const data = await response.json();
-    resolve({ data:{id:itemId} });
-});
 }
+
+
+// User Update Function Below 
 export function updateUser(update) {
     return new Promise(async (resolve) => {
-        const response = await fetch("http://localhost:8080/users/"+update.id,{
+        // console.log(update);
+        const response = await fetch("http://127.0.0.1:8080/cart",{
             method: 'PATCH',
             body: JSON.stringify(update),
             
@@ -53,11 +58,8 @@ export function deleteUserCart(userId) {
         
         var bag=0
         for (var item of items) {
-            
-            console.log(item.id);
-            await deleteItemFromCart(item.id)
+            await deleteItemFromCart({itemId: item.id , user : userId})
         }
-        // console.log("kam25")
         resolve({ status : "Success" });
         
     });

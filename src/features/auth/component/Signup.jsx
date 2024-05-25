@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form"
 import { useDispatch, useSelector } from 'react-redux';
 import { createUserAsync, selectLoggedUser } from '../authSlice';
 import CryptoJS from 'crypto-js';
+import { v4 as uuidv4 } from 'uuid';
 
 const Signup = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -14,7 +15,7 @@ const Signup = () => {
   
   
   const onSubmit = (data) => {
-    dispatch(createUserAsync({email: data.email, password : CryptoJS.SHA256(data.password).toString(CryptoJS.enc.Hex)  , addresses:[], role : "user"}))
+    dispatch(createUserAsync({id:uuidv4() , email: data.email, password : CryptoJS.SHA256(data.password).toString(CryptoJS.enc.Hex)  , addresses:[], role : "user"}))
   };
   
   useEffect(() => {

@@ -72,8 +72,9 @@ function CheckOutPage() {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
     const onSubmit = (data) => {
-        dispatch(updateUserAsync({...user,addresses:[...user.addresses,data],}));
-        // setOrderDetails({"user":user, "addresses":data, "items":cartItems})
+        if(data.remember){
+            dispatch(updateUserAsync({id: user.id , addresses:[...user.addresses,data]}));
+        }
         dispatch(createOrderAsync({"id":orderId,"user":user, "addresses":data, "items":cartItems, "timestamp" : formattedDate, "cost": {"mrp":MRP , "totalprice": totalCost},"status": "pending"}))
         dispatch(deleteUserCartAsync(user.id));
         dispatch(fetchItemByUserIdAsync(user.id));

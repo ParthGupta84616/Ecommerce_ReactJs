@@ -61,8 +61,9 @@ const ProductOverview = () => {
   const handleCart = (e) => {
     // console.log("gyo");
     e.preventDefault();
-    if (user && user.id) {
+    if (user && user?.id) {
       dispatch(addToCartAsync({ ...product, quantity: 1, userId: user.id }));
+      console.log("here")
     } else {
       console.error('User or user ID is null or undefined.');
     }

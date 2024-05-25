@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
 import { deleteItemFromCartAsync, selectItems } from './cartSlice';
+import { selectCheckUser } from '../auth/authSlice';
 const Cart = () => {
   const dispatch = useDispatch()
   var cartItems = useSelector(selectItems);
+  const user = useSelector(selectCheckUser)
+  // console.log(user)
   if(cartItems===undefined){
     cartItems = [];
   }
@@ -53,7 +56,8 @@ const Cart = () => {
   }
   const handleRemove = (e , id)=>{
     console.log(id)
-    dispatch(deleteItemFromCartAsync(id));
+    console.log({itemId: id , user : user.id})
+    dispatch(deleteItemFromCartAsync({itemId: id , user : user.id}));
   }
   return (
       <div class="container mx-auto mt-10">

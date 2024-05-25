@@ -140,7 +140,7 @@ const handleChange = (change) => {
                   </td>
 
                   {workingOrder==order ? (
-                    <td className="px-2 py-5 border-b border-gray-200 bg-white text-sm">
+                    <td className="px-2 py-5 border-b border-gray-200 bg-white text-sm z-50 absolute">
                     <div class="relative inline-block text-left">
                     <div>
                       <button type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" id="options-menu" aria-expanded="true" aria-haspopup="true">
