@@ -59,16 +59,11 @@ export const cartSlice = createSlice({
       })
       .addCase(addToCartAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.items = state.items || [];
-        // console.log(first)
-        const existingItem = state.items.find(item => item.id === action.payload.id);
-        const existingItemIndex = state.items.indexOf(existingItem);
-
-        if (existingItemIndex !== -1) {
-          state.items[existingItemIndex].quantity += 1;
-        } else {
-          state.items.push(action.payload);
+        if(state.items === undefined){
+          state.items = [];
         }
+        state.items.push(action.payload);
+        
       })
       .addCase(fetchItemByUserIdAsync.pending, (state) => {
         state.status = 'loading';

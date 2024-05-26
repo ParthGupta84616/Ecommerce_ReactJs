@@ -22,9 +22,8 @@ const Cart = () => {
     cartItems.forEach((item) => {
       if (titleMap[item.title]) {
         // If title already exists in map, update its quantity
-        titleMap[item.title].quantity += item.quantity;
+        titleMap[item.title].quantity = item.quantity;
       } else {
-        // If title doesn't exist, add it to map and push it to consolidatedItems
         titleMap[item.title] = { ...item };
         consolidatedItems.push(titleMap[item.title]);
       }

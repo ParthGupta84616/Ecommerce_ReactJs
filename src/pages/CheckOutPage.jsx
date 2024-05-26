@@ -21,6 +21,11 @@ function CheckOutPage() {
     const formattedDate = formatDate(currentDate);
     const [MRP, setMRP] = useState(0)
 
+    useEffect(() => {
+      dispatch(fetchItemByUserIdAsync(user.id));
+    }, [])
+    
+
     // const orderId = uuidv4()
     
     useEffect(() => {
@@ -90,7 +95,7 @@ function CheckOutPage() {
         else{
             dispatch(createOrderAsync(orderDetails))
             dispatch(deleteUserCartAsync(user.id));
-            dispatch(fetchItemByUserIdAsync(user.id));
+            // dispatch(fetchItemByUserIdAsync(user.id));
             navigate(`/orderSuccessfull/${orderId}`)
            
         }

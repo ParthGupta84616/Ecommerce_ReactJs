@@ -70,11 +70,18 @@ const ProductOverview = () => {
   };
   if(cartItems){
     // console.log(cartItems.filter(item => item.title === product.title));
-    const item = cartItems.filter(item => item.title === product.title);
-    // console.log()
-    if(item.length){
+    console.log(cartItems)
+    const item =  cartItems.filter(item => {
+      // Check if both item and product have _id properties
+      if (item?._id && product?._id) {
+          return item._id === product._id;
+      }
+      return false;
+  });
+    if(item.length>0){
       // console.log("here again")
       var cartIt = item[0].quantity+item.length-1;
+      // console.log(cartItems)
       
     }
     else{
