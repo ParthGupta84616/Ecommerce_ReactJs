@@ -1,11 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { LogOutUser, checkUser, createUser, forgetPassword } from './AuthAPI';
+import { LogOutUser, authUser, checkUser, createUser, forgetPassword } from './AuthAPI';
 
 const initialState = {
   loggedInUser: null,
   mail : null,
-  
+  userInfo : null,
   status: 'idle',
+  message : null
 };
 
 export const createUserAsync = createAsyncThunk(
@@ -36,7 +37,13 @@ export const forgetPasswordAsync = createAsyncThunk(
     return response.data;
   }
 );
-
+export const authUserAsync = createAsyncThunk(
+  "user/authUser",
+  async () => {
+    const response = await authUser();
+    return response.data;
+  }
+);
 
 export const userSlice = createSlice({
   name: 'user',
@@ -76,6 +83,13 @@ export const userSlice = createSlice({
         state.status = 'idle';
         state.mail = action.payload;
       })
+      .addCase(authUserAsync.pending, (state) => {
+        state.message = 'loading';
+      })
+      .addCase(authUserAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.message = action.payload;
+      })
   }
 });
 
@@ -84,4 +98,5 @@ export const { increment } = userSlice.actions;
 export const selectLoggedUser = (state) => state.user.loggedInUser;
 export const selectCheckUser = (state) => state.user.userInfo;
 export const selectmail = (state) => state.user.mail;
+export const selectmessage = (state) => state.user.message;
 export default userSlice.reducer;

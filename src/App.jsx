@@ -9,7 +9,7 @@ import ProductOverviewPage from './pages/ProductOverviewPage';
 import Footer from './features/navbar/Footer';
 import Protected from './features/auth/Protected';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectCheckUser } from './features/auth/authSlice';
+import { authUserAsync, checkUserAsync, selectCheckUser, selectmessage } from './features/auth/authSlice';
 import { fetchItemByUserIdAsync, selectItems } from './features/cart/cartSlice';
 import ErrorPage from './pages/ErrorPage';
 import ConfirmedPage from './pages/ConfirmedPage';
@@ -96,7 +96,24 @@ export default function App() {
     
   ]);
   const user = useSelector(selectCheckUser)
+  const info = useSelector(selectmessage)
+  console.log(info);
   const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(authUserAsync())
+  }, [])
+  useEffect(() => {
+    if(info){
+      const loginInfo = {
+        "email": info.sub.email,
+        "password": info.sub.password,
+      }
+      dispatch(checkUserAsync(loginInfo));
+      
+    }
+  }, [info]);
+  
+  
   useEffect(() => {
     if(user){
       dispatch(fetchItemByUserIdAsync(user.id));
