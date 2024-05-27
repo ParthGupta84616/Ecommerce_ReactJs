@@ -8,7 +8,7 @@ function Orders() {
   const [editView, setEditView] = useState(false)
   const dispatch = useDispatch()
   const Navigate = useNavigate()
-  const orders = useSelector(selectTotalOrders)
+  var orders = useSelector(selectTotalOrders)
   const [workingOrder, setWorkingOrder] = useState(null)
   const update = useSelector(selectupdateOrder)
 
@@ -21,6 +21,13 @@ function Orders() {
     setWorkingOrder(null);
   }
   };
+  
+  // useEffect(() => {
+  //   if(orders){
+  //     // console.log(typeof(orders))
+  //     orders=[...orders].reverse()
+  //   }
+  // }, [orders])
   
 
 
@@ -52,6 +59,7 @@ const handleChange = (change) => {
     console.error("workingOrder is null or undefined");
   }
 }
+// console.log(orders)
 
   return (
       <div className="bg-white p-8 rounded-md w-full">
@@ -97,6 +105,9 @@ const handleChange = (change) => {
                       Products
                     </th>
                     <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                      Order Placed
+                    </th>
+                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Total Amount
                     </th>
                     <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -130,6 +141,9 @@ const handleChange = (change) => {
                         </p>
                       ))}
                     
+                  </td>
+                  <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    <p className="text-gray-900 whitespace-no-wrap">$ {(order.cost.totalprice).toFixed(0)} </p>
                   </td>
                   <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                     <p className="text-gray-900 whitespace-no-wrap">{order.timestamp} </p>

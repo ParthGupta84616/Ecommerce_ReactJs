@@ -1,20 +1,40 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { deleteItemFromCartAsync, selectItems } from './cartSlice';
 import { selectCheckUser } from '../auth/authSlice';
+
 const Cart = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   var cartItems = useSelector(selectItems);
-  const user = useSelector(selectCheckUser)
-  // console.log(user)
-  if(cartItems===undefined){
+  const user = useSelector(selectCheckUser);
+
+  if (cartItems === undefined) {
     cartItems = [];
   }
-  
 
   const [totalCost, setTotalCost] = useState(0);
-  const [TotalQunatity, setTotalQunatity] = useState(0)
+  const [TotalQunatity, setTotalQunatity] = useState(0);
+
+  useEffect(() => {
+    let totalPrice = 0;
+    let totalQuantity = 0;
+    cartItems.forEach((item) => {
+      const discountedPrice = item.price * (1 - item.discountPercentage / 100);
+      totalPrice += discountedPrice * item.quantity;
+      totalQuantity += item.quantity;
+    });
+
+    // Set the total cost state
+    setTotalCost(totalPrice);
+    setTotalQunatity(totalQuantity);
+  }, [cartItems]);
+
+  const handleRemove = (e, id) => {
+    dispatch(deleteItemFromCartAsync({ itemId: id, user: user.id }));
+  };
+
+
   const consolidateCartItems = (cartItems) => {
     const consolidatedItems = [];
     const titleMap = {};
@@ -48,19 +68,12 @@ const Cart = () => {
     setTotalCost(totalPrice);
     setTotalQunatity(totalQuantity);
   }, [cartItems]);
-  if (cartItems.length<1 || cartItems === undefined){
-    return(
-      <Navigate to={"/"}/>
-    )
-  }
-  const handleRemove = (e , id)=>{
-    console.log(id)
-    console.log({itemId: id , user : user.id})
-    dispatch(deleteItemFromCartAsync({itemId: id , user : user.id}));
-  }
+  
   return (
-      <div class="container mx-auto mt-10">
-      <div class="flex shadow-md my-10">
+    <>
+      {cartItems?.length > 0 ? (
+        <div class="container mx-auto mt-10">
+          <div class="flex shadow-md my-10">
         <div class="w-3/4 bg-white px-10 py-10">
           <div class="flex justify-between border-b pb-8">
             <h1 class="font-semibold text-2xl">Shopping Cart</h1>
@@ -131,8 +144,15 @@ const Cart = () => {
         </div>
 
       </div>
-      </div>
+        </div>
+      ) : (
+        <div className="flex justify-center items-center">
+          Nothing In Your Cart
+        </div>
+      )}
+    </>
   );
 };
 
 export default Cart;
+

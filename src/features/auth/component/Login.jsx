@@ -1,27 +1,38 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, Navigate } from 'react-router-dom';
-import { useForm } from "react-hook-form"
+import { Link, Navigate, useLocation } from 'react-router-dom';
+import { useForm } from "react-hook-form";
 import { checkUserAsync, selectCheckUser } from '../authSlice';
 import CryptoJS from 'crypto-js';
 
 const Login = () => {
   const dispatch = useDispatch();
+  const location = useLocation(); 
+  const redirect = location.state ? location.state.redirect : null;
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm()
+  } = useForm();
 
   const onSubmit = (data) => {
-    dispatch(checkUserAsync({email: data.email, password: CryptoJS.SHA256(data.password).toString(CryptoJS.enc.Hex)}))
-  }
-  const user = useSelector(selectCheckUser)
-  // console.log(user)
+    dispatch(checkUserAsync({email: data.email, password: CryptoJS.SHA256(data.password).toString(CryptoJS.enc.Hex)}));
+  };
 
-  if(user?.email){
-    return <Navigate to="/" />
+  const user = useSelector(selectCheckUser);
+
+  if (user?.email) {
+    if (redirect && redirect !== "/Logout" && redirect !== "/Login"&& redirect !== "/login") {
+      console.log("first",redirect)
+      return <Navigate to={redirect} />;
+    }
+  
+    else{
+      console.log("why")
+      return <Navigate to="/" />;
+    }
   }
+
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       {/* {user?.email && (

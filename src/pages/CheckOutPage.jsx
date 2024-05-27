@@ -34,7 +34,7 @@ function CheckOutPage() {
         let mrp = 0;
         cartItems.forEach((item) => {
             const discountedPrice = item.price * (1 - item.discountPercentage / 100);
-            mrp += item.price
+            mrp += item.price*item.quantity
             totalPrice += discountedPrice * item.quantity;
             totalQuantity += item.quantity;
         });

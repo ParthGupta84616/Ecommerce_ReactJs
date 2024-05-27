@@ -154,6 +154,15 @@ function Navbar({children}) {
     return consolidatedItems;
   };
     cartItems = consolidateCartItems(cartItems);
+
+    function extractNameFromEmail(email) {
+      const localPart = email.split('@')[0];
+      const nameParts = localPart.split(/\d+/);
+      let name = nameParts.join(' ');
+      name = name.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+      
+      return name;
+  }
   
     return (
         <div className="bg-white">
@@ -428,7 +437,7 @@ function Navbar({children}) {
                   {user ? (
                     <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
                       <Link to="/admin" className="text-sm font-medium text-gray-700 hover:text-gray-800">
-                        {user.email}
+                        {extractNameFromEmail(user.email)}
                       </Link>
                       <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
                       <Link to="/Logout" className="text-sm font-medium text-gray-700 hover:text-gray-800">
@@ -449,12 +458,9 @@ function Navbar({children}) {
                     <div className="hidden lg:ml-8 lg:flex">
                     <Link to={user?.role ==="admin" ? "/admin/orders" : "/orders"} className="flex items-center text-gray-700 hover:text-gray-800">
                         <img
-                            src="https://tailwindui.com/img/flags/flag-canada.svg"
-                            alt=""
-                            className="block h-auto w-5 flex-shrink-0"
-                        />
-                        <span className="ml-3 block text-sm font-medium">CAD</span>
-                        <span className="sr-only">, change currency</span>
+                        src='https://icon-library.com/images/order-icon/order-icon-18.jpg'
+                        className='size-6'
+                        ></img>
                     </Link>
 
                     </div>

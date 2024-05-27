@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import { selectCheckUser } from '../features/auth/authSlice';
-import { fetchOrderByIdAsync, selectCurrentOrder } from '../features/order/orderSlice';
+import { fetchAllOrderByIdAsync, fetchOrderByIdAsync, selectCurrentOrder, selectallOrders } from '../features/order/orderSlice';
 import { useParams } from 'react-router-dom';
 
 function ConfirmedPage() {
@@ -9,13 +9,17 @@ function ConfirmedPage() {
     const params = useParams();
     const [itemArray, setItemArray] = useState([]);
     const orderInfo = useSelector(selectCurrentOrder);
+    const allorders = useSelector(selectallOrders);
+
+    console.log(orderInfo)
 
     useEffect(() => {
         dispatch(fetchOrderByIdAsync(params.id));
     }, [dispatch, params.id]);
-
+    
     useEffect(() => {
-        if (orderInfo && orderInfo.items) {
+        if (orderInfo && orderInfo.items && orderInfo.user.id) {
+            dispatch(fetchAllOrderByIdAsync(orderInfo.user.id))
             setItemArray(orderInfo.items);
         }
     }, [orderInfo]); 
@@ -144,7 +148,7 @@ function ConfirmedPage() {
                                 <img src="https://i.ibb.co/5TSg7f6/Rectangle-18.png" alt="avatar" />
                                 <div className=" flex justify-start items-start flex-col space-y-2">
                                     <p className="text-base font-semibold leading-4 text-left text-gray-800">{orderInfo.addresses.firstName+ " "+ orderInfo.addresses.secondtName}</p>
-                                    <p className="text-sm leading-5 text-gray-600">0 Previous Orders</p>
+                                    <p className="text-sm leading-5 text-gray-600">{allorders?.length} Previous Orders</p>
                                 </div>
                             </div>
         

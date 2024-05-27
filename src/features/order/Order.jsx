@@ -22,7 +22,10 @@ const Order = () => {
   }, [dispatch, user.id]);
 
   useEffect(() => {
-    setOrders(allOrders);
+    if(allOrders){
+      console.log(typeof(allOrders))
+      setOrders([...allOrders].reverse());
+    }
   }, [allOrders]);
   const digitSum = (numberString) =>{ 
     if (typeof numberString !== 'string' || numberString.length === 0) {

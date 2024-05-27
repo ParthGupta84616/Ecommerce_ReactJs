@@ -97,7 +97,6 @@ export default function App() {
   ]);
   const user = useSelector(selectCheckUser)
   const info = useSelector(selectmessage)
-  console.log(info);
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(authUserAsync())

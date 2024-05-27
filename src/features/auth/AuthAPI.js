@@ -20,7 +20,7 @@ export function createUser(userData) {
 
 export function checkUser(loginInfo) {
     return new Promise(async (resolve) => {
-        console.log(loginInfo)
+        // console.log(loginInfo)
         const email = loginInfo.email;
         const password = loginInfo.password;
         const response = await fetch(`http://127.0.0.1:8080/users?email=${email}&password=${password}`);
