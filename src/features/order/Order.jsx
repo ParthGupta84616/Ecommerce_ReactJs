@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchAllOrderByIdAsync, selectallOrders } from './orderSlice';
 import { selectCheckUser } from '../auth/authSlice';
 import { Link } from 'react-router-dom';
+import { MdOutlineRemoveShoppingCart } from 'react-icons/md';
+// import { useEffect } from 'react';
 
 const Order = () => {
   const allOrders = useSelector(selectallOrders);
@@ -10,6 +12,7 @@ const Order = () => {
   const user = useSelector(selectCheckUser);
   const [loading, setLoading] = useState(true);
   const [orders, setOrders] = useState([]);
+  const [check, setcheck] = useState(0)
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -23,8 +26,10 @@ const Order = () => {
 
   useEffect(() => {
     if(allOrders){
-      console.log(typeof(allOrders))
-      setOrders([...allOrders].reverse());
+
+      if(allOrders.length > 0){
+        setOrders(allOrders);
+      }
     }
   }, [allOrders]);
   const digitSum = (numberString) =>{ 
@@ -39,14 +44,23 @@ const Order = () => {
         }
     }
     return sum;
-}
+  }
+useEffect(() => {
+  if(allOrders){
 
+    setcheck(allOrders?.length || 0)
+  }
+}, [allOrders])
+
+console.log(check)
+
+// console.log(check)
   return (
     <div>
       {loading ? (
         <div>Loading...</div>
       ) : (
-        orders.length > 0 ? (
+        check ? (
           orders.map((order) => (
             <div key={order.id}>
               <Link to={`/orderSuccessfull/${order.id}`}>
@@ -151,7 +165,19 @@ const Order = () => {
             </div>
           ))
         ) : (
-          <div>No orders found</div>
+          <div className="flex justify-center items-center ">
+          <div className="">
+              <div className='flex items-center justify-center m-20'><MdOutlineRemoveShoppingCart size={200} /></div>
+              <div className='flex items-center justify-center m-10 text-5xl font-mono'>No Pending Orders</div>
+              <div className='flex items-center justify-center m-10'>
+                <Link to={"/"} class="relative inline-flex w-5/6 items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
+                  <span class="relative px-5 py-2.5 w-full flex justify-center items-center  transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 text-xl font-mono">
+                    Continue Shopping
+                  </span>
+                </Link>
+              </div>
+          </div>
+        </div>
         )
       )}
     </div>

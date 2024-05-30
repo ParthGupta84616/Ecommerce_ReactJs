@@ -4,6 +4,7 @@ import { Link, Navigate, useLocation } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { checkUserAsync, selectCheckUser } from '../authSlice';
 import CryptoJS from 'crypto-js';
+import logo from '../../../Assests/logo.png';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -41,12 +42,12 @@ const Login = () => {
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <Link to="/">
         <img
-          className="mx-auto h-10 w-auto"
-          src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+          className="mx-auto h-64 w-auto"
+          src={logo}
           alt="Your Company"
         />
       </Link>
-          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+          <h2 className="-mt-16 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Sign in to your account
           </h2>
         </div>

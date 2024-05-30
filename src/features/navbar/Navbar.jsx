@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { selectItems } from '../cart/cartSlice'
 import { useSelector } from 'react-redux'
 import { selectCheckUser } from '../auth/authSlice'
+import logo from '../../Assests/logo.png'
 
 const navigation = {
   categories: [
@@ -323,12 +324,12 @@ function Navbar({children}) {
                   </button>
     
                   {/* Logo */}
-                  <div className="ml-4 flex lg:ml-0">
+                  <div className="ml-4 flex lg:ml-0 mt-2">
                     <Link to="/">
                       <span className="sr-only">Your Company</span>
                       <img
-                        className="h-8 w-auto"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                        className="h-24 w-auto"
+                        src={logo}
                         alt=""
                       />
                     </Link>
