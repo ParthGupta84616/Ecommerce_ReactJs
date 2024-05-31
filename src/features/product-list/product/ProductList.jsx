@@ -362,7 +362,7 @@ function DesktopFilter({ handleFilter ,filters, page , setPage}) {
                   </span>
                 </Disclosure.Button>
               </h3>
-              <Disclosure.Panel className="pt-6">
+              <Disclosure.Panel className="pt-6 max-h-96 overflow-y-auto">
                 <div className="space-y-4">
                   {section.options.map((option, optionIdx) => (
                     <div key={option.value} className="flex items-center">
@@ -372,15 +372,15 @@ function DesktopFilter({ handleFilter ,filters, page , setPage}) {
                         defaultValue={option.value}
                         type="checkbox"
                         defaultChecked={option.checked}
-                        onChange={(e) =>handleFilter(e, section, option)}
-                        onClick={()=>setPage(1)}
+                        onChange={(e) => handleFilter(e, section, option)}
+                        onClick={() => setPage(1)}
                         className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                       />
                       <label
                         htmlFor={`filter-${section.id}-${optionIdx}`}
                         className="ml-3 text-sm text-gray-600"
                       >
-                        {option.label} 
+                        {option.label}
                       </label>
                     </div>
                   ))}
@@ -390,11 +390,13 @@ function DesktopFilter({ handleFilter ,filters, page , setPage}) {
           )}
         </Disclosure>
       ))}
-    </form>
+</form>
+
   );
 }
 
 function Pagination({ page, setPage, handlePage, totalItems ,filters}) {
+  let paginationLength = Math.ceil(totalItems / ITEMS_PER_PAGE);
   return (
     <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6 mt-10">
       <div className="flex flex-1 justify-between sm:hidden">
@@ -440,7 +442,6 @@ function Pagination({ page, setPage, handlePage, totalItems ,filters}) {
           <nav
             className="isolate inline-flex -space-x-px rounded-md shadow-sm"
             aria-label="Pagination"
-            // onClick={(e) => handlePage(setPage(page-1))}
           >
             <div
               onClick={(e) => {
@@ -455,25 +456,34 @@ function Pagination({ page, setPage, handlePage, totalItems ,filters}) {
             </div>
             {/* Current: "z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" */}
 
-            {Array.from({ length: Math.ceil(totalItems / ITEMS_PER_PAGE) }).map(
+            {Array.from({ length: paginationLength }).map(
               (el, index) => (
-                <div
-                  onClick={(e) => handlePage(index + 1)}
-                  aria-current="page"
-                  className={`relative cursor-pointer z-10 inline-flex items-center ${
-                    index + 1 === page
-                      ? 'bg-indigo-600 text-white'
-                      : 'text-gray-400'
-                  } px-4 py-2 text-sm font-semibold  focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
-                >
-                  {index + 1}
-                </div>
+                (index + 1 >= page - 2 && index + 1 <= page + 2) && (
+                  <div
+                    key={index}
+                    onClick={(e) => {
+                      handlePage(index + 1);
+                      window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to the top smoothly
+                    }}
+                    aria-current="page"
+                    className={`relative cursor-pointer z-10 inline-flex items-center ${
+                      index + 1 === page
+                        ? 'bg-indigo-600 text-white'
+                        : 'text-gray-400'
+                    } px-4 py-2 text-sm font-semibold focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
+                  >
+                    {index + 1}
+                  </div>
+                )
               )
             )}
+
+
 
             <div
             onClick={(e) => {
               const maxPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
               console.log(maxPages);
               if (page < maxPages) {
                 setPage(page+1)
