@@ -139,6 +139,8 @@ function Navbar({children}) {
   var cartItems = useSelector(selectItems)
   const [open, setOpen] = useState(false)
   const user = useSelector(selectCheckUser)
+  const [search, setSearch] = useState(false)
+  const [searched, setSearched] = useState('')
   const consolidateCartItems = (cartItems) => {
     const consolidatedItems = [];
     const titleMap = {};
@@ -163,6 +165,11 @@ function Navbar({children}) {
       name = name.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
       
       return name;
+  }
+
+  const handleInputChange = (e) => {
+    setSearched(e.target.value)
+    console.log(e.target.value);
   }
   
     return (
@@ -465,14 +472,27 @@ function Navbar({children}) {
                     </Link>
 
                     </div>
+
+                    {search && (
+                      <form class="max-w-md mx-auto ml-4 -mr-4 w-1/2">   
+                      <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
+                      <div class="relative">
+                          <input type="search" id="default-search" value={searched}
+                            onChange={handleInputChange}    
+                            class=" w-full p-2  flex text-center text-base border rounded-lg font-mono border-gray-600 placeholder-gray-400 text-gray-900 focus:ring-blue-500 focus:border-blue-500" placeholder="Search Products" required />
+                     </div>
+                      </form>
+                    )}
     
                     {/* Search */}
-                    <div className="flex lg:ml-6">
+                    <div className="flex lg:ml-6" onClick={()=>setSearch(!search)}>
                       <Link href="#" className="p-2 text-gray-400 hover:text-gray-500">
                         <span className="sr-only">Search</span>
                         <MagnifyingGlassIcon className="h-6 w-6" aria-hidden="true" />
                       </Link>
                     </div>
+                    
+                      
     
                     {/* Cart */}
                     <div className="ml-4 flow-root lg:ml-6">
