@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { Fragment, useState } from 'react'
 import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { selectItems } from '../cart/cartSlice'
 import { useSelector } from 'react-redux'
 import { selectCheckUser } from '../auth/authSlice'
@@ -140,7 +140,9 @@ function Navbar({children}) {
   const [open, setOpen] = useState(false)
   const user = useSelector(selectCheckUser)
   const [search, setSearch] = useState(false)
+  // console.log(search)
   const [searched, setSearched] = useState('')
+  const navigate = useNavigate()
   const consolidateCartItems = (cartItems) => {
     const consolidatedItems = [];
     const titleMap = {};
@@ -169,7 +171,13 @@ function Navbar({children}) {
 
   const handleInputChange = (e) => {
     setSearched(e.target.value)
-    console.log(e.target.value);
+    // console.log(e.target.value);
+  }
+  const handleSearch = (e) => {
+    e.preventDefault();
+    navigate("/search/"+searched)
+    setSearch(false)
+
   }
   
     return (
@@ -478,14 +486,24 @@ function Navbar({children}) {
                       <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
                       <div class="relative">
                           <input type="search" id="default-search" value={searched}
-                            onChange={handleInputChange}    
+                            onChange={handleInputChange}  
+                            onKeyDown={(e) => {
+                              if (e.key === 'Enter') {
+                                handleSearch(e);
+                              }
+
+                            }}
+                            autoFocus
                             class=" w-full p-2  flex text-center text-base border rounded-lg font-mono border-gray-600 placeholder-gray-400 text-gray-900 focus:ring-blue-500 focus:border-blue-500" placeholder="Search Products" required />
                      </div>
                       </form>
                     )}
     
                     {/* Search */}
-                    <div className="flex lg:ml-6" onClick={()=>setSearch(!search)}>
+                    <div className="flex lg:ml-6" onClick={()=>{
+                      setSearch(!search)
+                      
+                    }}>
                       <Link href="#" className="p-2 text-gray-400 hover:text-gray-500">
                         <span className="sr-only">Search</span>
                         <MagnifyingGlassIcon className="h-6 w-6" aria-hidden="true" />

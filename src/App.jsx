@@ -23,6 +23,7 @@ import ProtectedAdmin from './features/auth/ProtectedAdmin';
 import ProductForm from './features/adminproductlist/ProductForm';
 import AdminProductFormPage from './pages/AdminProductFormPage';
 import OrdersPage from './pages/AdminOrdersPage';
+import SearchPage from './pages/SearchPage';
 
 export default function App() { 
   const router = createBrowserRouter([
@@ -72,6 +73,12 @@ export default function App() {
     {
       path: "/logout",
       element: (<Protected><Logout /></Protected>),
+    },
+    {
+      path: "/search/:search",
+      element: (<Protected>
+        <SearchPage/>
+      </Protected>),
     },
     {
       path: "/admin",
