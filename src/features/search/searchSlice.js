@@ -1,37 +1,42 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { fetchCount } from './CounterAPI';
+import { fetchSearchedProducts } from './searchAPI';
 
 const initialState = {
   value: 0,
   status: 'idle',
+  products: null,
 };
-export const incrementAsync = createAsyncThunk(
-  async (amount) => {
-    const response = await fetchCount(amount);
+
+export const fetchSearchedProductsAsync = createAsyncThunk(
+  "search/fetchSearchedProducts",
+  async (query) => {
+    const response = await fetchSearchedProducts(query);
     return response.data;
   }
 );
 
-export const counterSlice = createSlice({
-  name: 'counter',
+export const searchSlice = createSlice({
+  name: 'search',
   initialState,
   reducers: {
     increment: (state) => {
       state.value += 1;
     },
+  },
   extraReducers: (builder) => {
     builder
-      .addCase(incrementAsync.pending, (state) => {
+      .addCase(fetchSearchedProductsAsync.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(incrementAsync.fulfilled, (state, action) => {
+      .addCase(fetchSearchedProductsAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.value += action.payload;
+        state.products = action.payload;
       });
   },
-}});
+});
 
-export const { increment} = counterSlice.actions;
-export const selectCount = (state) => state.counter.value;
+export const { increment } = searchSlice.actions;
+export const selectCount = (state) => state.search.value;
+export const selectSearchedProducts = (state) => state.search.products;
 
-export default counterSlice.reducer;
+export default searchSlice.reducer;

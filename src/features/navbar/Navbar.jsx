@@ -171,7 +171,6 @@ function Navbar({children}) {
 
   const handleInputChange = (e) => {
     setSearched(e.target.value)
-    // console.log(e.target.value);
   }
   const handleSearch = (e) => {
     e.preventDefault();

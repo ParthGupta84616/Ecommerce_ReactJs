@@ -17,7 +17,7 @@ function Protected({ children }) {
           clearInterval(checkInterval);
           setIsLoading(false);
         }
-        console.log("checked")
+        // console.log("checked")
       }, 100); 
 
       const timeout = setTimeout(() => {
