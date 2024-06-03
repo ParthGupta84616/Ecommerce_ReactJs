@@ -45,11 +45,11 @@ function CheckOutPage() {
         setMRP(mrp);
     }, [cartItems]);
 
-    const handleRadioClick = (person) => {
-        if (checkedPerson === person) {
-            setCheckedPerson(null);
-        } else {
+    const handleRadioClick = (person,e) => {
+        if (e.target.checked) {
             setCheckedPerson(person);
+        } else {
+            setCheckedPerson(null);
         }
         setOrderDetails({"id":orderId,"user":user, "addresses":checkedPerson, "items":cartItems , "timestamp" : formattedDate , "cost": {"mrp":MRP , "totalprice": totalCost}, "status": "pending"})
     };
@@ -224,11 +224,12 @@ function CheckOutPage() {
                                 {user.addresses.map((person) => (
                                     <label key={person.email} className="flex items-center justify-between gap-x-6 py-5">
                                         <input
-                                            type="radio"
+                                            type="checkbox"
                                             id={person.email} // Use a unique identifier for each person
                                             name="radioGroup"
-                                            checked={checkedPerson === person} // Check if the current person is checked
-                                            onClick={() => handleRadioClick(person)} // Pass the person object to the click handler
+                                            defaultChecked={false}
+                                            // checked={checkedPerson === person} // Check if the current person is checked
+                                            onClick={(e) => handleRadioClick(person,e)} // Pass the person object to the click handler
                                         />
                                         <div className="flex min-w-0 gap-x-4">
                                             <div className="min-w-0 flex-auto">
