@@ -175,6 +175,7 @@ function Navbar({children}) {
   const handleSearch = (e) => {
     e.preventDefault();
     navigate("/search/"+searched)
+    setSearched('')
     setSearch(false)
 
   }
@@ -489,6 +490,7 @@ function Navbar({children}) {
                             onKeyDown={(e) => {
                               if (e.key === 'Enter') {
                                 handleSearch(e);
+                                // searched = ""
                               }
 
                             }}

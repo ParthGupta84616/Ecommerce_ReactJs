@@ -101,7 +101,7 @@ const handleChange = (change) => {
                     <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Order ID
                     </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th className="px-5 py-3 border-b-2 w-1/4 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Products
                     </th>
                     <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -149,8 +149,8 @@ const handleChange = (change) => {
                     <p className="text-gray-900 whitespace-no-wrap">{order.timestamp} </p>
                   </td>
                   <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                  <p className="text-gray-900 whitespace-no-wrap">{order.addresses.firstName+" "+order.addresses.secondtName+", "+order.addresses.email} </p>
-                    <p className="text-gray-900 whitespace-no-wrap">{order.addresses.Address+", "+order.addresses.City+", "+order.addresses.PostCode} </p>
+                  <p className="text-gray-900 whitespace-no-wrap">{order.addresses?.firstName+" "+order.addresses?.secondtName+", "+order.addresses?.email} </p>
+                    <p className="text-gray-900 whitespace-no-wrap">{order.addresses?.Address+", "+order.addresses?.City+", "+order.addresses?.PostCode} </p>
                   </td>
 
                   {workingOrder==order ? (

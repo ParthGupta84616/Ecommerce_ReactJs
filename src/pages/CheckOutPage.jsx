@@ -14,13 +14,16 @@ function CheckOutPage() {
     const user = useSelector(selectCheckUser)
     const dispatch = useDispatch()
     const [TotalQuantity, setTotalQuantity] = useState(0);
-    const [orderDetails, setOrderDetails] = useState({"addresses":null})
+    const [orderDetails, setOrderDetails] = useState({})
     const navigate = useNavigate();
     const [orderId, setorderId] = useState(1)
     const currentDate = new Date();
     const formattedDate = formatDate(currentDate);
     const [MRP, setMRP] = useState(0)
-
+    
+    if (cartItems.length === 0) {
+        navigate('/');
+        }
     useEffect(() => {
       dispatch(fetchItemByUserIdAsync(user.id));
     }, [])
@@ -45,12 +48,9 @@ function CheckOutPage() {
         setMRP(mrp);
     }, [cartItems]);
 
-    const handleRadioClick = (person,e) => {
-        if (e.target.checked) {
-            setCheckedPerson(person);
-        } else {
-            setCheckedPerson(null);
-        }
+    console.log(checkedPerson);
+    // console.log(checkedPerson);
+    const handleRadioClick = () => {
         setOrderDetails({"id":orderId,"user":user, "addresses":checkedPerson, "items":cartItems , "timestamp" : formattedDate , "cost": {"mrp":MRP , "totalprice": totalCost}, "status": "pending"})
     };
 
@@ -89,14 +89,15 @@ function CheckOutPage() {
     };
 
     const handleOutsideSubmit = () => {
-        if (orderDetails.addresses==null){
-            handleSubmit(onSubmit)();
+        if (checkedPerson){
+            setOrderDetails({"id":orderId,"user":user, "addresses":checkedPerson, "items":cartItems , "timestamp" : formattedDate , "cost": {"mrp":MRP , "totalprice": totalCost}, "status": "pending"})
+            dispatch(createOrderAsync({"id":orderId,"user":user, "addresses":checkedPerson, "items":cartItems , "timestamp" : formattedDate , "cost": {"mrp":MRP , "totalprice": totalCost}, "status": "pending"}))
+            dispatch(deleteUserCartAsync(user.id));
+            navigate(`/orderSuccessfull/${orderId}`)
         }
         else{
-            dispatch(createOrderAsync(orderDetails))
-            dispatch(deleteUserCartAsync(user.id));
-            // dispatch(fetchItemByUserIdAsync(user.id));
-            navigate(`/orderSuccessfull/${orderId}`)
+            
+            handleSubmit(onSubmit)();
            
         }
     };  
@@ -111,6 +112,9 @@ function CheckOutPage() {
         };
         return new Intl.DateTimeFormat('en-US', options).format(date);
     }
+
+
+    
   return (
 
     <div class="container p-12 mx-auto">
@@ -224,12 +228,21 @@ function CheckOutPage() {
                                 {user.addresses.map((person) => (
                                     <label key={person.email} className="flex items-center justify-between gap-x-6 py-5">
                                         <input
-                                            type="checkbox"
+                                            type="radio"
                                             id={person.email} // Use a unique identifier for each person
                                             name="radioGroup"
                                             defaultChecked={false}
                                             // checked={checkedPerson === person} // Check if the current person is checked
-                                            onClick={(e) => handleRadioClick(person,e)} // Pass the person object to the click handler
+                                            onClick={(e) => {
+                                                if (e.target.checked) {
+                                                    // console.log("hola");
+                                                    setCheckedPerson(person);
+                                                }
+                                                else{
+                                                    setCheckedPerson(null);
+                                                }
+                                                handleRadioClick();
+                                            }} 
                                         />
                                         <div className="flex min-w-0 gap-x-4">
                                             <div className="min-w-0 flex-auto">

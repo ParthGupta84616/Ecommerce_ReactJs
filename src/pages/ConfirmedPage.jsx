@@ -11,7 +11,7 @@ function ConfirmedPage() {
     const orderInfo = useSelector(selectCurrentOrder);
     const allorders = useSelector(selectallOrders);
 
-    console.log(orderInfo)
+    // console.log(orderInfo)
 
     useEffect(() => {
         dispatch(fetchOrderByIdAsync(params.id));
@@ -24,7 +24,7 @@ function ConfirmedPage() {
         }
     }, [orderInfo]); 
 
-    console.log(orderInfo);
+    // console.log(orderInfo);
     const digitSum = (numberString) =>{ 
         if (typeof numberString !== 'string' || numberString.length === 0) {
             return 0; 

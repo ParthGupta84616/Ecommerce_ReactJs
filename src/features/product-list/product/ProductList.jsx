@@ -110,7 +110,7 @@ export default function ProductList() {
 
   }, [dispatch]);
 
-  console.log(filter);
+  // console.log(filter);
   return (
     <div className="bg-white">
       <div>

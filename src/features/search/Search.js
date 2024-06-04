@@ -24,6 +24,9 @@ function Search() {
       // console.log(section.id, option)
       dispatch(fetchFilteredProductsAsync({"product":total.products,"filter": section.id,"option": option}))
     }
+    else{
+      dispatch(fetchSearchedProductsAsync(param.search))
+    }
 
   }
   const filters = [
@@ -156,13 +159,14 @@ function DesktopFilter({ handleFilter ,filters}) {
               </h3>
               <Disclosure.Panel className="pt-6 max-h-96 overflow-y-auto">
                 <div className="space-y-4">
+               
                   {section.options.map((option, optionIdx) => (
                     <div key={option.value} className="flex items-center">
                       <input
                         id={`filter-${section.id}-${optionIdx}`}
                         name={`${section.id}[]`}
                         defaultValue={option.value}
-                        type="radio"
+                        type="checkbox"
                         defaultChecked={option.checked}
                         onChange={(e) => handleFilter(e, section, option)}
                         // onClick={() => setPage(1)}
