@@ -7,3 +7,18 @@ export function fetchSearchedProducts(query) {
     }
     );
   }
+  export function fetchFilteredProducts(product , filter , option) {
+    // console.log(filter , option)
+    return new Promise(async (resolve) =>{
+      var data = {}
+  
+      product.forEach((product, index) => {
+        if(product[filter] === option){
+          data[index] = product;
+        }
+      })
+      var data = Object.values(data);
+      // console.log(data);
+      resolve({data})
+    });
+  }

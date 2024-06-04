@@ -1,27 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
-import { fetchSearchedProductsAsync, selectSearchedProducts } from './searchSlice'
+import { fetchFilteredProductsAsync, fetchSearchedProductsAsync, selectFilteredProducts, selectSearchedProducts } from './searchSlice'
 import { FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/24/outline'
 import { Disclosure } from '@headlessui/react'
 
 function Search() {
   const param = useParams()
   const dispatch = useDispatch()
-  const products = useSelector(selectSearchedProducts)
+  var products = useSelector(selectSearchedProducts)
+  const total = products
+  var products = useSelector(selectFilteredProducts)
+
+  const allProducts = useSelector(selectSearchedProducts)
     useEffect(() => {
       dispatch(fetchSearchedProductsAsync(param.search))
-    }, [param.search])
+    }, [param.search ])
+    // console.log(products)
 
-  let yo=[]
   const handleFilter = (e, section, option) => {
-    console.log(e.target.value, section, option)
+    // console.log(e.target.value, section, option)
     if (e.target.checked) {
-      products.products.map((product) => {
-        if(product[section.id] === option){
-          yo.push(product)
-        }
-      })
+      // console.log(section.id, option)
+      dispatch(fetchFilteredProductsAsync({"product":total.products,"filter": section.id,"option": option}))
     }
 
   }
@@ -42,13 +43,13 @@ function Search() {
     return (
 
       <div className="bg-white">
-      {products && (
+      {products?.products && (
         <div>
 
         <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 mt-4">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900">
-              {products.products.length} Products
+              {products?.products?.length} Products
             </h1>
 
             <div className="flex items-center">
@@ -161,7 +162,7 @@ function DesktopFilter({ handleFilter ,filters}) {
                         id={`filter-${section.id}-${optionIdx}`}
                         name={`${section.id}[]`}
                         defaultValue={option.value}
-                        type="checkbox"
+                        type="radio"
                         defaultChecked={option.checked}
                         onChange={(e) => handleFilter(e, section, option)}
                         // onClick={() => setPage(1)}
